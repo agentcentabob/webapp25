@@ -1,0 +1,1 @@
+i wrote this document in obsidian because its my *favourite* markdown editor! but now i'm gonna go upload it
