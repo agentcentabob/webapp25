@@ -1,4 +1,4 @@
 # webapp25
 10cpt: assessment task 4 - web application.
 
-markdown is my favourite rich text editor. it works great with obsidian.
+for this project, i will be using a combination of html/css, javascript and sqlite to create a cool web application
