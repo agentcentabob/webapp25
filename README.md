@@ -4,3 +4,8 @@
 for this project, i will be using a combination of html/css, javascript and sqlite to create a web application
 
 **testing** folder is for testing features, namely the github versioning system
+
+| functional requirements | non functional requirements |
+| ---- | ------- |
+| accessible  | looks cool     |
+
