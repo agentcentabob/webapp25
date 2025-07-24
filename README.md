@@ -1,11 +1,13 @@
 # webapp25
-10cpt: assessment task 4 - web application.
+10cpt: assessment task 3 - web application
 
-for this project, i will be using a combination of html/css, javascript and sqlite to create a web application
+this project aims to create a functional web application using sqlite, javascript, css and html
 
-**testing** folder is for testing features, namely the github versioning system
+***testing** folder is for testing features, namely the github versioning system*
 
 | functional requirements | non functional requirements |
 | ---- | ------- |
-| accessible  | looks cool     |
+| accessible  | looks cool |
+
+#### design brief
 
