@@ -16,5 +16,25 @@ this project aims to create an urban planning notebook web application that allo
 | data visualisation |
 | markdown and rich text editing |
 
+### first designs
+wireframes completed on paper.
+#### theme
+overall theme was inspired by notetaking apps such as notion and obsidian. specific elements were also inspired by them such as formatting bar from the *editing toolbar* plugin from obsidian, seen below
+![alt text](image.png).
+
+landing page was inspired by the canva homepage.
+#### fonts
+fonts currently being considered:
+- owners text https://fonts.adobe.com/fonts/owners-text
+- lorimer no. 2 https://fonts.adobe.com/fonts/lorimer-no-2
+#### colours
+dark green colour scheme, inspired by natural colours.
+- dark green #3fa053
+- light green #b5f5ae
+- light blue #b9daff
+- dark grey #313633
+- white #ffffff
+
+
 
 
