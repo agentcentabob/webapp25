@@ -16,27 +16,28 @@ this project aims to create an urban planning notebook web application that allo
 | data visualisation |
 | markdown and rich text editing |
 
-### first design
-wireframes completed on paper, see below.
-![first wireframes](designs\first-wireframes.png)
-
-#### theme
-overall theme was inspired by notetaking apps such as notion and obsidian. the landing page was inspired by the canva homepage.specific elements were also inspired by them such as formatting bar from the *editing toolbar* plugin from obsidian, seen below
-![editing toolbar inspiration](designs\editing-toolbar-inspo.png)
 #### fonts
-fonts currently being considered:
+ideal fonts but not accessible via adobe fonts:
 - owners text https://fonts.adobe.com/fonts/owners-text
 - lorimer no. 2 https://fonts.adobe.com/fonts/lorimer-no-2
+- acumin https://fonts.adobe.com/fonts/acumin 
+
+chosen font: https://fonts.google.com/specimen/Mozilla+Text
 #### colours
-dark green colour scheme, inspired by natural colours.
+analogous dark green colour scheme, inspired by natural colours (see https://coolors.co/3fa053-b5f5ae-b9daff-313633-ffffff).
 - dark green #3fa053
 - light green #b5f5ae
 - light blue #b9daff
 - dark grey #313633
 - white #ffffff
-### second design
+#### first design
+wireframes completed on paper, see below.
+![first wireframes](designs\first-wireframes.png)
+
+##### theme
+overall theme was inspired by notetaking apps such as notion and obsidian. the landing page was inspired by the canva homepage.specific elements were also inspired by them such as formatting bar from the *editing toolbar* plugin from obsidian, seen below
+![editing toolbar inspiration](designs\editing-toolbar-inspo.png)
+#### second design
 alternative design created on figma, attached below.
-
-
 
 
