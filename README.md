@@ -43,8 +43,10 @@ the wireframes for the first design were completed on paper, see image below.
 ![first wireframes](designs\first-wireframes.png)
 
 ### second design
-the wireframes for the alternative were design created on figm  a, attached below. this design incorporated similar core elements to the initial wireframes, however included modified layouts and interactions in elements.
+the wireframes for the alternative were design created on figma, attached below. this design incorporated similar core elements to the initial wireframes, however included modified layouts and interactions in elements.
 see on figma: https://www.figma.com/design/hnSb3hvb5pWZTmRY3ifh46/10cpt-assessment-task-3-second-wireframe?node-id=2625-150&t=4e0e1ZbdfMmril36-1 or on attachments below:
 ![second wireframe, example note page](designs\second-wireframe-1.png)
 ![second wireframe, home page](designs\second-wireframe-2.png)
 ![second wireframe, navigation bar](designs\second-wireframe-3.png)
+#### data flow
+the majority of the user data flow occurs through the header. each of the key headings link to other pages, and the expanded header allows for more detailed user movements. the home page includes a number of links to other pages including types of new notes, recent notes and featured articles.

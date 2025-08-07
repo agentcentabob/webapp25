@@ -10,3 +10,7 @@ colour schemes:
 - https://www.flux-academy.com/blog/how-to-strategically-use-color-in-website-design
 - https://visme.co/blog/website-color-schemes/
 - https://webflow.com/blog/color-theory
+
+other:
+- header vs sidebar https://saltnbold.com/blog/post/header-vs-sidebar-a-simple-guide-to-better-navigation-design
+- navigation best practice https://www.flux-academy.com/blog/7-website-navigation-best-practices-with-examples
