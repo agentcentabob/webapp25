@@ -36,11 +36,11 @@ see here: https://coolors.co/3fa053-b5f5ae-b9daff-313633-ffffff
 
 #### theme
 the overall themes are inspired by notetaking apps such as notion and obsidian. the landing page is inspired by the canva homepage, while specific elements were also inspired by them such as formatting bar from the *editing toolbar* plugin from obsidian, seen below:
-![editing toolbar inspiration](designs\editing-toolbar-inspo.png)
+![editing toolbar inspiration](designs/editing-toolbar-inspo.png)
 
 ### first design
 the wireframes for the first design were completed on paper, see image below.
-![first wireframes](designs\first-wireframes.png)
+![first wireframes](designs/first-wireframes.png)
 
 ### second design
 the wireframes for the alternative were design created on figma, attached below. this design incorporated similar core elements to the initial wireframes, however included modified layouts and interactions in elements.
