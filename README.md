@@ -13,7 +13,8 @@ this project aims to create an urban planning notebook web application that allo
 | contact and feedback page | secure user data storage |
 | entry management  |
 | data visualisation |
-| markdown and rich text editing |
+| markdown and rich text notetaking |
+| sharing of posts, articles |
 
 #### fonts
 the fonts selected are helvetica-style sans fonts, with hard curves. initially, some similar fonts were found on adobe fonts however they were not accessible due to account restrictions.
