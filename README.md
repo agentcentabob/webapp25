@@ -51,3 +51,11 @@ see on figma [here](https://www.figma.com/design/hnSb3hvb5pWZTmRY3ifh46/10cpt-as
 ![second wireframe, navigation bar](designs/second-wireframe-3.png)
 #### data flow
 the majority of the user data flow occurs through the header. each of the key headings link to other pages, and the expanded header allows for more detailed user movements. the home page includes a number of links to other pages including types of new notes, recent notes and featured articles.
+## workbook
+### algorithm
+the algorithm was created for the functionality of the log in page. see on lucidchart [here](https://lucid.app/lucidchart/1d9d2cc0-5c7d-4845-8429-0a635598c715/edit?viewport_loc=-78%2C-172%2C2622%2C1310%2C0_0&invitationId=inv_a82f3bc4-e7b0-415b-bcf0-ad197f41dd0a) or in the attachment below: ![log in page functionality](documentation/log-in-functionality-algorithm.png)
+### test cases
+| test case id | test case name | preconditions | test steps | expected results |
+| --- | --- | --- | --- | --- |
+| tc-li-1  | successful log in | - user has an account in data base<br>- user knows their credentials | 1. open login page<br>2. enter valid credentials in provided prompts<br>3. click 'log in' | user is redirected to account page
+| tc-li-2 | failed log in (wrong password) | - user has an account in data base<br>- user knows their email or username but not their password | 1. open login page<br>2. enter valid username and invalid password in provided prompts<br>3. click 'log in' | user is prompted that their password is incorrect and login fails
