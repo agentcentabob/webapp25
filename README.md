@@ -59,3 +59,8 @@ the algorithm was created for the functionality of the log in page. see on lucid
 | --- | --- | --- | --- | --- |
 | tc-li-1  | successful log in | - user has an account in data base<br>- user knows their credentials | 1. open login page<br>2. enter valid credentials in provided prompts<br>3. click 'log in' | user is redirected to account page
 | tc-li-2 | failed log in (wrong password) | - user has an account in data base<br>- user knows their email or username but not their password | 1. open login page<br>2. enter valid username and invalid password in provided prompts<br>3. click 'log in' | user is prompted that their password is incorrect and login fails
+## development log
+development log started in august 18th in line with course shift away from design towards development.
+| date | work completed |
+| --- | --- |
+| 18/8  | set up development environment | 
