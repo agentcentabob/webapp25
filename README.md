@@ -22,7 +22,7 @@ the fonts selected are helvetica-style sans fonts, with hard curves. initially, 
 - [lorimer no. 2](https://fonts.adobe.com/fonts/lorimer-no-2)
 - [acumin](https://fonts.adobe.com/fonts/acumin) 
 
-the chosen font was similar and accessible via [google fonts]( https://fonts.google.com/specimen/Mozilla+Text)
+the chosen font was similar and accessible via [google fonts](https://fonts.google.com/specimen/Mozilla+Text)
 
 #### colours
 the chosen colour scheme is an analogous dark green colour scheme, inspired by natural colours. it also incorporates greys and whites, tying together the colours of the urban environment.
@@ -37,18 +37,18 @@ or see [here](https://coolors.co/3fa053-b5f5ae-b9daff-313633-ffffff)
 
 #### theme
 the overall themes are inspired by notetaking apps such as notion and obsidian. the landing page is inspired by the canva homepage, while specific elements were also inspired by them such as formatting bar from the *editing toolbar* plugin from obsidian, seen below:
-![editing toolbar inspiration](designs/editing-toolbar-inspo.png)
+![editing toolbar inspiration](documentation/designs/editing-toolbar-inspo.png)
 
 ### first design
 the wireframes for the first design were completed on paper, see image below.
-![first wireframes](designs/first-wireframes.png)
+![first wireframes](documentation/designs/first-wireframes.png)
 
 ### second design
 the wireframes for the alternative were design created on figma, attached below. this design incorporated similar core elements to the initial wireframes, however included modified layouts and interactions in elements.
 see on figma [here](https://www.figma.com/design/hnSb3hvb5pWZTmRY3ifh46/10cpt-assessment-task-3-second-wireframe?node-id=2625-150&t=4e0e1ZbdfMmril36-1) or in the attachments below:
-![second wireframe, example note page](designs/second-wireframe-1.png)
-![second wireframe, home page](designs/second-wireframe-2.png)
-![second wireframe, navigation bar](designs/second-wireframe-3.png)
+![second wireframe, example note page](documentation/designs/second-wireframe-1.png)
+![second wireframe, home page](documentation/designs/second-wireframe-2.png)
+![second wireframe, navigation bar](documentation/designs/second-wireframe-3.png)
 #### data flow
 the majority of the user data flow occurs through the header. each of the key headings link to other pages, and the expanded header allows for more detailed user movements. the home page includes a number of links to other pages including types of new notes, recent notes and featured articles.
 ## workbook
@@ -63,4 +63,5 @@ the algorithm was created for the functionality of the log in page. see on lucid
 development log started in august 18th in line with course shift away from design towards development.
 | date | work completed |
 | --- | --- |
-| 18/8  | set up development environment | 
+| 18/8  | started setting up development environment | 
+| 19/8 | finished tempe hs tutorial on setting up development environment |
