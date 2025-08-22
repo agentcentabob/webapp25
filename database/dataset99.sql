@@ -1,7 +1,8 @@
-INSERT INTO userinformation2(user_name,user_email,user_password,user_pfp,user_phone) VALUES ('alice01','alice01@example.com','b1rl@HEF',NULL,61497828826);
-INSERT INTO userinformation2(user_name,user_email,user_password,user_pfp,user_phone) VALUES ('bobster','bobster@example.com','HR2!^wr%',NULL,61493047057);
-INSERT INTO userinformation2(user_name,user_email,user_password,user_pfp,user_phone) VALUES ('charlieC','charlieC@example.com','$!PLSN*5',NULL,61426735099);
-INSERT INTO userinformation2(user_name,user_email,user_password,user_pfp,user_phone) VALUES ('dianaX','dianaX@example.com','!#8XTsYx',NULL,61460321315);
+-- INSERT INTO userinformation2(user_name,user_email,user_password,user_pfp,user_phone) VALUES ('alice01','alice01@example.com','b1rl@HEF',NULL,61497828826);
+-- INSERT INTO userinformation2(user_name,user_email,user_password,user_pfp,user_phone) VALUES ('bobster','bobster@example.com','HR2!^wr%',NULL,61493047057);
+-- INSERT INTO userinformation2(user_name,user_email,user_password,user_pfp,user_phone) VALUES ('charlieC','charlieC@example.com','$!PLSN*5',NULL,61426735099);
+-- INSERT INTO userinformation2(user_name,user_email,user_password,user_pfp,user_phone) VALUES ('dianaX','dianaX@example.com','!#8XTsYx',NULL,61460321315);
+-- above rows completed manually in testing
 INSERT INTO userinformation2(user_name,user_email,user_password,user_pfp,user_phone) VALUES ('edward77','edward77@example.com','XfTF3Qsb',NULL,61413370937);
 INSERT INTO userinformation2(user_name,user_email,user_password,user_pfp,user_phone) VALUES ('frankie','frankie@example.com','L8S!Cbzq',NULL,61490397530);
 INSERT INTO userinformation2(user_name,user_email,user_password,user_pfp,user_phone) VALUES ('grace_h','grace_h@example.com','*mKo2v7H',NULL,61439044813);
