@@ -65,3 +65,5 @@ development log started in august 18th in line with course shift away from desig
 | --- | --- |
 | 18/8  | started setting up development environment | 
 | 19/8 | finished tempe hs tutorial on setting up development environment |
+| 20/8 | started creating own tables in sqlite database |
+| 22/8* | finished creating own tables in database |
