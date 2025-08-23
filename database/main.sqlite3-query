@@ -1,0 +1,151 @@
+-- database: c:\Users\jethr\Code\task 3\webapp25\database\data_source.db
+
+-- Use the ▷ button in the top right corner to run the entire file.
+
+SELECT * FROM "table-name";
+CREATE TABLE extension(extID INTEGER NOT NULL PRIMARY KEY,name TEXT NOT NULL, hyperlink TEXT NOT NULL,about TEXT NOT NULL,image TEXT NOT NULL,language TEXT NOT NULL);
+INSERT INTO extension(extID,name,hyperlink,about,image,language) VALUES (1,"Live Server","https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer","Launch a development local Server with live reload feature for static & dynamic pages","https://ritwickdey.gallerycdn.vsassets.io/extensions/ritwickdey/liveserver/5.7.9/1661914858952/Microsoft.VisualStudio.Services.Icons.Default","HTML CSS JS");
+INSERT INTO extension(extID,name,hyperlink,about,image,language) VALUES (2,"Render CR LF","https://marketplace.visualstudio.com/items?itemName=medo64.render-crlf","Displays the line ending symbol and optionally extra whitespace when 'Render whitespace' is turned on.","https://medo64.gallerycdn.vsassets.io/extensions/medo64/render-crlf/1.7.1/1689315206970/Microsoft.VisualStudio.Services.Icons.Default","#BASH");
+INSERT INTO extension(extID,name,hyperlink,about,image,language) VALUES (3,"Start GIT BASH","https://marketplace.visualstudio.com/items?itemName=McCarter.start-git-bash","Adds a bash command to VSCode that allows you to start git-bash in the current workspace's root folder.","https://mccarter.gallerycdn.vsassets.io/extensions/mccarter/start-git-bash/1.2.1/1499505567572/Microsoft.VisualStudio.Services.Icons.Default","#BASH");
+INSERT INTO extension(extID,name,hyperlink,about,image,language) VALUES (4,"SQLite3 Editor","https://marketplace.visualstudio.com/items?itemName=yy0931.vscode-sqlite3-editor","Edit SQLite3 files like you would in spreadsheet applications.","https://yy0931.gallerycdn.vsassets.io/extensions/yy0931/vscode-sqlite3-editor/1.0.85/1690893830873/Microsoft.VisualStudio.Services.Icons.Default","SQL");
+SELECT * FROM extension;
+SELECT * FROM extension WHERE language LIKE '#BASH';
+SELECT * FROM "table-name";
+CREATE TABLE notes(user_ID INTEGER NOT NULL PRIMARY KEY,note_ID INTEGER NOT NULL,address TEXT NOT NULL,date_created DATETIME DEFAULT CURRENT_TIMESTAMP,date_modified DATETIME DEFAULT CURRENT_TIMESTAMP,note_contents BLOB NOT NULL);
+CREATE TABLE notes(user_id INTEGER NOT NULL,note_ID INTEGER NOT NULL,address TEXT NOT NULL,date_created DATETIME DEFAULT CURRENT_TIMESTAMP,date_modified DATETIME DEFAULT CURRENT_TIMESTAMP,note_contents BLOB NOT NULL,FOREIGN KEY (user_id) REFERENCES userinformation2(user_id));
+CREATE TABLE articles(
+    user_id INTEGER NOT NULL,
+    article_id INTEGER NOT NULL,
+    article_title TEXT NOT NULL,
+    address TEXT NOT NULL,
+    date_created DATETIME DEFAULT CURRENT_TIMESTAMP,
+    date_modified DATETIME DEFAULT CURRENT_TIMESTAMP,
+    likes INTEGER NOT NULL,
+    views INTEGER NOT NULL,
+    completions INTEGER NOT NULL,
+    reposts INTEGER NOT NULL,
+    article_contents BLOB NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES userinformation2(user_id));
+
+INSERT INTO userinformation2(user_name,user_email,user_password,user_pfp,user_phone) VALUES ('alice01','alice01@example.com','b1rl@HEF',NULL,61497828826);
+INSERT INTO userinformation2(user_name,user_email,user_password,user_pfp,user_phone) VALUES ('bobster','bobster@example.com','HR2!^wr%',NULL,61493047057);
+INSERT INTO userinformation2(user_name,user_email,user_password,user_pfp,user_phone) VALUES ('charlieC','charlieC@example.com','$!PLSN*5',NULL,61426735099);
+INSERT INTO userinformation2(user_name,user_email,user_password,user_pfp,user_phone) VALUES ('dianaX','dianaX@example.com','!#8XTsYx',NULL,61460321315);
+SELECT * FROM userinformation2 WHERE user_name LIKE 'grace_h';
+
+INSERT INTO notes(note_id, note_title, address, note_contents, user_id) VALUES
+(1, 'Transit Capacity Review', 'Shinjuku Station, Tokyo, Japan', NULL, 1),
+(2, 'Night Market Pedestrian Flow', 'La Rambla, Barcelona, Spain', NULL, 1),
+(3, 'Bike Lane Pilot Study', 'Union Square, San Francisco, USA', NULL, 1),
+(4, 'Green Roof Assessment', 'City Hall, Toronto, Canada', NULL, 1),
+(5, 'Bus Rapid Transit Evaluation', 'Bogotá, Colombia', NULL, 1),
+(6, 'Pedestrian Mall Concept', 'Orchard Road, Singapore', NULL, 1),
+(7, 'Mixed Use Development Notes', 'Docklands, Melbourne, Australia', NULL, 1),
+(8, 'Traffic Signal Optimization', 'Oxford Circus, London, UK', NULL, 1),
+(9, 'Waterfront Walkability Study', 'Marina Bay, Singapore', NULL, 1),
+(10, 'High Density Housing Review', 'Mitte, Berlin, Germany', NULL, 1),
+
+(1, 'Smart Lighting Initiative', 'Central, Hong Kong', NULL, 2),
+(2, 'School Zone Safety Survey', 'Brooklyn, New York, USA', NULL, 2),
+(3, 'Metro Expansion Impact', 'Paris Gare du Nord, France', NULL, 2),
+(4, 'Urban Tree Canopy Analysis', 'Portland, Oregon, USA', NULL, 2),
+(5, 'Harborfront Redevelopment', 'Cape Town Waterfront, South Africa', NULL, 2),
+(6, 'Public Market Revitalization', 'Mercado de San Miguel, Madrid, Spain', NULL, 2),
+(7, 'Community Park Feasibility', 'Chandni Chowk, Delhi, India', NULL, 2),
+(8, 'Transit Oriented Design', 'Gangnam, Seoul, South Korea', NULL, 2),
+(9, 'Seaside Promenade Plan', 'Copacabana Beach, Rio de Janeiro, Brazil', NULL, 2),
+(10, 'Old Town Heritage Study', 'Tallinn, Estonia', NULL, 2),
+
+(1, 'Walkability Audit', 'Chiang Mai Old City, Thailand', NULL, 3),
+(2, 'Riverbank Flood Mitigation', 'Danube, Budapest, Hungary', NULL, 3),
+(3, 'Pedestrian Crossing Upgrade', 'Times Square, New York, USA', NULL, 3),
+(4, 'Eco District Design', 'Vauban, Freiburg, Germany', NULL, 3),
+(5, 'Historic Plaza Renewal', 'Zócalo, Mexico City, Mexico', NULL, 3),
+(6, 'High Street Activation', 'O’Connell Street, Dublin, Ireland', NULL, 3),
+(7, 'Bikeshare Station Placement', 'Copenhagen, Denmark', NULL, 3),
+(8, 'Harbor Pedestrian Connectivity', 'Wellington Waterfront, New Zealand', NULL, 3),
+(9, 'Playground Accessibility Review', 'Vancouver, Canada', NULL, 3),
+(10, 'Nighttime Economy Study', 'Lan Kwai Fong, Hong Kong', NULL, 3),
+
+(1, 'Water Transit Study', 'Venice Canals, Italy', NULL, 4),
+(2, 'Metro Safety Notes', 'Moscow Metro, Russia', NULL, 4),
+(3, 'Bus Electrification Plan', 'Stockholm, Sweden', NULL, 4),
+(4, 'Street Art Integration', 'Valparaíso, Chile', NULL, 4),
+(5, 'Public Square Activation', 'Trafalgar Square, London, UK', NULL, 4),
+(6, 'Cycle Highway Study', 'Eindhoven, Netherlands', NULL, 4),
+(7, 'Urban Heat Island Reduction', 'Phoenix, Arizona, USA', NULL, 4),
+(8, 'Skytrain Development', 'Bangkok, Thailand', NULL, 4),
+(9, 'Suburban Densification Review', 'Surrey, British Columbia, Canada', NULL, 4),
+(10, 'Seaport Logistics Plan', 'Hamburg, Germany', NULL, 4),
+
+(1, 'Light Rail Corridor Plan', 'Dubai Marina, UAE', NULL, 5),
+(2, 'Rural Town Square Study', 'Kerry, Ireland', NULL, 5),
+(3, 'Market Street Renewal', 'Chinatown, San Francisco, USA', NULL, 5),
+(4, 'Airport Transit Access', 'Heathrow, London, UK', NULL, 5),
+(5, 'Social Housing Expansion', 'Athens, Greece', NULL, 5),
+(6, 'Stormwater Management Notes', 'Jakarta, Indonesia', NULL, 5),
+(7, 'Cultural Quarter Activation', 'Marrakech, Morocco', NULL, 5),
+(8, 'Pedestrian Wayfinding System', 'Warsaw Old Town, Poland', NULL, 5),
+(9, 'Car-Free Day Evaluation', 'Bogotá, Colombia', NULL, 5),
+(10, 'Night Bus Network Plan', 'Lisbon, Portugal', NULL, 5),
+
+(1, 'Seaside Retail Development', 'Nice Promenade, France', NULL, 6),
+(2, 'Cyclist Priority Streets', 'Ghent, Belgium', NULL, 6),
+(3, 'Airport Expansion Impacts', 'Changi, Singapore', NULL, 6),
+(4, 'Street Vendor Zoning', 'Hanoi Old Quarter, Vietnam', NULL, 6),
+(5, 'Community Plaza Renewal', 'Cusco, Peru', NULL, 6),
+(6, 'Rain Garden Pilot Project', 'Seattle, USA', NULL, 6),
+(7, 'University Campus Walkability', 'Oxford, UK', NULL, 6),
+(8, 'Digital Kiosk Pilot', 'Dubai, UAE', NULL, 6),
+(9, 'Public Toilet Network Plan', 'Mumbai, India', NULL, 6),
+(10, 'Library Plaza Activation', 'Melbourne, Australia', NULL, 6),
+
+(1, 'Heritage Street Renewal', 'Kyoto Gion District, Japan', NULL, 7),
+(2, 'Smart Crosswalk Testing', 'Helsinki, Finland', NULL, 7),
+(3, 'Beachfront Promenade Study', 'Durban, South Africa', NULL, 7),
+(4, 'Mountain Town Walkability', 'Innsbruck, Austria', NULL, 7),
+(5, 'Parking Garage Repurpose', 'Chicago, Illinois, USA', NULL, 7),
+(6, 'Suburban Rail Extension', 'Auckland, New Zealand', NULL, 7),
+(7, 'Old Port Redevelopment', 'Montreal, Canada', NULL, 7),
+(8, 'Regional Bus Network Study', 'Kraków, Poland', NULL, 7),
+(9, 'Public Market Design', 'Casablanca, Morocco', NULL, 7),
+(10, 'Industrial Land Renewal', 'Essen, Germany', NULL, 7),
+
+(1, 'Food Market Activation', 'Istanbul Grand Bazaar, Turkey', NULL, 8),
+(2, 'City Wall Integration', 'Xi’an, China', NULL, 8),
+(3, 'Flood Resilience Plan', 'Bangladesh Delta, Dhaka', NULL, 8),
+(4, 'Underground Mall Study', 'Toronto PATH, Canada', NULL, 8),
+(5, 'Festival Grounds Planning', 'Edinburgh, Scotland', NULL, 8),
+(6, 'Eco Housing Development', 'Curitiba, Brazil', NULL, 8),
+(7, 'Public Dock Design', 'Stockholm, Sweden', NULL, 8),
+(8, 'Civic Center Renewal', 'Ljubljana, Slovenia', NULL, 8),
+(9, 'Metro Accessibility Audit', 'Cairo, Egypt', NULL, 8),
+(10, 'Greenway Network Notes', 'Boston, USA', NULL, 8),
+
+(1, 'Harbor Walk Plan', 'Sydney Circular Quay, Australia', NULL, 9),
+(2, 'Festival Plaza Review', 'Prague Old Town, Czech Republic', NULL, 9),
+(3, 'Car-Free District Design', 'Oslo, Norway', NULL, 9),
+(4, 'Tramway Expansion Study', 'Vienna, Austria', NULL, 9),
+(5, 'Historic Dock Renewal', 'Liverpool, UK', NULL, 9),
+(6, 'Bike Bridge Concept', 'Amsterdam, Netherlands', NULL, 9),
+(7, 'Solar Bus Shelter Plan', 'Doha, Qatar', NULL, 9),
+(8, 'Cultural Festival Site Plan', 'Seoul, South Korea', NULL, 9),
+(9, 'Open Street Initiative', 'Mexico City, Mexico', NULL, 9),
+(10, 'Mountain Park Study', 'Quito, Ecuador', NULL, 9),
+
+(1, 'Community Farm Plan', 'Detroit, Michigan, USA', NULL, 10),
+(2, 'Floating Housing Study', 'Amsterdam, Netherlands', NULL, 10),
+(3, 'Transit Plaza Renewal', 'Brussels, Belgium', NULL, 10),
+(4, 'City Square Upgrade', 'Vilnius, Lithuania', NULL, 10),
+(5, 'Smart Waste Pilot', 'Shanghai, China', NULL, 10),
+(6, 'Harbor Park Plan', 'Auckland, New Zealand', NULL, 10),
+(7, 'Riverside Market Design', 'Florence, Italy', NULL, 10),
+(8, 'Heatwave Resilience Strategy', 'Athens, Greece', NULL, 10),
+(9, 'Seafront Path Activation', 'Tel Aviv, Israel', NULL, 10),
+(10, 'Civic Plaza Renewal', 'Buenos Aires, Argentina', NULL, 10);
+SELECT * FROM notes WHERE note_ID LIKE '3';
+
+SELECT * FROM userinformation2 WHERE user_created LIKE '2025-08-22 13:30:48';
+SELECT * FROM userinformation2 db WHERE LENGTH(user_name) = 7;
+SELECT * FROM notes WHERE ( user_ID % 2 ) = 0 AND address LIKE "%UK%";
+SELECT * FROM notes JOIN userinformation2 ON notes.user_id = userinformation2.user_id WHERE ( user_name % 2 ) = 0 AND note_title LIKE "%Transit%";

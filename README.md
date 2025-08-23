@@ -59,6 +59,12 @@ the algorithm was created for the functionality of the log in page. see on lucid
 | --- | --- | --- | --- | --- |
 | tc-li-1  | successful log in | - user has an account in data base<br>- user knows their credentials | 1. open login page<br>2. enter valid credentials in provided prompts<br>3. click 'log in' | user is redirected to account page
 | tc-li-2 | failed log in (wrong password) | - user has an account in data base<br>- user knows their email or username but not their password | 1. open login page<br>2. enter valid username and invalid password in provided prompts<br>3. click 'log in' | user is prompted that their password is incorrect and login fails
+### queries
+1. queries all notes that have id *3*, regardless of user --> `SELECT * FROM notes WHERE note_ID LIKE '3';`
+2. queries all users created at time of database creation --> `SELECT * FROM userinformation2 WHERE user_created LIKE '2025-08-22 13:30:48';`
+3. queries all users with username with a character length of *7* --> `SELECT * FROM userinformation2 db WHERE LENGTH(user_name) = 7;`
+4. queries all notes created by users with even numbered ids that contain *UK* in the location --> `SELECT * FROM notes WHERE ( user_ID % 2 ) = 0 AND address LIKE "%UK%";`
+5. queries all notes created by users with even numbered username character lengths and that contain *Transit* in the note title --> `SELECT * FROM notes JOIN userinformation2 ON notes.user_id = userinformation2.user_id WHERE ( user_name % 2 ) = 0 AND note_title LIKE "%Transit%";`
 ## development log
 development log started in august 18th in line with course shift away from design towards development.
 | date | work completed |
@@ -66,4 +72,5 @@ development log started in august 18th in line with course shift away from desig
 | 18/8  | started setting up development environment | 
 | 19/8 | finished tempe hs tutorial on setting up development environment |
 | 20/8 | started creating own tables in sqlite database |
-| 22/8* | finished creating own tables in database |
+| 22/8* | finished creating first table in database |
+| 23/8* | finished creating second table in database and ran five unique test queries |
