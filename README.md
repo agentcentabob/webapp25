@@ -60,6 +60,7 @@ the algorithm was created for the functionality of the log in page. see on lucid
 | tc-li-1  | successful log in | - user has an account in data base<br>- user knows their credentials | 1. open login page<br>2. enter valid credentials in provided prompts<br>3. click 'log in' | user is redirected to account page
 | tc-li-2 | failed log in (wrong password) | - user has an account in data base<br>- user knows their email or username but not their password | 1. open login page<br>2. enter valid username and invalid password in provided prompts<br>3. click 'log in' | user is prompted that their password is incorrect and login fails
 ### queries
+also stored in my_queries.sql
 1. queries all notes that have id *3*, regardless of user --> `SELECT * FROM notes WHERE note_ID LIKE '3';`
 2. queries all users created at time of database creation --> `SELECT * FROM userinformation2 WHERE user_created LIKE '2025-08-22 13:30:48';`
 3. queries all users with username with a character length of *7* --> `SELECT * FROM userinformation2 db WHERE LENGTH(user_name) = 7;`
