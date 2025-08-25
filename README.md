@@ -4,7 +4,7 @@
 this project aims to create a functional web application using sqlite, javascript, css and html
 
 ## design brief: urban planning notebook
-this project aims to create an urban planning notebook web application that allows users to record observations with detail and precision. the app will allow users to easily access and  visualise their notes and data. its an evolution of traditional notetaking apps that's useful for travellers, hobbyists and researchers alike.
+this project aims to create an urban planning notebook web application that allows users to record observations with detail and precision. the app will allow users to easily access and visualise their notes and data. its an evolution of traditional notetaking apps that's useful for travellers, hobbyists and researchers alike.
 
 | functional requirements | non functional requirements |
 | ---- | ------- |
@@ -76,3 +76,4 @@ development log started in august 18th in line with course shift away from desig
 | 22/8* | finished creating first table in database |
 | 23/8* | finished creating second table in database and ran five unique test queries |
 | 25/8 | started working through html and css styling tutorial |
+| 25/8* | got localhost webpage to work, began styling with html and css |

@@ -1,4 +1,7 @@
-@import url("https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap");
+/* @import url("https://fonts.googleapis.com/css?family=Mozilla_Text:400,700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Zilla+Slab:400,700&display=swap"); */
+@import url("https://fonts.googleapis.com/css?family=Mozilla+Text&display=swap");
+
 
 * {
   margin: 0;
@@ -8,8 +11,10 @@
 
 body {
   background: #fdfdfd;
-  font-family: "Nunito", sans-serif;
+  font-family: "Mozilla Text", sans-serif;
   font-size: 1rem;
+  margin-left: 400px;
+  margin-right: 400px;
 }
 
 main {
@@ -41,14 +46,15 @@ nav li {
 nav ul li a {
   text-decoration-line: none;
   text-transform: uppercase;
-  color: #393b45;
+  color: #000000;
 }
 
 nav ul li a:hover {
-  color: #14e6dd;
+  color: #777777;
+  text-decoration: underline;
 }
 
 nav h1 {
-  color: #106d69;
+  color: #000000;
   margin-bottom: 0.5rem;
 }
