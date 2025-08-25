@@ -74,3 +74,4 @@ development log started in august 18th in line with course shift away from desig
 | 20/8 | started creating own tables in sqlite database |
 | 22/8* | finished creating first table in database |
 | 23/8* | finished creating second table in database and ran five unique test queries |
+| 25/8 | started working through html and css styling tutorial |
