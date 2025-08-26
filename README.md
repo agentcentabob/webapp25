@@ -77,3 +77,5 @@ development log started in august 18th in line with course shift away from desig
 | 23/8* | finished creating second table in database and ran five unique test queries |
 | 25/8 | started working through html and css styling tutorial |
 | 25/8* | got localhost webpage to work, began styling with html and css |
+| 26/8 | attempted to connect database with front end |
+| 26/8* | successfully connected database to front end, continued styling and cleared errors |

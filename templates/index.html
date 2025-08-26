@@ -2,14 +2,14 @@
 <div class="card">
 <img
     class="card-image"
-    src="{{ row[4] }}"
-    alt="Product image for the {{ row[1] }} VSCode extension." 
+    src="{{ row[2] }}"
+    alt="Snapshot of note {{ row[1] }}'s location." 
   />
-  <h1 class="body">{{ row[3] }}</h1>
+  <h1 class="body">{{ row[2] }}</h1>
+  <p class="body">{{ row[3] }}</p>
   <p class="body">{{ row[4] }}</p>
-  <a class="body" href="{{ row[5] }}"
-    ><button class="btn">Read More</button></a
-  >
+<!--  <a class="body" href="{{ row[4] }} by user {{ row [2]}}"</a>-->
+    <button class="btn">Read More</button>
 </div>
 {% endfor %}
 
