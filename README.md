@@ -84,3 +84,7 @@ development log started in august 18th in line with course shift away from desig
 - [ ] fix styling of navigation bar
 - [ ] learn how to integrate complex queries into python functions for displaying data
 - [ ] fix display of cards to show in grid format instead of long column
+- [ ] make table of contents for readme
+- [ ] integrate log in feature?
+- [ ] generate articles data to input into home page
+- [ ] continue investigating containers, vm and other ways of running the web page
