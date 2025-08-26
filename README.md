@@ -79,3 +79,8 @@ development log started in august 18th in line with course shift away from desig
 | 25/8* | got localhost webpage to work, began styling with html and css |
 | 26/8 | attempted to connect database with front end |
 | 26/8* | successfully connected database to front end, continued styling and cleared errors |
+
+## task list
+- [ ] fix styling of navigation bar
+- [ ] learn how to integrate complex queries into python functions for displaying data
+- [ ] fix display of cards to show in grid format instead of long column

@@ -2,14 +2,15 @@
 <div class="card">
 <img
     class="card-image"
-    src="{{ row[2] }}"
+    src="{{ row[6] }}"
     alt="Snapshot of note {{ row[1] }}'s location." 
-  />
-  <h1 class="body">{{ row[2] }}</h1>
-  <p class="body">{{ row[3] }}</p>
-  <p class="body">{{ row[4] }}</p>
-<!--  <a class="body" href="{{ row[4] }} by user {{ row [2]}}"</a>-->
-    <button class="btn">Read More</button>
+    />
+    <h1 class="body">{{ row[2] }}</h1>
+    <p class="body">{{ row[3] }}</p>
+    <p class="body">{{ row[4] }}</p>
+    <p class="body">By user {{ row[0] }}</p>
+    <a class="card-link" href="{{ row[0] }}/{{ row[1]}}"
+    ><button class="btn">Read More</button></a>
 </div>
 {% endfor %}
 
