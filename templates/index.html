@@ -1,3 +1,18 @@
+{% for row in content %}
+<div class="card">
+<!--    <img
+    class="card-image"
+    src="{{ row[4] }}"
+    alt="Product image for the {{ row[1] }} VSCode extension." 
+  /> -->
+  <h1 class="body">{{ row[3] }}</h1>
+  <p class="body">{{ row[4] }}</p>
+  <a class="body" href="{{ row[5] }}"
+    ><button class="btn">Read More</button></a
+  >
+</div>
+{% endfor %}
+
 {% extends 'layout.html' %} {% block content %}
 <div class="container"></div>
 {% endblock %}
