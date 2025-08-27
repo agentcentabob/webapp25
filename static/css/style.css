@@ -69,7 +69,7 @@ nav h1 {
 /* cards */
 .container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  grid-template-columns: 1fr 1fr 1fr;/*(auto-fit, minmax(15rem, 1fr));*/
   grid-template-rows: auto;
   gap: 1rem;
   justify-content: center;
