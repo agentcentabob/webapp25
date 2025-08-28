@@ -155,7 +155,7 @@ nav h1 {
   left: 20px;
   background-color: #eee; /* Black */
   overflow-x: hidden; /* Disable horizontal scroll */
-  padding: 8px, 0;
+  padding-bottom: 6px;
   text-align: left;
 }
 
