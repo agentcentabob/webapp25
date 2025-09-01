@@ -70,6 +70,7 @@ nav h1 {
 .container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;/*(auto-fit, minmax(15rem, 1fr));*/
+  grid-template-rows: auto;
   gap: 1rem;
   justify-content: center;
   align-items: center;
@@ -153,7 +154,7 @@ nav h1 {
   left: 20px;
   background-color: #eee; /* Black */
   overflow-x: hidden; /* Disable horizontal scroll */
-  padding: 8px, 0;
+  padding-bottom: 6px;
   text-align: left;
 }
 
