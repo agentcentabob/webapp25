@@ -4,8 +4,8 @@
 this project aims to create a functional web application using sqlite, javascript, css and html
 
 ## table of contents
-- [design brief: urban planning notebook](#design-brief:-urban-planning-notebook) - fonts, colours, themes, designs, dataflow
-- [workbook](#workbook) - algorithm, test cases, queries, development log, task list
+- [design brief: urban planning notebook](#design-brief-urban-planning-notebook): fonts, colours, themes, designs, dataflow
+- [workbook](#workbook): algorithm, test cases, queries, development log, task list
 
 
 ## design brief: urban planning notebook
@@ -90,7 +90,7 @@ development log started in august 18th in line with course shift away from desig
 | 1/9 | fixed data entries showing with images and fixed width but caused merge error |
 | 3/9* | fixed merge issue and adjusted file names
 
-discontinued development log in favour of commit messages
+*discontinued development log on 3/9 in favour of commit messages*
 
 ### task list
 - [x] fix styling of navigation bar
