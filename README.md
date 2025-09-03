@@ -3,6 +3,11 @@
 
 this project aims to create a functional web application using sqlite, javascript, css and html
 
+## table of contents
+- [design brief: urban planning notebook](#design-brief:-urban-planning-notebook) - fonts, colours, themes, designs, dataflow
+- [workbook](#workbook) - algorithm, test cases, queries, development log, task list
+
+
 ## design brief: urban planning notebook
 this project aims to create an urban planning notebook web application that allows users to record observations with detail and precision. the app will allow users to easily access and visualise their notes and data. its an evolution of traditional notetaking apps that's useful for travellers, hobbyists and researchers alike.
 
@@ -66,7 +71,7 @@ also stored in main.sqlite3-query
 3. queries all users with username with a character length of *7* --> `SELECT * FROM userinformation2 db WHERE LENGTH(user_name) = 7;`
 4. queries all notes created by users with even numbered ids that contain *UK* in the location --> `SELECT * FROM notes WHERE ( user_ID % 2 ) = 0 AND address LIKE "%UK%";`
 5. queries all notes created by users with even numbered username character lengths and that contain *Transit* in the note title --> `SELECT * FROM notes JOIN userinformation2 ON notes.user_id = userinformation2.user_id WHERE ( user_name % 2 ) = 0 AND note_title LIKE "%Transit%";`
-## development log
+### development log
 development log started in august 18th in line with course shift away from design towards development.
 | date | work completed |
 | --- | --- |
@@ -81,8 +86,13 @@ development log started in august 18th in line with course shift away from desig
 | 26/8* | successfully connected database to front end, continued styling and cleared errors |
 | 27/8 | unsuccessfully attempted to style page to view data entries in a grid format
 | 27/8* | continued styling page, including fixing data entries into grid format and creating floating sidebar using w3schools tutorial |
+| 28/8* | added image
+| 1/9 | fixed data entries showing with images and fixed width but caused merge error |
+| 3/9* | fixed merge issue and adjusted file names
 
-## task list
+discontinued development log in favour of commit messages
+
+### task list
 - [x] fix styling of navigation bar
 - [ ] learn how to integrate complex queries into python functions for displaying data
 - [x] fix display of cards to show in grid format instead of long column
