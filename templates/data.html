@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block content %}
+<head>
+  <title>Data - URBANNOTES</title>
+</head>
+<div class="container">
+    {% for row in content %}
+    <div class="card">
+        <img
+            class="card-image"
+            src="{{ row[5] }}"
+            alt="Snapshot of note {{ row[1] }}'s location."/>
+        <h1 class="body">{{ row[2] }}</h1>
+        <p class="body">{{ row[3] }}</p>
+        <p class="body">{{ row[4] }}</p>
+        <p class="body">By user {{ row[0] }}</p>
+        <a class="card-link" href="{{ row[0] }}/{{ row[1] }}">
+        <button class="btn">Read More</button>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

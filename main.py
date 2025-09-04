@@ -1,19 +1,32 @@
 from flask import Flask
 from flask import render_template
+import os
 # from flask import request
 import database_manager as dbHandler
 
 app = Flask(__name__)
 
 
-@app.route('/index.html', methods=['GET'])
-@app.route('/', methods=['POST', 'GET'])
-# def index():
-#    return render_template('/index.html')
-# @app.route.
-def index():
+@app.route('/')
+def home():
+    return render_template('layout.html')
+
+
+@app.route('/<page>')
+def render_page(page):
+    if page.endswith('.html'):
+        template_path = os.path.join(app.template_folder, page)
+        if os.path.exists(template_path):
+            return render_template(page)
+        else:
+            template_path = os.path.join(app.template_folder, "404.html")
+            return render_template('404.html'), 404
+
+
+@app.route('/data.html', methods=['GET'])
+def data():
     data = dbHandler.listExtension()
-    return render_template('/index.html', content=data)
+    return render_template('/data.html', content=data)
 
 
 if __name__ == '__main__':
