@@ -1,0 +1,19 @@
+{% extends 'layout.html' %} {% block content %}
+<head>
+  <title>Map - URBANNOTES</title>
+</head>
+<div class="card">
+  <body>
+    <iframe
+      width="600"
+      height="450"
+      style="border:0"
+      loading="lazy"
+      allowfullscreen
+      referrerpolicy="no-referrer-when-downgrade"
+      src="https://www.google.com/maps/embed/v1/place?key=API_KEY&q=Space+Needle,Seattle+WA">
+</iframe>
+    <script src="static/js/app.js"></script>
+  </body>
+</div>
+{% endblock %}
