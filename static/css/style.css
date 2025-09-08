@@ -30,12 +30,45 @@ main {
   padding: 0px 10px;
 }
 
-.pagetitle {
+/* title */
+.pagetitle a:link {
   font-family: "Mozilla Text", sans-serif;
-  font-size: large;
+  font-size: xx-large;
   font-weight: bold;
   text-align: center;
-  margin-top: 20px;
+  margin-top: 4px;
+  color: #000000;
+  text-decoration: none;
+}
+
+.pagetitle a:visited {
+  font-family: "Mozilla Text", sans-serif;
+  font-size: xx-large;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 4px;
+  color: #000000;
+  text-decoration: none;
+}
+
+.pagetitle a:hover {
+  font-family: "Mozilla Text", sans-serif;
+  font-size: xx-large;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 4px;
+  color: #bbbbbb;
+  text-decoration: none;
+}
+
+.pagetitle a:active {
+  font-family: "Mozilla Text", sans-serif;
+  font-size: xx-large;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 4px;
+  color: #888888;
+  text-decoration: none;
 }
 
 /* navigation bar */
@@ -162,9 +195,9 @@ nav h1 {
 .sidenav {
   width: 140px;
   position: fixed; /* fixes the sidebar when scrolling */
-  z-index: 1; /* top later */
-  top: 20px;
-  left: 20px;
+  z-index: 1; /* top layer */
+/*  top: 20px; */
+  left: 0px; 
   background-color: #eee;
   overflow-x: hidden; /* disable horizontal scroll */
   padding-bottom: 6px;
