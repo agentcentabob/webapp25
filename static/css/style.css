@@ -30,6 +30,12 @@ main {
   padding: 0px 10px;
 }
 
+/* featured image */
+.featuredimg img {
+  max-width: 100%;
+  max-height: auto;
+}
+
 /* title */
 .pagetitle a:link {
   font-family: "Mozilla Text", sans-serif;
@@ -37,79 +43,22 @@ main {
   font-weight: bold;
   text-align: center;
   margin-top: 4px;
-  color: #000000;
+  color: #ffffff;
   text-decoration: none;
+  background: #000000;
+  width: 100%;
 }
 
 .pagetitle a:visited {
-  font-family: "Mozilla Text", sans-serif;
-  font-size: xx-large;
-  font-weight: bold;
-  text-align: center;
-  margin-top: 4px;
-  color: #000000;
-  text-decoration: none;
+  color: #ffffff;
 }
 
 .pagetitle a:hover {
-  font-family: "Mozilla Text", sans-serif;
-  font-size: xx-large;
-  font-weight: bold;
-  text-align: center;
-  margin-top: 4px;
   color: #bbbbbb;
-  text-decoration: none;
 }
 
 .pagetitle a:active {
-  font-family: "Mozilla Text", sans-serif;
-  font-size: xx-large;
-  font-weight: bold;
-  text-align: center;
-  margin-top: 4px;
   color: #888888;
-  text-decoration: none;
-}
-
-/* navigation bar */
-nav {
-  display: block;
-  justify-content: center;
-  align-items: center;
-  overflow: visible;
-  position: fixed;
-  top: 0;
-  text-align: center;
-  width: 20%;
-}
-
-nav img {
-  height: 100px;
-}
-
-nav ul {
-  list-style: none;
-  display: flex;
-}
-
-nav li {
-  margin-right: 1rem;
-}
-
-nav ul li a {
-  text-decoration-line: none;
-  text-transform: uppercase;
-  color: #000000;
-}
-
-nav ul li a:hover {
-  color: #777777;
-  text-decoration: underline;
-}
-
-nav h1 {
-  color: #000000;
-  margin-bottom: 0.5rem;
 }
 
 /* cards */
@@ -191,17 +140,60 @@ nav h1 {
   object-fit: cover;
 }
 
+/* navigation bar */
+nav {
+  display: block;
+  justify-content: center;
+  align-items: center;
+  overflow: visible;
+  position: fixed;
+  top: 0;
+  text-align: center;
+  width: 20%;
+}
+
+nav img {
+  height: 100px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+}
+
+nav li {
+  margin-right: 1rem;
+}
+
+nav ul li a {
+  text-decoration-line: none;
+  text-transform: uppercase;
+  color: #000000;
+}
+
+nav ul li a:hover {
+  color: #777777;
+  text-decoration: underline;
+}
+
+nav h1 {
+  color: #000000;
+  margin-bottom: 0.5rem;
+}
+
 /* w3: sidebar, including edited comments from tutorial */
 .sidenav {
+  height: 100%;
   width: 140px;
   position: fixed; /* fixes the sidebar when scrolling */
   z-index: 1; /* top layer */
-/*  top: 20px; */
   left: 0px; 
-  background-color: #eee;
   overflow-x: hidden; /* disable horizontal scroll */
   padding-bottom: 6px;
   text-align: left;
+  background: #e4ffe4;
+  border-top-right-radius: 10%;
+  border-bottom-right-radius: 10%;
 }
 
 /* w3: navigation menu links */
