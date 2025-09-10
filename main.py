@@ -23,10 +23,10 @@ def render_page(page):
             return render_template('404.html'), 404
 
 
-@app.route('/data.html', methods=['GET'])
+@app.route('/articles.html', methods=['GET'])
 def data():
     data = dbHandler.listExtension()
-    return render_template('/data.html', content=data)
+    return render_template('/articles.html', content=data)
 
 
 if __name__ == '__main__':
