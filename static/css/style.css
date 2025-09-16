@@ -36,6 +36,12 @@ main {
   max-height: auto;
 }
 
+/* note editor */
+.editfield {
+  padding-top: 100px;
+  width: max-content;
+}
+
 /* embedded map */
 .embedmap iframe {
   width: 800px;
