@@ -5,7 +5,7 @@ this project aims to create a functional web application using sqlite, javascrip
 
 ## table of contents
 - [design brief: urban planning notebook](#design-brief-urban-planning-notebook): fonts, colours, themes, designs, dataflow
-- [workbook](#workbook): algorithm, test cases, queries, development log, task list
+- [workbook](#workbook): algorithm, test cases, queries, development log, lighthouse reports, task list
 
 
 ## design brief: urban planning notebook
@@ -92,11 +92,22 @@ development log started in august 18th in line with course shift away from desig
 
 *discontinued development log on 3/9 in favour of commit messages*
 
+### lighthouse reports
+#### september 18, 2025 (week 9)
+- performance: 63-67
+- accessibility: 100
+- best practices: 97
+- seo: 75
+
+low performance rating was linked to long load times of fonts and images. unfinished home page styling also led to slightly reduced best practices and performance marks.
+
 ### task list
 - [x] fix styling of navigation bar
 - [ ] learn how to integrate complex queries into python functions for displaying data
 - [x] fix display of cards to show in grid format instead of long column
-- [ ] make table of contents for readme
-- [ ] integrate log in feature?
-- [ ] generate articles data to input into home page
+- [x] make table of contents for readme
+- [ ] finish styling all pages
+- [ ] make log in feature functional
+- [ ] make note taking feature functional
+- [ ] generate articles data
 - [ ] continue investigating containers, vm and other ways of running the web page
