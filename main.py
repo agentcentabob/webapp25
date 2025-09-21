@@ -29,5 +29,10 @@ def data():
     return render_template('/articles.html', content=data)
 
 
+@app.route('/login.html')
+def login():
+    return render_template('login.html', hide_search=True)
+
+
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
