@@ -1,10 +1,11 @@
 from flask import Flask
 from flask import render_template
+from flask import request, redirect, url_for, session, flash
 import os
-# from flask import request
 import database_manager as dbHandler
 
 app = Flask(__name__)
+app.secret_key = 'session_key'
 
 
 @app.route('/')
@@ -29,8 +30,20 @@ def data():
     return render_template('/articles.html', content=data)
 
 
-@app.route('/login.html')
+@app.route('/login', methods=['GET', 'POST'])
 def login():
+    if request.method == 'POST':
+        username = request.form['uname']
+        password = request.form['psw']
+
+        # Simple example: replace with database check
+        if username == 'admin' and password == 'password':
+            session['user'] = username
+            flash('Login successful!')
+            return redirect(url_for('home'))
+        else:
+            flash('Invalid username or password', 'error')
+
     return render_template('login.html', hide_search=True)
 
 
