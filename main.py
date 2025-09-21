@@ -36,7 +36,7 @@ def login():
         username = request.form['uname']
         password = request.form['psw']
 
-        # Simple example: replace with database check
+        # TO REPLACE WITH DATABASE
         if username == 'admin' and password == 'password':
             session['user'] = username
             flash('Login successful!')
