@@ -1,15 +1,11 @@
 const assets = [
   "/",
   "static/css/style.css",
-  "static/js/app.js",
-  "static/images/logo.png",
-  "static/images/favicon.png",
-  "static/icons/icon-128x128.png",
-  "static/icons/icon-192x192.png",
-  "static/icons/icon-384x384.png",
-  "static/icons/icon-512x512.png",
-  "static/icons/desktop_screenshot.png",
-  "static/icons/mobile_screenshot.png",
+  "js/app.js",
+  "static/images/logos/favicon_1_4.png",
+  "static/images/logos/full_1.png",
+  "static/images/logos/main_1_3.png",
+  "static/images/westmead_lr.png",
 ];
 
 const CATALOGUE_ASSETS = "catalogue-assets";

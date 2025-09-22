@@ -107,7 +107,18 @@ low performance rating was linked to long load times of fonts and images. unfini
 - [x] fix display of cards to show in grid format instead of long column
 - [x] make table of contents for readme
 - [ ] finish styling all pages
-- [ ] make log in feature functional
-- [ ] make note taking feature functional
-- [ ] generate articles data
+    - [ ] home page
+    - [ ] library and data pages
+    - [ ] map page
+    - [ ] more page (contact, about)
+    - [ ] new note
+- [ ] log in feature functionality
+    - [ ] correct html input
+- [ ] note taking feature functionality
+    - [ ] inputting and saving notes
+    - [ ] viewing notes retrospectively
+- [ ] articles feature functionality
+    - [ ] link to view articles
+    - [ ] generate 100 articles
+- [ ] offline functionality
 - [ ] continue investigating containers, vm and other ways of running the web page
