@@ -184,15 +184,22 @@ a:active {
   border: 3px solid #f1f1f1;
 }
 
+.logincontainer {
+  padding: 16px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+}
+
 /* w3: inputs */
-.logincontainer:input[type=text], .logincontainer:input[type=password] {
+.logincontainer input[type=text], .logincontainer input[type=password] {
   width: 100%;
   padding: 12px 20px;
-  margin: 8px 0;
+  margin: 6px 0;
   display: inline-block;
-  border: 1px solid #ccc;
+  border: 1px solid #bbb;
   box-sizing: border-box;
-  border-radius: 50%;
+  border-radius: 10px;
 }
 
 /* w3: cancel button styling
@@ -217,13 +224,6 @@ img.loginlogo {
 span.psw {
   float: right;
   padding-top: 16px;
-}
-
-.logincontainer {
-  padding: 16px;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
 }
 
 /* w3: adjust styles for some buttons on smaller screen sizes
