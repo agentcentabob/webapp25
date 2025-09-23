@@ -29,47 +29,53 @@ def get_connection():
 def get_user_by_email(email):
     con = get_connection()
     cur = con.cursor()
-    cur.execute("SELECT * FROM userinformation2 WHERE email = ?", (email,))
+    cur.execute(
+        "SELECT * FROM userinformation2 "
+        "WHERE user_email = ?",
+        (email,)
+    )
     u = cur.fetchone()
     con.close()
     return u
 
 
-def get_user_by_id(userID):
+def get_user_by_id(user_ID):
     con = get_connection()
     cur = con.cursor()
-    cur.execute("SELECT * FROM userinformation2 WHERE userID = ?", (userID,))
+    cur.execute("SELECT * FROM userinformation2 WHERE userID = ?", (user_ID,))
     u = cur.fetchone()
     con.close()
     return u
 
 
-def create_user(name, email, password, role):
+def create_user(name, email, password):
     con = get_connection()
     cur = con.cursor()
     cur.execute(
-        "INSERT INTO userinformation2 (name, email, password, role) VALUES (?, ?, ?, ?)",
-        (name, email, password, role),
+        "INSERT INTO userinformation2 "
+        "(user_name, user_email, user_password) "
+        "VALUES (?, ?, ?)",
+        (name, email, password),
     )
     con.commit()
     con.close()
 
 
-def update_user(userID, name=None, email=None, password=None):
+def update_user(user_ID, user_name=None, user_email=None, user_password=None):
     # only update the provided fields
     con = get_connection()
     cur = con.cursor()
-    if name:
+    if user_name:
         cur.execute(
             "UPDATE userinformation2 SET name = ? WHERE userID = ?",
-            (name, userID))
-    if email:
+            (user_name, user_ID))
+    if user_email:
         cur.execute(
             "UPDATE userinformation2 SET email = ? WHERE userID = ?",
-            (email, userID))
-    if password:
+            (user_email, user_ID))
+    if user_password:
         cur.execute(
             "UPDATE userinformation2 SET password = ? WHERE userID = ?",
-            (password, userID),)
+            (user_password, user_ID),)
     con.commit()
     con.close()
