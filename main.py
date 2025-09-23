@@ -1,51 +1,55 @@
-from flask import Flask
-from flask import render_template
-from flask import request, redirect, url_for, session, flash
+from flask import Flask, render_template, request
+from flask import flash, redirect, url_for, session
 import os
-import database_manager as dbHandler
+import database_manager as dbh
 
 app = Flask(__name__)
-app.secret_key = 'session_key'
+app.secret_key = "session_key"
 
 
-@app.route('/')
+@app.route("/")
 def home():
-    return render_template('index.html')
+    return render_template("index.html")
 
 
-@app.route('/<page>')
+@app.route("/<page>")
 def render_page(page):
-    if page.endswith('.html'):
+    if page.endswith(".html"):
         template_path = os.path.join(app.template_folder, page)
         if os.path.exists(template_path):
             return render_template(page)
         else:
             template_path = os.path.join(app.template_folder, "404.html")
-            return render_template('404.html'), 404
+            return render_template("404.html"), 404
 
 
-@app.route('/articles.html', methods=['GET'])
+@app.route("/articles.html", methods=["GET"])
 def data():
-    data = dbHandler.listExtension()
-    return render_template('/articles.html', content=data)
+    data = dbh.listExtension()
+    return render_template("/articles.html", content=data)
 
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route("/login", methods=["GET", "POST"])
 def login():
-    if request.method == 'POST':
-        username = request.form['uname']
-        password = request.form['psw']
-
-        # TO REPLACE WITH DATABASE
-        if username == 'admin' and password == 'password':
-            session['user'] = username
-            flash('Login successful!')
-            return redirect(url_for('home'))
+    if request.method == "POST":
+        email = request.form.get("email", "").strip()
+        password = request.form.get("password", "")
+        user = dbh.get_user_by_email(email)
+        # username = request.form['uname']
+        # password = request.form['psw']
+        if user and user[3] == password:
+            session["user"] = {
+                "id": user[0],
+                "name": user[1],
+                "email": user[2],
+                "role": user[4],
+            }
+            flash("Login successful!", "success")
+            return redirect(url_for("index"))
         else:
-            flash('Invalid username or password', 'error')
+            flash("Invalid email or password", "error")
+    return render_template("login.html", hide_search=True)
 
-    return render_template('login.html', hide_search=True)
 
-
-if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+if __name__ == "__main__":
+    app.run(debug=True, host="0.0.0.0", port=5000)
