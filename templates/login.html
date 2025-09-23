@@ -15,20 +15,17 @@
   {% endif %}
 {% endwith %}
 
-<form action="{{ url_for('login') }}" method="post"></form>
+<form action="/login" method="post"></form>
   <div class="logincontainer">
     <label for="uname"><b>Username</b></label>
     <input type="text" placeholder="Enter Username" name="uname" required>
-
     <label for="psw"><b>Password</b></label>
     <input type="password" placeholder="Enter Password" name="psw" required>
-
-    <button type="submit">Login</button>
-    <label>
+    <button class="btn" type="submit">Login</button>
+<!--    <label>
       <input type="checkbox" checked="checked" name="remember"> Remember me
-    </label>
-
-    <span class="psw">Forgot <a href="forgotpw.html">password?</a></span>
+    </label>-->
+    <span class="psw"><a href="forgotpw.html">Forgot password?</a></span>
   </div>
 </form>
 {% endblock %}
