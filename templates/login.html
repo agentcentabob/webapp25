@@ -3,29 +3,34 @@
   <title>Login - URBANNOTES</title>
 </head>
 
-<div class="loginlogo">
-    <img src="static/images/logos/full_1.png" alt="URBANNOTES logo" class="loginlogo">
+<div class="login-logo">
+    <img src="static/images/logos/full_1.png" alt="URBANNOTES logo" class="login-logo">
 </div>
 
-{% with messages = get_flashed_messages(with_categories=true) %}
-  {% if messages %}
-    {% for category, message in messages %}
-      <div class="flash {{ category }}">{{ message }}</div>
-    {% endfor %}
-  {% endif %}
-{% endwith %}
+<div class="login-popup">
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+        <div class="flash {{ category }}">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+</div>
 
 <form action="/login" method="post"></form>
-  <div class="logincontainer">
+  <div class="login-container">
     <label for="uname"><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="uname" required>
+    <input type="text" placeholder="Enter username" name="uname" required>
     <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
-    <button class="btn" type="submit">Login</button>
+    <input type="password" placeholder="Enter password" name="psw" required>
+    <button class="login-gobtn" type="submit">Login</button>
 <!--    <label>
       <input type="checkbox" checked="checked" name="remember"> Remember me
     </label>-->
-    <span class="psw"><a href="forgotpw.html">Forgot password?</a></span>
+    <div class="loginextras-container">
+      <span class="loginextras"><a href="join.html">Create an account</a></span>
+      <span class="loginextras"><a href="forgotpw.html">Forgot password?</a></span>
+    </div>
   </div>
 </form>
 {% endblock %}

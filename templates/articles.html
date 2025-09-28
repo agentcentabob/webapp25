@@ -3,19 +3,19 @@
 <head>
   <title>Articles - URBANNOTES</title>
 </head>
-<div class="container">
+<div class="acl-container">
     {% for row in content %}
-    <div class="card">
+    <div class="acl-card">
         <img
-            class="card-image"
+            class="acl-card-image"
             src="{{ row[5] }}"
             alt="Snapshot of note {{ row[1] }}'s location."/>
-        <h1 class="body">{{ row[2] }}</h1>
-        <p class="body">{{ row[3] }}</p>
-        <p class="body">{{ row[4] }}</p>
-        <p class="body">By user {{ row[0] }}</p>
-        <a class="card-link" href="article/{{ row[0] }}/{{ row[1] }}.html">
-        <button class="btn">Read More</button>
+        <h1 class="acl-card-name">{{ row[2] }}</h1>
+        <p class="acl-card-about">{{ row[3] }}</p>
+        <p class="acl-card-about">{{ row[4] }}</p>
+        <p class="acl-card-about">By user {{ row[0] }}</p>
+        <a class="acl-card-link" href="article/{{ row[0] }}/{{ row[1] }}.html">
+        <button class="acl-read-btn">Read More</button>
         </a>
     </div>
     {% endfor %}

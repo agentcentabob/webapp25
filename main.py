@@ -34,9 +34,13 @@ def login():
     if request.method == "POST":
         email = request.form.get("email", "").strip()
         password = request.form.get("password", "")
+
+        if not email or not password:
+            flash("Please fill in all fields", "error")
+            return redirect(url_for("login"))
+
         user = dbh.get_user_by_email(email)
-        # username = request.form['uname']
-        # password = request.form['psw']
+
         if user and user[3] == password:
             session["user"] = {
                 "id": user[0],
@@ -45,9 +49,11 @@ def login():
                 "role": user[4],
             }
             flash("Login successful!", "success")
-            return redirect(url_for("index"))
+            return redirect(url_for("home"))  # Changed from index to home
         else:
             flash("Invalid email or password", "error")
+            return redirect(url_for("login"))
+
     return render_template("login.html", hide_search=True)
 
 
