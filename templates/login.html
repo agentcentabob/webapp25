@@ -11,24 +11,26 @@
   {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
       {% for category, message in messages %}
-        <div class="flash {{ category }}">
-          DEBUG: '{{ message }}'
-        </div>
+        <div class="flash {{ category }}">{{ message }}</div>
       {% endfor %}
     {% endif %}
   {% endwith %}
 </div>
 
-<form action="/login" method="post"></form>
+<form action="/login" method="post">
   <div class="login-container">
-    <label for="uname"><b>Username</b></label>
-    <input type="text" placeholder="Enter username" name="uname" required>
-    <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter password" name="psw" required>
+    <label for="email"><b>Email</b></label>
+    <input type="text" placeholder="Enter email" name="email" required>
+    
+    <label for="password"><b>Password</b></label>
+    <input type="password" placeholder="Enter password" name="password" required>
+    
+    <label>
+      <input type="checkbox" name="remember"> Remember me for 30 days
+    </label>
+    
     <button class="login-gobtn" type="submit">Login</button>
-<!--    <label>
-      <input type="checkbox" checked="checked" name="remember"> Remember me
-    </label>-->
+    
     <div class="loginextras-container">
       <span class="loginextras"><a href="join.html">Create an account</a></span>
       <span class="loginextras"><a href="forgotpw.html">Forgot password?</a></span>
