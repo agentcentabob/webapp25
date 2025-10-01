@@ -1,0 +1,40 @@
+{% extends 'layout.html' %} {% block content %}
+<head>
+  <title>Settings - URBANNOTES</title>
+</head>
+
+<div class="login-logo">
+    <img src="static/images/logos/full_1.png" alt="URBANNOTES logo" class="login-logo">
+</div>
+
+<div class="login-popup">
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+        <div class="flash {{ category }}">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+</div>
+
+<form action="/login" method="post">
+  <div class="login-container">
+    <label for="email"><b>Email</b></label>
+    <input type="text" placeholder="Enter email" name="email" required>
+    
+    <label for="password"><b>Password</b></label>
+    <input type="password" placeholder="Enter password" name="password" required>
+    
+    <div class="remember">
+      <label><input type="checkbox" name="remember"> Remember me for 30 days</label>
+    </div>
+
+    <button class="login-gobtn" type="submit">Login</button>
+    
+    <div class="loginextras-container">
+      <span class="loginextras"><a href="join.html">Create an account</a></span>
+      <span class="loginextras"><a href="forgotpw.html">Forgot password?</a></span>
+    </div>
+  </div>
+</form>
+{% endblock %}
