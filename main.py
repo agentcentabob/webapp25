@@ -9,9 +9,18 @@ app.secret_key = "session_key"
 app.permanent_session_lifetime = timedelta(days=30)
 
 
+def is_logged_in():
+    return "user" in session
+
+
+def get_current_user():
+    return session.get("user", None)
+
+
 @app.route("/")
 def home():
-    return render_template("index.html")
+    user = get_current_user()
+    return render_template("index.html", user=user)
 
 
 @app.route("/<page>")
@@ -19,7 +28,8 @@ def render_page(page):
     if page.endswith(".html"):
         template_path = os.path.join(app.template_folder, page)
         if os.path.exists(template_path):
-            return render_template(page)
+            user = get_current_user()
+            return render_template(page, user=user)
         else:
             template_path = os.path.join(app.template_folder, "404.html")
             return render_template("404.html"), 404
@@ -28,7 +38,19 @@ def render_page(page):
 @app.route("/articles.html", methods=["GET"])
 def data():
     data = dbh.listExtension()
-    return render_template("/articles.html", content=data)
+    user = get_current_user()
+    return render_template("/articles.html", content=data, user=user)
+
+
+@app.route("/account")
+def account():
+    if is_logged_in():
+        # User is logged in, show account settings
+        user = get_current_user()
+        return render_template("account_settings.html", user=user)
+    else:
+        # User is not logged in, redirect to login
+        return redirect(url_for("login"))
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -63,6 +85,13 @@ def login():
             return redirect(url_for("login"))
 
     return render_template("login.html", hide_search=True)
+
+
+@app.route("/logout")
+def logout():
+    session.pop("user", None)
+    flash("You have been logged out", "success")
+    return redirect(url_for("home"))
 
 
 if __name__ == "__main__":
