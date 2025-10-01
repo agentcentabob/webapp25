@@ -25,17 +25,15 @@ def home():
 
 @app.route("/<page>")
 def render_page(page):
-    if page.endswith(".html"):
-        template_path = os.path.join(app.template_folder, page)
-        if os.path.exists(template_path):
-            user = get_current_user()
-            return render_template(page, user=user)
-        else:
-            template_path = os.path.join(app.template_folder, "404.html")
-            return render_template("404.html"), 404
+    template_path = os.path.join(app.template_folder, page)
+    if os.path.exists(template_path):
+        user = get_current_user()
+        return render_template(page, user=user)
+    else:
+        return render_template("404.html"), 404
 
 
-@app.route("/articles.html", methods=["GET"])
+@app.route("/articles", methods=["GET"])
 def data():
     data = dbh.listExtension()
     user = get_current_user()
@@ -45,11 +43,9 @@ def data():
 @app.route("/account")
 def account():
     if is_logged_in():
-        # User is logged in, show account settings
         user = get_current_user()
         return render_template("account_settings.html", user=user)
     else:
-        # User is not logged in, redirect to login
         return redirect(url_for("login"))
 
 
