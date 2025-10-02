@@ -112,8 +112,11 @@ low performance rating was linked to long load times of fonts and images. unfini
     - [ ] map page
     - [ ] more page (contact, about)
     - [ ] new note
+    - [x] log in page
+    - [ ] account settings page
 - [ ] log in feature functionality
-    - [ ] correct html input
+    - [x] correct html input
+    - [ ] integrate log in features into rest of website
 - [ ] note taking feature functionality
     - [ ] inputting and saving notes
     - [ ] viewing notes retrospectively
@@ -121,4 +124,5 @@ low performance rating was linked to long load times of fonts and images. unfini
     - [ ] link to view articles
     - [ ] generate 100 articles
 - [ ] offline functionality
+- [ ] search bar functionality
 - [ ] continue investigating containers, vm and other ways of running the web page

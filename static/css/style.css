@@ -152,31 +152,35 @@ a:active {
 }
 
 .accountbtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   border: none;
   cursor: pointer;
-  height: 45px;
   border-radius: 18px;
   background-color: #f4fff4;
-  padding: 0 12px 0 2px;
+  text-decoration: none;
 }
 
 .accountbtn .material-symbols-outlined {
-  font-size: 32px;
+  font-size: 44px !important;
   flex-shrink: 0;
   color: black;
-  align-self: center;
-  margin-left: -12px;
+  margin-left: -10px;
+  bottom: -10px;
 }
 
 .accountbtn:hover {
   background: #eeeeee;
 }
 
-.accountbtn .text {
-  font-size: 13px;
+.accountname {
+  display: inline-block;
+  max-width: 70px;
+  font-size: 14px;
   font-style: italic;
   color: #555;
-  margin-bottom: 10px;
+  line-height: 1.2;
 }
 
 /* w3: LOG IN PAGE */
