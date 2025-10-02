@@ -20,24 +20,23 @@
 <br><br>
 <h1>Account Settings</h1>
 
-<form action="/login" method="post">
+<form action="/logout" method="post">
   <div class="login-container">
-    <label for="email"><b>Email</b></label>
-    <input type="text" placeholder="Enter email" name="email" required>
-    
-    <label for="password"><b>Password</b></label>
-    <input type="password" placeholder="Enter password" name="password" required>
-    
-    <div class="remember">
-      <label><input type="checkbox" name="remember"> Remember me for 30 days</label>
-    </div>
 
-    <button class="login-gobtn" type="submit">Login</button>
+    <label for="username"><b>Change username</b></label>
+    <input type="text" placeholder="Enter new username" name="username">
+
+    <label for="email"><b>Change email</b></label>
+    <input type="text" placeholder="Enter new email" name="email">
+    
+    <label for="password"><b>Change password</b></label>
+    <input type="password" placeholder="Enter new password" name="password">
     
     <div class="loginextras-container">
-      <span class="loginextras"><a href="join.html">Create an account</a></span>
-      <span class="loginextras"><a href="forgotpw.html">Forgot password?</a></span>
+      <span class="remember"><a href="join.html">Update settings</a></span>
     </div>
+    
+    <button class="log-btn logout" type="submit">Logout</button>
   </div>
 </form>
 {% endblock %}

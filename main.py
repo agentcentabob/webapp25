@@ -70,7 +70,6 @@ def login():
                 "role": user[4],
             }
 
-            # Set session to permanent if remember me is checked
             if remember:
                 session.permanent = True
 

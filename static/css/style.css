@@ -184,11 +184,6 @@ a:active {
 }
 
 /* w3: LOG IN PAGE */
-/* w3: form border */
-/*.login-form {
-  border: 3px solid #f1f1f1;
-}*/
-
 .login-container {
   padding: 16px;
   display: grid;
@@ -276,9 +271,7 @@ a:active {
 }
 
 /* w3: log in button go */
-.login-gobtn {
-  background: hsl(110, 21%, 93%);
-  color: hsl(141, 100%, 22%);
+.log-btn {
   padding: 8px 8px;
   margin: 8px 0 1rem;
   border: none;
@@ -290,9 +283,24 @@ a:active {
   font-size: 1rem;
 }
 
-.login-gobtn:focus, .login-gobtn:hover {
+.log-btn.login:focus, .log-btn.login:hover {
   box-shadow: 1px 1px 2px rgba(21, 21, 21, 0.2);
   background: hsl(111, 21%, 86%);
+}
+
+.log-btn.logout:focus, .log-btn.logout:hover {
+  box-shadow: 1px 1px 2px rgba(21, 21, 21, 0.2);
+  background: hsl(3, 21%, 86%);
+}
+
+.log-btn.login{
+  color: hsl(141, 100%, 25%);
+  background: hsl(110, 21%, 93%);
+}
+
+.log-btn.logout{
+  color: hsl(3, 100%, 25%);
+  background: hsl(3, 21%, 93%);
 }
 
 /* w3: forgot password and create account */
