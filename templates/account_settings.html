@@ -3,20 +3,6 @@
   <title>Settings - URBANNOTES</title>
 </head>
 
-<div class="login-logo">
-    <img src="static/images/logos/full_1.png" alt="URBANNOTES logo" class="login-logo">
-</div>
-
-<div class="login-popup">
-  {% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-      {% for category, message in messages %}
-        <div class="flash {{ category }}">{{ message }}</div>
-      {% endfor %}
-    {% endif %}
-  {% endwith %}
-</div>
-
 <br><br>
 <h1>Account Settings</h1>
 
@@ -31,12 +17,9 @@
     
     <label for="password"><b>Change password</b></label>
     <input type="password" placeholder="Enter new password" name="password">
-    
-    <div class="loginextras-container">
-      <span class="remember"><a href="join.html">Update settings</a></span>
-    </div>
-    
-    <button class="log-btn logout" type="submit">Logout</button>
+
+    <button class="log-btn login" type="update">Update settings</button>
+    <button class="log-btn logout" type="logout">Logout</button>
   </div>
 </form>
 {% endblock %}

@@ -9,7 +9,18 @@
     <link rel="manifest" href="static/manifest.json" />
     <link rel="icon" type="image" href="static/images/logos/favicon_1_4.png">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"/>
-  </head>
+</head>
+
+  <div class="popup">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="flash {{ category }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+  </div>
+
   {% if not hide_search %}
   <div class="topnav">
     <span class="material-symbols-outlined">search</span>

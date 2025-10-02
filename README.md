@@ -126,3 +126,4 @@ low performance rating was linked to long load times of fonts and images. unfini
 - [ ] offline functionality
 - [ ] search bar functionality
 - [ ] continue investigating containers, vm and other ways of running the web page
+- [ ] dynamic account settings text in menu

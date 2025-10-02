@@ -217,7 +217,7 @@ a:active {
 }
 
 /* log in popup */
-.login-popup {
+.popup {
   position: fixed;
   top: 20px;
   right: 20px;
@@ -235,7 +235,7 @@ a:active {
   box-sizing: border-box;
   pointer-events: auto;
   border: 2px solid;
-  animation: slideIn 0.45s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  animation: slideIn 0.45s cubic-bezier(0.68, -0.55, 0.265, 1.55), fadeOut 0.5s ease-out 4s forwards;
 }
 
 @keyframes slideIn {
@@ -246,6 +246,13 @@ a:active {
   to {
     transform: translateX(0);
     opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: translateX(400px);
   }
 }
 

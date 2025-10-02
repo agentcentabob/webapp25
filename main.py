@@ -82,9 +82,9 @@ def login():
     return render_template("login.html", hide_search=True)
 
 
-@app.route("/logout")
+@app.route("/logout", methods=["GET", "POST"])
 def logout():
-    session.pop("user", None)
+    session.clear()
     flash("You have been logged out", "success")
     return redirect(url_for("home"))
 
