@@ -25,9 +25,15 @@ def home():
 
 @app.route("/<page>")
 def render_page(page):
+    page += '.html'
+    # security? prevent directory traversal attacks
+    if ".." in page or page.startswith("/"):
+        return render_template("404.html"), 404
+    # check if template exists
     template_path = os.path.join(app.template_folder, page)
     if os.path.exists(template_path):
         user = get_current_user()
+        # pass the page name to the template render not the full path
         return render_template(page, user=user)
     else:
         return render_template("404.html"), 404
