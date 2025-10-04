@@ -113,16 +113,14 @@ low performance rating was linked to long load times of fonts and images. unfini
     - [ ] more page (contact, about)
     - [ ] new note
     - [x] log in page
-    - [ ] account settings page
+    - [x] account settings page
 - [ ] account features
     - [x] correct html input
     - [ ] integrate log in features into rest of website
     - [x] dynamic account settings text in menu
     - [x] style create account page
     - [x] account page functionality
-    - [ ] style forgot password page
-    - [ ] forgot password page functionality
-    - [ ] add delete account feature
+    - [ ] finish delete account feature
 - [ ] note taking feature functionality
     - [ ] inputting and saving notes
     - [ ] viewing and accessing notes in library feature
