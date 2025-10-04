@@ -17,6 +17,7 @@ def get_current_user():
     return session.get("user", None)
 
 
+# rendering pages
 @app.route("/")
 def home():
     user = get_current_user()
@@ -46,15 +47,18 @@ def data():
     return render_template("/articles.html", content=data, user=user)
 
 
+# account settings
 @app.route("/account")
 def account():
     if is_logged_in():
         user = get_current_user()
-        return render_template("account_settings.html", user=user)
+        return render_template("account_settings.html",
+                               user=user, hide_Search=True)
     else:
         return redirect(url_for("login"))
 
 
+# log in page
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
@@ -66,14 +70,14 @@ def login():
             flash("Please fill in all fields", "error")
             return redirect(url_for("login"))
 
-        user = dbh.get_user_by_email(email)
+        usere = dbh.get_user_by_email(email)
 
-        if user and user[3] == password:
+        if usere and usere[3] == password:
             session["user"] = {
-                "id": user[0],
-                "name": user[1],
-                "email": user[2],
-                "pfp": user[4],
+                "id": usere[0],
+                "name": usere[1],
+                "email": usere[2],
+                "pfp": usere[4],
             }
 
             if remember:
@@ -88,14 +92,63 @@ def login():
     return render_template("login.html", hide_search=True)
 
 
+# account settings page
 @app.route("/logout", methods=["GET", "POST"])
 def logout():
     session.clear()
-    flash("You have been logged out", "success")
+    flash("Logout successful!", "success")
     return redirect(url_for("home"))
 
 
-# notes functions
+@app.route("/update", methods=["POST"])
+def update():
+    user = get_current_user()
+    user_id = user["id"]
+    new_username = request.form.get("username")
+    new_email = request.form.get("email")
+    new_password = request.form.get("password")
+    updated_fields = []
+
+    # check for duplicate username
+    if new_username:
+        if dbh.user_exists(username=new_username, exclude_id=user_id):
+            flash("Username unavailable", "error")
+            return redirect(url_for("account"))
+        dbh.update_user(user_ID=user_id, user_name=new_username)
+        updated_fields.append("username")
+
+    # check for duplicate email
+    if new_email:
+        if dbh.user_exists(email=new_email, exclude_id=user_id):
+            flash("Email already in use", "error")
+            return redirect(url_for("account"))
+        dbh.update_user(user_ID=user_id, user_email=new_email)
+        updated_fields.append("email")
+
+    # update password if provided
+    if new_password:
+        dbh.update_user(user_ID=user_id, user_password=new_password)
+        updated_fields.append("password")
+
+    # refresh session with updated info
+    updated_user = dbh.get_user_by_id(user_id)
+    session["user"] = {
+        "id": updated_user[0],
+        "name": updated_user[1],
+        "email": updated_user[2],
+        "role": updated_user[4],
+    }
+
+    if updated_fields:
+        details = ", ".join(updated_fields)
+        flash(f"Account details updated!\n({details})", "success")
+    else:
+        flash("No changes made", "info")
+
+    return redirect(url_for("account"))
+
+
+# notes
 @app.route('/notes')
 def notes_list():
     if not is_logged_in():

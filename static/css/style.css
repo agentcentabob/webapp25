@@ -225,6 +225,7 @@ a:active {
 }
 
 .flash {
+  white-space: pre-line;
   display: block;
   padding: 10px 15px;
   margin: 60px 0;
@@ -352,6 +353,16 @@ span.loginextras a:visited, span.loginextras a:active, span.loginextras a:link {
     width: 100%;
   }
 } */
+
+/* account details */
+.accountdetails text {
+  font-weight: normal;
+}
+
+.tooltip {
+  border-bottom: 1px dotted black;
+  cursor: help;
+}
 
 /* ARTICLE CARDS (acl) */
 .acl-container {

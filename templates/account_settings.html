@@ -5,21 +5,26 @@
 
 <br><br>
 <h1>Account Settings</h1>
+<div class="accountdetails">
+<text>Logged in as <b>{{ user.name }}</b> &#40;#{{ user.id }}&#41;</text>
+
+<div class="login-container">
+<form action="/update" method="post">
+  <label for="username"><b>Change <span class="tooltip" title={{ user.name }}>username</span></b></label>
+  <input type="text" placeholder="Enter new username" name="username">
+
+  <label for="email"><b>Change <span class="tooltip" title={{ user.email }}>email</span></b></label>
+  <input type="text" placeholder="Enter new email" name="email">
+
+  <label for="password"><b>Change password</b></label>
+  <input type="password" placeholder="Enter new password" name="password">
+
+  <button class="log-btn login" type="update">Update settings</button>  
+</form>
 
 <form action="/logout" method="post">
-  <div class="login-container">
-
-    <label for="username"><b>Change username</b></label>
-    <input type="text" placeholder="Enter new username" name="username">
-
-    <label for="email"><b>Change email</b></label>
-    <input type="text" placeholder="Enter new email" name="email">
-    
-    <label for="password"><b>Change password</b></label>
-    <input type="password" placeholder="Enter new password" name="password">
-
-    <button class="log-btn login" type="update">Update settings</button>
-    <button class="log-btn logout" type="logout">Logout</button>
-  </div>
+  <button class="log-btn logout" type="submit">Logout</button>
 </form>
+
+</div>
 {% endblock %}

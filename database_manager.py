@@ -15,7 +15,7 @@ def listExtension():
     return data
 
 
-# user log in (thanks farley)
+# user functions
 def get_connection():
     con = sql.connect(DB_PATH)
     # Enable foreign keys
@@ -39,7 +39,7 @@ def get_user_by_email(email):
 def get_user_by_id(user_ID):
     con = get_connection()
     cur = con.cursor()
-    cur.execute("SELECT * FROM userinformation2 WHERE userID = ?", (user_ID,))
+    cur.execute("SELECT * FROM userinformation2 WHERE user_ID = ?", (user_ID,))
     u = cur.fetchone()
     con.close()
     return u
@@ -64,18 +64,43 @@ def update_user(user_ID, user_name=None, user_email=None, user_password=None):
     cur = con.cursor()
     if user_name:
         cur.execute(
-            "UPDATE userinformation2 SET name = ? WHERE userID = ?",
+            "UPDATE userinformation2 SET user_name = ? WHERE user_id = ?",
             (user_name, user_ID))
     if user_email:
         cur.execute(
-            "UPDATE userinformation2 SET email = ? WHERE userID = ?",
+            "UPDATE userinformation2 SET user_email = ? WHERE user_id = ?",
             (user_email, user_ID))
     if user_password:
         cur.execute(
-            "UPDATE userinformation2 SET password = ? WHERE userID = ?",
+            "UPDATE userinformation2 SET user_password = ? WHERE user_id = ?",
             (user_password, user_ID),)
     con.commit()
     con.close()
+
+
+def user_exists(username=None, email=None, exclude_id=None):
+    con = get_connection()
+    cur = con.cursor()
+    if username:
+        cur.execute(
+            "SELECT 1 FROM userinformation2 WHERE "
+            "LOWER(user_name) = LOWER(?) AND user_id != ?",
+            (username, exclude_id),
+        )
+        if cur.fetchone():
+            con.close()
+            return True
+    if email:
+        cur.execute(
+            "SELECT 1 FROM userinformation2 WHERE "
+            "LOWER(user_email) = LOWER(?) AND user_id != ?",
+            (email, exclude_id),
+        )
+        if cur.fetchone():
+            con.close()
+            return True
+    con.close()
+    return False
 
 
 # note functions
