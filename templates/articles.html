@@ -1,8 +1,8 @@
-{% extends "layout.html" %}
-{% block content %}
-<head>
+{% extends 'layout.html' %} 
+{% block head %}
   <title>Articles - URBANNOTES</title>
-</head>
+{% endblock %}
+{% block content %}
 <div class="acl-container">
     {% for row in content %}
     <div class="acl-card">

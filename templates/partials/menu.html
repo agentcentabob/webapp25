@@ -1,27 +1,27 @@
 <nav>
 <!-- side navigation, w3 -->
 <div class="sidenav">
-  <a href="/"><img
+  <a href="{{ url_for('home') }}"><img
       class="sidenav-logo"
-      src="static/icons/logo_black.png"
+      src="{{ url_for('static', filename='icons/logo_black.png') }}"
       alt="URBANNOTES logo"/></a>
-  <a href="library">Library</a>
-  <a href="data">Data</a>
-  <a href="map">Map</a>
-  <a href="articles">Articles</a>
-  <a href="about">About</a>
+  <a href="{{ url_for('render_page', page='library') }}">Library</a>
+  <a href="{{ url_for('render_page', page='data') }}">Data</a>
+  <a href="{{ url_for('render_page', page='map') }}">Map</a>
+  <a href="{{ url_for('render_page', page='articles')}}">Articles</a>
+  <a href="{{ url_for('render_page', page='about') }}">About</a>
   <hr>
-  <a href="blank">New Note</a>
+  <a href="{{ url_for('new_note') }}">New Note</a>
 
 <div class="accountzone">
-  <a href="account" class="accountbtn">
+  <a href="{{ url_for('account') }}" class="accountbtn">
     {% if session.get('user') %}
-    <img src="/static/icons/account_in.png" alt="No profile picture icon">
+    <img src="{{ url_for('static', filename='icons/account_in.png') }}" alt="No profile picture icon">
     <div class="accountname">
     <span class="yes">{{ session.user.name }}</span>
     </div>
     {% else %}
-    <img src="/static/icons/account_out.png" alt="Not logged in icon">
+    <img src="{{ url_for('static', filename='icons/account_out.png') }}" alt="Not logged in icon">
     <div class="accountname">
     <span class="no">Click to login</span>
     </div>

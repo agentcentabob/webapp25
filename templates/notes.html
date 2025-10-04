@@ -1,0 +1,49 @@
+{% extends 'layout.html' %} 
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/notes.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/easymde.min.css') }}">
+    <title>Note editor - URBANNOTES</title>
+    <script src="{{ url_for('static', filename='js/easymde.min.js') }}"></script>
+{% endblock %}
+{% block content %}
+<body>
+    <form method="POST" id="noteForm">
+        <div class="note-editor-container">
+            <div class="editor-header">
+                <input type="text" 
+                    class="note-title-input" 
+                    id="noteTitle"
+                    name="title"
+                    placeholder="Untitled Note"
+                    value="{{ note_title if note_title else '' }}">
+                <div class="editor-actions">
+                    <button type="submit" class="action-btn save">💾 Save</button>
+                    {% if note_id %}
+                    <button type="button" class="action-btn delete" id="deleteBtn">🗑️ Delete</button>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="editor-body" id="editorBody">
+                <textarea id="noteContent" name="content">{{ note_content if note_content else '' }}</textarea>
+            </div>
+
+            <div class="editor-footer">
+                <div class="markdown-hint">
+                    📝 Markdown supported | Auto-saves every 5 seconds
+                </div>
+                <div class="last-saved" id="lastSaved">
+                    {% if note_id %}Loaded{% else %}Not saved yet{% endif %}
+                </div>
+            </div>
+        </div>
+    </form>
+
+    {% if note_id %}
+    <form method="POST" action="{{ url_for('delete_note', note_id=note_id) }}" id="deleteForm" style="display:none;">
+    </form>
+    {% endif %}
+
+    <script src="{{ url_for('static', filename='js/notes.js') }}"></script>
+</body>
+{% endblock %}

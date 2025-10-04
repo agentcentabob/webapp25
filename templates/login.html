@@ -1,13 +1,13 @@
-{% extends 'layout.html' %} {% block content %}
-<head>
-  <title>Login - URBANNOTES</title>
-</head>
-
+{% extends 'layout.html' %}
+{% block head %}
+<title>Login - URBANNOTES</title>
+{% endblock %}
+{% block content %}
 <div class="login-logo">
-    <img src="static/icons/full_logo_black.png" alt="URBANNOTES logo" class="login-logo">
+    <img src="{{ url_for('static', filename='icons/full_logo_black.png') }}" alt="URBANNOTES logo" class="login-logo">
 </div>
 
-<form action="/login" method="post">
+<form action="{{ url_for('login') }}" method="post">
   <div class="login-container">
     <label for="email"><b>Email</b></label>
     <input type="text" placeholder="Enter email" name="email" required>
@@ -22,7 +22,7 @@
     <button class="log-btn login" type="submit">Login</button>
     
     <div class="loginextras">
-      <span class="loginextras"><a href="join">Create an account</a></span>
+      <span class="loginextras"><a href="{{ url_for('join') }}">Create an account</a></span>
       <span class="loginextras"><a style="background-color: #ddd; color: #aaa" title="This feature is currently unavailable.">Forgot password?</a></span>
     </div>
   </div>
