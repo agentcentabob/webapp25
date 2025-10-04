@@ -45,14 +45,14 @@ def get_user_by_id(user_ID):
     return u
 
 
-def create_user(name, email, password):
+def create_user(username, email, password):
     con = get_connection()
     cur = con.cursor()
     cur.execute(
         "INSERT INTO userinformation2 "
         "(user_name, user_email, user_password) "
         "VALUES (?, ?, ?)",
-        (name, email, password),
+        (username, email, password),
     )
     con.commit()
     con.close()

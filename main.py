@@ -53,7 +53,7 @@ def account():
     if is_logged_in():
         user = get_current_user()
         return render_template("account_settings.html",
-                               user=user, hide_Search=True)
+                               user=user, hide_search=True)
     else:
         return redirect(url_for("login"))
 
@@ -96,32 +96,38 @@ def login():
 @app.route("/join", methods=["GET", "POST"])
 def join():
     if request.method == "POST":
+        username = request.form.get("username", "").strip()
         email = request.form.get("email", "").strip()
-        password = request.form.get("password", "")
-        remember = request.form.get("remember")  # checkbox value
+        password = request.form.get("password", "").strip()
 
-        if not email or not password:
+        # check all fields filled
+        if not username or not email or not password:
             flash("Please fill in all fields", "error")
-            return redirect(url_for("login"))
+            return redirect(url_for("join"))
 
-        usere = dbh.get_user_by_email(email)
+        # check username/email availability
+        if dbh.user_exists(username=username):
+            flash("Username unavailable", "error")
+            return redirect(url_for("join"))
+        if dbh.user_exists(email=email):
+            flash("Email already in use", "error")
+            return redirect(url_for("join"))
 
-        if usere and usere[3] == password:
-            session["user"] = {
-                "id": usere[0],
-                "name": usere[1],
-                "email": usere[2],
-                "pfp": usere[4],
-            }
+        # create new user
+        dbh.create_user(username=username, email=email,
+                        password=password)
 
-            if remember:
-                session.permanent = True
+        # retrieve new user and store in session
+        new_user = dbh.get_user_by_email(email)
+        session["user"] = {
+            "id": new_user[0],
+            "name": new_user[1],
+            "email": new_user[2],
+            "role": new_user[4],  # adjust if role is set elsewhere
+        }
 
-            flash("Login successful!", "success")
-            return redirect(url_for("home"))
-        else:
-            flash("Invalid email or password", "error")
-            return redirect(url_for("login"))
+        flash("Account created successfully!", "success")
+        return redirect(url_for("home"))
 
     return render_template("create_account.html", hide_search=True)
 
@@ -179,7 +185,7 @@ def update():
     else:
         flash("No changes made", "info")
 
-    return redirect(url_for("account"))
+    return redirect(url_for("account"), hide_search=True)
 
 
 # notes
