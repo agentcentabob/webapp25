@@ -175,9 +175,17 @@ a:active {
   display: inline-block;
   max-width: 70px;
   font-size: 14px;
-  font-style: italic;
-  color: #555;
   line-height: 1.2;
+}
+
+.accountname .yes {
+  color: black;
+  font-style: normal;
+}
+
+.accountname .no {
+  color: #444;
+  font-style: italic;
 }
 
 /* w3: LOG IN PAGE */
