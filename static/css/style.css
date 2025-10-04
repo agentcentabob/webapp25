@@ -150,7 +150,6 @@ a:active {
 
 .accountbtn {
   display: flex;
-  align-items: center;
   gap: 8px;
   border: none;
   cursor: pointer;
@@ -159,12 +158,10 @@ a:active {
   text-decoration: none;
 }
 
-.accountbtn .material-symbols-outlined {
-  font-size: 44px !important;
-  flex-shrink: 0;
-  color: black;
-  margin-left: -10px;
-  bottom: -10px;
+.accountbtn img {
+  width: 50px;           /* fixed icon size */
+  height: 50px;          /* fixed height to match width */
+  object-fit: contain;    /* keeps aspect ratio */
 }
 
 .accountbtn:hover {

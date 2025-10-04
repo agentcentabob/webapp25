@@ -16,14 +16,17 @@
 
 <div class="accountzone">
   <a href="account" class="accountbtn">
-    <span class="material-symbols-outlined">account_circle</span>
-    <div class="accountname">
     {% if session.get('user') %}
+    <img src="/static/icons/account_in.png">
+    <div class="accountname">
     <span class="yes">{{ session.user.name }}</span>
-    {% else %}
-    <span class="no">Click to login</span>
-    {% endif %}
     </div>
+    {% else %}
+    <img src="/static/icons/account_out.png">
+    <div class="accountname">
+    <span class="no">Click to login</span>
+    </div>
+    {% endif %}
   </a>
 </div>
 
