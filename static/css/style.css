@@ -17,10 +17,11 @@ body {
 }
 
 main {
+  margin-left: var(--sidebar-width);
+  transition: margin-left 0.3s ease;
   display: flex;
   justify-content: center;
-  padding: 0.5rem;
-  margin-left: var(--sidebar-width);
+  padding: 1rem;
 }
 
 .content {
@@ -49,12 +50,6 @@ a:active {
   border-radius: 10px;
 }
 
-/* note editor */
-.editfield {
-  padding-top: 100px;
-  width: max-content;
-}
-
 /* embedded map */
 .embedmap iframe {
   width: 800px;
@@ -81,6 +76,68 @@ a:active {
   justify-content: center;
   /*left: 0px;
   right: 0px;*/
+}
+
+/* FLASH MESSAGES */
+.popup {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  min-width: 300px;
+  max-width: 500px;
+  pointer-events: none;
+}
+
+.flash {
+  white-space: pre-line;
+  display: block;
+  padding: 10px 15px;
+  margin: 60px 0;
+  border-radius: 5px;
+  box-sizing: border-box;
+  pointer-events: auto;
+  border: 2px solid;
+  animation: slideIn 0.45s cubic-bezier(0.68, -0.55, 0.265, 1.55), fadeOut 0.5s ease-out 4s forwards;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(400px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: translateX(400px);
+  }
+}
+
+/* error */
+.flash.error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border-color: #f5c6cb;
+}
+
+/* success */
+.flash.success {
+  background-color: #d4edda;
+  color: #155724;
+  border-color: #c3e6cb;
+}
+
+/* info */
+.flash.info {
+  background-color: #cce5ff;
+  color: #004085;
+  border-color: #b8daff;
 }
 
 /* w3: SEARCH BAR */
@@ -142,7 +199,7 @@ a:active {
   }
 } */
 
-/* MAIN ACCOUNT BUTTON */
+/* MENU ACCOUNT BUTTON */
 .accountzone {
   position: fixed;
   bottom: 10px;
@@ -207,7 +264,7 @@ a:active {
   padding-top: -20px;
 }
 
-/* w3: inputs */
+/* w3: log in inputs */
 .login-container input[type=text], .login-container input[type=password] {
   width: 100%;
   padding: 12px 20px;
@@ -225,69 +282,7 @@ a:active {
   margin: 0 auto;
 }
 
-/* log in popup */
-.popup {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 9999;
-  min-width: 300px;
-  max-width: 500px;
-  pointer-events: none;
-}
-
-.flash {
-  white-space: pre-line;
-  display: block;
-  padding: 10px 15px;
-  margin: 60px 0;
-  border-radius: 5px;
-  box-sizing: border-box;
-  pointer-events: auto;
-  border: 2px solid;
-  animation: slideIn 0.45s cubic-bezier(0.68, -0.55, 0.265, 1.55), fadeOut 0.5s ease-out 4s forwards;
-}
-
-@keyframes slideIn {
-  from {
-    transform: translateX(400px);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-@keyframes fadeOut {
-  to {
-    opacity: 0;
-    transform: translateX(400px);
-  }
-}
-
-/* error messages */
-.flash.error {
-  background-color: #f8d7da;
-  color: #721c24;
-  border-color: #f5c6cb;
-}
-
-/* success messages */
-.flash.success {
-  background-color: #d4edda;
-  color: #155724;
-  border-color: #c3e6cb;
-}
-
-/* info messages */
-.flash.info {
-  background-color: #cce5ff;
-  color: #004085;
-  border-color: #b8daff;
-}
-
-/* w3: log in button go */
+/* LOG IN/OUT BUTTONS */
 .log-btn {
   padding: 8px 8px;
   margin: 8px 0 1rem;
@@ -325,7 +320,7 @@ a:active {
   background: hsl(3, 21%, 88%);
 }
 
-/* w3: forgot password and create account */
+/* LOGIN EXTRAS */
 .loginextras {
   display: flex;
   justify-content: center;
@@ -360,18 +355,7 @@ span.loginextras a:visited, span.loginextras a:active, span.loginextras a:link {
   text-decoration: none;
 }
 
-/* w3: adjust styles for some buttons on smaller screen sizes
-@media screen and (max-width: 300px) {
-  span.psw {
-    display: block;
-    float: none;
-  }
-  .cancelbtn {
-    width: 100%;
-  }
-} */
-
-/* account details */
+/* ACCOUNT DETAILS */
 .accountdetails text {
   font-weight: normal;
 }
@@ -457,7 +441,7 @@ span.loginextras a:visited, span.loginextras a:active, span.loginextras a:link {
   text-justify: inter-word;
 }*/
 
-/* 404 page */
+/* 404 PAGE */
 .lost {
   font-size: large;
   max-width: 600px;
@@ -471,85 +455,125 @@ span.loginextras a:visited, span.loginextras a:active, span.loginextras a:link {
   text-align: center;
 }
 
-/* w3: SIDEBAR, including edited comments from tutorial */
+:root {
+  --sidebar-width: 160px; /* your current width */
+  --sidebar-collapsed: 60px;
+}
+
+/* SIDEBAR */
 .sidenav {
   height: 100%;
-  width: 160px;
-  position: fixed; /* fixes the sidebar when scrolling */
-  z-index: 1; /* top layer */
-  left: 0px; 
-  overflow-x: hidden; /* disable horizontal scroll */
-  padding-bottom: 6px;
-  text-align: left;
-  background: #e4ffe4;
+  width: var(--sidebar-width);
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #e1ffea;
   border-top-right-radius: 12px;
   border-bottom-right-radius: 12px;
   box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+  /* collapsibility */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* keep links left-aligned */
+  padding-bottom: 6px;
+  overflow-x: visible;
+  transition: width 0.3s ease;
+}
+
+.sidenav.collapsed {
+  width: var(--sidebar-collapsed);
 }
 
 .sidenav-logo {
   width: 100%;
   object-fit: cover;
+  padding-top: 8px;
+  padding-left: 3px;
 }
 
-/* w3: navigation menu links */
 .sidenav a {
   padding: 6px 8px 6px 16px;
   text-decoration: none;
   font-size: 25px;
   color: #666;
   display: block;
+  width: 100%;
+  transition: opacity 0.2s ease;
+  overflow-x: hidden;
+  text-align: left;
 }
 
-/* w3: navigation menu links hover */
 .sidenav a:hover {
   color: #aaa;
 }
 
-/* w3: adjust sidebar padding and font on smaller screens (height less than 450px) */
-@media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
+.sidenav.collapsed a span,
+.sidenav.collapsed .accountname {
+  display: none;
 }
 
-/* navigation bar */
-nav {
-  position: fixed;
-  top: 0;
-  text-align: center;
-  overflow: visible;
-  width: 20%;
-}
-
-nav img {
-  padding-top: 8px;
-  padding-left: 3px;
-}
-
-/* code graveyard */
-/* navigation - from the tempe tutorial i think
-
-nav ul {
-  list-style: none;
+/* toggle button */
+.toggle-btn {
+  position: absolute;
+  top: 50%;
+  right: -14px; /* sits outside the sidebar edge */
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  background-color: #e1ffea; /* match sidebar or make custom */
+  border: none;
+  border-radius: 50%;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  vertical-align: center;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.3s ease;
+  z-index: 10;
 }
 
-nav li {
-  margin-right: 1rem;
+.toggle-btn #arrow {
+  font-size: 14px;
+  transform: rotate(180deg); /* points left initially */
+  transition: transform 0.3s ease;
 }
 
-nav ul li a {
-  text-decoration-line: none;
-  text-transform: uppercase;
-  color: #000000;
+.sidenav.collapsed .toggle-btn #arrow {
+  transform: rotate(0deg); /* arrow is rotated right when collapsed */
 }
 
-nav ul li a:hover {
-  color: #777777;
-  text-decoration: underline;
+/* text hiding and showing with collapse */
+/* initially hide icons, show text */
+.link-icon {
+  margin-right: 8px;
+  font-size: 20px;
+  display: none;
 }
 
-nav h1 {
-  color: #000000;
-  margin-bottom: 0.5rem;
-} */
+/* hide text when collapsed */
+.sidenav.collapsed .link-text {
+  display: none;
+}
+
+/* show icons only when collapsed */
+.sidenav.collapsed .link-icon {
+  display: inline-block;
+}
+
+/* center icons when text is gone */
+.sidenav.collapsed a {
+  text-align: center;
+}
+
+/* main content adjustment */
+.sidenav.collapsed ~ main {
+  margin-left: var(--sidebar-collapsed);
+}
+
+/* responsive adjustments, not sure if used */
+@media screen and (max-height: 450px) {
+  .sidenav { padding-top: 15px; }
+  .sidenav a { font-size: 18px; }
+}

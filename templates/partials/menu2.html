@@ -1,0 +1,38 @@
+ <div class="sidenav" id="sidebar">
+
+    <button class="toggle-btn" id="toggleSidebar">
+    <span id="arrow">&#9654;</span>
+    </button>
+
+    <a href="{{ url_for('home') }}">
+    <img
+        class="sidenav-logo"
+        src="{{ url_for('static', filename='icons/logo_black.png') }}"
+        alt="URBANNOTES logo"/>
+    </a>
+
+    <a href="{{ url_for('render_page', page='library') }}"><span class="link-text">Library</span><span class="link-icon">&#128218;</span></a>
+    <a href="{{ url_for('render_page', page='data') }}"><span class="link-text">Data</span></a>
+    <a href="{{ url_for('render_page', page='map') }}"><span class="link-text">Map</span></a>
+    <a href="{{ url_for('render_page', page='articles') }}"><span class="link-text">Articles</span></a>
+    <a href="{{ url_for('render_page', page='about') }}"><span class="link-text">About</span></a>
+    <hr>
+    <a href="{{ url_for('new_note') }}"><span class="link-text">New Note</span></a>
+
+    <div class="accountzone">
+      <a href="{{ url_for('account') }}" class="accountbtn">
+        {% if session.get('user') %}
+        <img src="{{ url_for('static', filename='icons/account_in.png') }}" alt="No profile picture icon">
+        <div class="accountname">
+          <span class="yes">{{ session.user.name }}</span>
+        </div>
+        {% else %}
+        <img src="{{ url_for('static', filename='icons/account_out.png') }}" alt="Not logged in icon">
+        <div class="accountname">
+          <span class="no">Click to login</span>
+        </div>
+        {% endif %}
+      </a>
+    </div>
+  </div>
+<script src="{{ url_for('static', filename='js/sidebar.js') }}"></script>

@@ -7,11 +7,3 @@ if ("serviceWorker" in navigator) {
       .catch(err => console.log("Service Worker registration failed:", err));
   });
 }
-
-// collapsible sidebar
-const sidebar = document.getElementById('sidebar');
-const toggle = document.getElementById('toggleSidebar');
-
-toggle.addEventListener('click', () => {
-  sidebar.classList.toggle('collapsed');
-});

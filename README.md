@@ -146,4 +146,4 @@ render blocking requests caused by the imported fonts and icons saw a low perfor
 - [ ] offline functionality
 - [ ] search bar functionality
 - [ ] continue investigating containers, vm and other ways of running the web page
-- [ ] dynamic sidebar
+- [x] dynamic sidebar
