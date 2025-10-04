@@ -230,17 +230,17 @@ def new_note():
         content = request.form.get('content', '')
         address = request.form.get('address', '')
 
-    try:
-        note_id = dbh.create_note(title, content, user['id'], address)
-        flash("Note created successfully!", "success")
-        return redirect(url_for('view_note', note_id=note_id))
-    except Exception as e:
-        print(f"Error creating note: {e}")
-        flash("Error creating note", "error")
-        return redirect(url_for('new_note'))
+        try:
+            note_id = dbh.create_note(title, content, user['id'], address)
+            flash("Note created successfully!", "success")
+            return redirect(url_for('view_note', note_id=note_id))
+        except Exception as e:
+            print(f"Error creating note: {e}")
+            flash("Error creating note", "error")
+            return redirect(url_for('new_note'))
 
     return render_template('notes.html', note_id=None, note_title='',
-                           note_content='', user=user)
+                           note_address='', note_content='', user=user)
 
 
 @app.route('/notes/<int:note_id>', methods=['GET', 'POST'])
@@ -275,6 +275,27 @@ def view_note(note_id):
                            note_address=note[3],
                            note_content=note[6],
                            user=user)
+
+
+@app.route('/notes/<int:note_id>/delete', methods=['POST'])
+def delete_note(note_id):
+    if not is_logged_in():
+        return redirect(url_for("login"))
+
+    user = get_current_user()
+
+    # Verify ownership
+    if not dbh.verify_note_ownership(note_id, user['id']):
+        abort(403)
+
+    try:
+        dbh.delete_note(note_id)
+        flash("Note deleted successfully!", "success")
+        return redirect(url_for('home'))
+    except Exception as e:
+        print(f"Error deleting note: {e}")
+        flash("Error deleting note", "error")
+        return redirect(url_for('view_note', note_id=note_id))
 
 
 if __name__ == "__main__":

@@ -130,7 +130,7 @@ def create_note(title, content, user_id, address=None):
     cur = con.cursor()
     cur.execute(
         "INSERT INTO notes (note_title, address, "
-        "note_contents, user_id) VALUES (?, ?, ?, ?)",
+        "note_md, user_id) VALUES (?, ?, ?, ?)",
         (title, address, content, user_id)
     )
     note_id = cur.lastrowid
@@ -153,7 +153,7 @@ def update_note(note_id, title=None, content=None, address=None):
         updates.append("address = ?")
         params.append(address)
     if content is not None:
-        updates.append("note_contents = ?")
+        updates.append("note_md = ?")
         params.append(content)
 
     if updates:
