@@ -40,11 +40,18 @@ def render_page(page):
         return render_template("404.html"), 404
 
 
+# articles
 @app.route("/articles", methods=["GET"])
 def data():
     data = dbh.listExtension()
     user = get_current_user()
     return render_template("/articles.html", content=data, user=user)
+
+
+@app.route("/article/<int:user_id>/<int:note_id>")
+def article(user_id, note_id):
+    flash("Article viewing feature coming soon!", "info")
+    return redirect(url_for('data'))
 
 
 # account settings
