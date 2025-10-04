@@ -117,8 +117,8 @@ low performance rating was linked to long load times of fonts and images. unfini
 - [ ] account features
     - [x] correct html input
     - [ ] integrate log in features into rest of website
-    - [ ] dynamic account settings text in menu
-    - [ ] style create account page
+    - [x] dynamic account settings text in menu
+    - [x] style create account page
     - [ ] account page functionality
     - [ ] style forgot password page
     - [ ] forgot password page functionality

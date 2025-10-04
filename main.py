@@ -92,6 +92,40 @@ def login():
     return render_template("login.html", hide_search=True)
 
 
+# create account page
+@app.route("/join", methods=["GET", "POST"])
+def join():
+    if request.method == "POST":
+        email = request.form.get("email", "").strip()
+        password = request.form.get("password", "")
+        remember = request.form.get("remember")  # checkbox value
+
+        if not email or not password:
+            flash("Please fill in all fields", "error")
+            return redirect(url_for("login"))
+
+        usere = dbh.get_user_by_email(email)
+
+        if usere and usere[3] == password:
+            session["user"] = {
+                "id": usere[0],
+                "name": usere[1],
+                "email": usere[2],
+                "pfp": usere[4],
+            }
+
+            if remember:
+                session.permanent = True
+
+            flash("Login successful!", "success")
+            return redirect(url_for("home"))
+        else:
+            flash("Invalid email or password", "error")
+            return redirect(url_for("login"))
+
+    return render_template("create_account.html", hide_search=True)
+
+
 # account settings page
 @app.route("/logout", methods=["GET", "POST"])
 def logout():

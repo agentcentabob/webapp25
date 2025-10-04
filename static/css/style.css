@@ -198,6 +198,11 @@ a:active {
   margin: 0 auto; /* centring */
 }
 
+.login-container .anytime {
+  font-style: italic;
+  font-size: 13px;
+}
+
 .remember {
   padding-bottom: 5px;
   padding-top: -20px;
@@ -369,6 +374,11 @@ span.loginextras a:visited, span.loginextras a:active, span.loginextras a:link {
 
 .tooltip {
   border-bottom: 1px dotted black;
+  cursor: help;
+}
+
+.tooltip-requirement {
+  color: #f00;
   cursor: help;
 }
 
