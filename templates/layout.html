@@ -35,10 +35,7 @@
       <input type="text" placeholder="Search anything..."/>
     </div>
     {% endif %}
-
-    <main>
-      {% include "partials/menu.html" %} 
-      {% block content %}{% endblock %}
-    </main>
 </body>
+{% include "partials/menu.html" %} 
+{% block content %}{% endblock %}
 </html>

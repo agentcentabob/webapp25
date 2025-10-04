@@ -11,27 +11,25 @@
 </div>
 
 <div class="login-container">
-<form action="/update" method="post">
-  <label for="username"><b>Change <span class="tooltip" title={{ user.name }}>username</span></b></label>
+<form action="{{ url_for('update') }}" method="post">
+  <label for="username"><b>Change <span class="tooltip" title="{{ user.name }}">username</span></b></label>
   <input type="text" placeholder="Enter new username" name="username">
 
-  <label for="email"><b>Change <span class="tooltip" title={{ user.email }}>email</span></b></label>
+  <label for="email"><b>Change <span class="tooltip" title="{{ user.email }}">email</span></b></label>
   <input type="text" placeholder="Enter new email" name="email">
 
   <label for="password"><b>Change password</b></label>
   <input type="password" placeholder="Enter new password" name="password">
 
-  <button class="log-btn login" type="update">Update settings</button>  
+  <button class="log-btn login" type="submit">Update settings</button>  
 </form>
 
-<form action="/logout" method="post">
+<form action="{{ url_for('logout') }}" method="post">
   <button class="log-btn logout" type="submit">Logout</button>
 </form>
-
-<!--<form action="/deleteacc" method="post" onsubmit="return confirm('Are you sure you want to delete your account? This cannot be undone.');">
+<!--<form action="{{ url_for('deleteacc') }}" method="post" onsubmit="return confirm('Are you sure you want to delete your account? This cannot be undone.');">
   <input type="password" name="password" placeholder="Enter password to confirm" required>
   <button class="log-btn delete" type="submit">Delete account</button>
 </form>-->
-
 </div>
 {% endblock %}

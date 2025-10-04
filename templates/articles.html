@@ -14,7 +14,7 @@
         <p class="acl-card-about">{{ row[3] }}</p>
         <p class="acl-card-about">{{ row[4] }}</p>
         <p class="acl-card-about">By user {{ row[0] }}</p>
-        <a class="acl-card-link" href="article/{{ row[0] }}/{{ row[1] }}.html">
+        <a class="acl-card-link" href="{{ url_for('article', user_id=row[0], note_id=row[1]) }}">
         <button class="acl-read-btn">Read More</button>
         </a>
     </div>
