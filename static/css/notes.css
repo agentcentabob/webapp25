@@ -258,3 +258,25 @@ body {
     flex: 1;
     max-width: 100%;
 }
+
+/* address */
+.note-address-input {
+    width: 100%;
+    padding: 8px 12px;
+    margin-top: 8px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: inherit;
+    color: #666;
+}
+
+.note-address-input:focus {
+    outline: none;
+    border-color: #4CAF50;
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.1);
+}
+
+.note-address-input::placeholder {
+    color: #999;
+}

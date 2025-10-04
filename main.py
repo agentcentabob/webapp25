@@ -228,15 +228,16 @@ def new_note():
     if request.method == 'POST':
         title = request.form.get('title', 'Untitled')
         content = request.form.get('content', '')
+        address = request.form.get('address', '')
 
-        try:
-            note_id = dbh.create_note(title, content, user['id'])
-            flash("Note created successfully!", "success")
-            return redirect(url_for('view_note', note_id=note_id))
-        except Exception as e:
-            print(f"Error creating note: {e}")
-            flash("Error creating note", "error")
-            return redirect(url_for('new_note'))
+    try:
+        note_id = dbh.create_note(title, content, user['id'], address)
+        flash("Note created successfully!", "success")
+        return redirect(url_for('view_note', note_id=note_id))
+    except Exception as e:
+        print(f"Error creating note: {e}")
+        flash("Error creating note", "error")
+        return redirect(url_for('new_note'))
 
     return render_template('notes.html', note_id=None, note_title='',
                            note_content='', user=user)
@@ -259,18 +260,19 @@ def view_note(note_id):
     if request.method == 'POST':
         title = request.form.get('title')
         content = request.form.get('content')
-
-        try:
-            dbh.update_note(note_id, title, content)
-            flash("Note saved!", "success")
-            return redirect(url_for('view_note', note_id=note_id))
-        except Exception as e:
-            print(f"Error creating note: {e}")
-            flash("Error saving note", "error")
+        address = request.form.get('address')
+    try:
+        dbh.update_note(note_id, title, content, address)
+        flash("Note saved!", "success")
+        return redirect(url_for('view_note', note_id=note_id))
+    except Exception as e:
+        print(f"Error creating note: {e}")
+        flash("Error saving note", "error")
 
     return render_template('notes.html',
                            note_id=note[1],
                            note_title=note[2],
+                           note_address=note[3],
                            note_content=note[6],
                            user=user)
 

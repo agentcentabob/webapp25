@@ -105,7 +105,6 @@ def user_exists(username=None, email=None, exclude_id=None):
 
 # note functions
 def get_user_notes(user_id):
-    """Get all notes for a user, ordered by most recently modified"""
     con = get_connection()
     cur = con.cursor()
     cur.execute(
@@ -118,7 +117,6 @@ def get_user_notes(user_id):
 
 
 def get_note_by_id(note_id):
-    """Get a specific note by ID"""
     con = get_connection()
     cur = con.cursor()
     cur.execute("SELECT * FROM notes WHERE note_ID = ?", (note_id,))
@@ -127,14 +125,13 @@ def get_note_by_id(note_id):
     return note
 
 
-def create_note(title, content, user_id):
-    """Create a new note"""
+def create_note(title, content, user_id, address=None):
     con = get_connection()
     cur = con.cursor()
     cur.execute(
-        "INSERT INTO notes (note_title,"
-        "note_contents, user_id) VALUES (?, ?, ?)",
-        (title, content, user_id)
+        "INSERT INTO notes (note_title, address, "
+        "note_contents, user_id) VALUES (?, ?, ?, ?)",
+        (title, address, content, user_id)
     )
     note_id = cur.lastrowid
     con.commit()
@@ -142,36 +139,34 @@ def create_note(title, content, user_id):
     return note_id
 
 
-def update_note(note_id, title=None, content=None):
-    """Update a note's title and/or content"""
+def update_note(note_id, title=None, content=None, address=None):
     con = get_connection()
     cur = con.cursor()
 
-    if title is not None and content is not None:
-        cur.execute(
-            "UPDATE notes SET note_title = ?, note_contents = ?,"
-            "date_modified = CURRENT_TIMESTAMP WHERE note_ID = ?",
-            (title, content, note_id)
-        )
-    elif title is not None:
-        cur.execute(
-            "UPDATE notes SET note_title = ?,"
-            "date_modified = CURRENT_TIMESTAMP WHERE note_ID = ?",
-            (title, note_id)
-        )
-    elif content is not None:
-        cur.execute(
-            "UPDATE notes SET note_contents = ?"
-            "date_modified = CURRENT_TIMESTAMP WHERE note_ID = ?",
-            (content, note_id)
-        )
+    updates = []
+    params = []
+
+    if title is not None:
+        updates.append("note_title = ?")
+        params.append(title)
+    if address is not None:
+        updates.append("address = ?")
+        params.append(address)
+    if content is not None:
+        updates.append("note_contents = ?")
+        params.append(content)
+
+    if updates:
+        updates.append("date_modified = CURRENT_TIMESTAMP")
+        params.append(note_id)
+        query = f"UPDATE notes SET {', '.join(updates)} WHERE note_ID = ?"
+        cur.execute(query, params)
 
     con.commit()
     con.close()
 
 
 def delete_note(note_id):
-    """Delete a note"""
     con = get_connection()
     cur = con.cursor()
     cur.execute("DELETE FROM notes WHERE note_ID = ?", (note_id,))
@@ -180,7 +175,6 @@ def delete_note(note_id):
 
 
 def verify_note_ownership(note_id, user_id):
-    """Check if a note belongs to a user"""
     con = get_connection()
     cur = con.cursor()
     cur.execute(
