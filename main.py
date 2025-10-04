@@ -127,18 +127,14 @@ def view_note(note_id):
     if not note:
         abort(404)
 
-    # Check ownership (note structure: id, title, content,
-    # user_id, created_at, updated_at)
-    if note[3] != user['id']:  # note[3] is user_id
+    if note[0] != user['id']:  # note[0] is user_id
         abort(403)
 
-    return render_template(
-        'notes.html',
-        note_id=note[0],       # id
-        note_title=note[1],    # title
-        note_content=note[2],  # content
-        user=user
-        )
+    return render_template('blank.html',
+                           note_id=note[1],
+                           note_title=note[2],
+                           note_content=note[6],
+                           user=user)
 
 
 @app.route('/api/notes', methods=['POST'])

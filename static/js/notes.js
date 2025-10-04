@@ -87,6 +87,17 @@
         }
     }
 
+    const saveBtn = document.getElementById('saveBtn');
+    if (saveBtn) {
+        saveBtn.addEventListener('click', saveNote);
+    }
+    
+    // Delete button click handler
+    const deleteBtn = document.getElementById('deleteBtn');
+    if (deleteBtn) {
+        deleteBtn.addEventListener('click', deleteNote);
+    }
+
     // Get current note data
     function getCurrentNoteData() {
         return {
