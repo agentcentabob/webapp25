@@ -8,25 +8,25 @@
   "orientation": "landscape-primary",
   "icons": [
     {
-      "src": "static/images/logos/favicon_1_4.png",
+      "src": "images/logos/favicon_1_4.png",
       "type": "image/png",
       "sizes": "128x128",
       "purpose": "maskable"
     },
     {
-      "src": "static/images/logos/full_1.png",
+      "src": "images/logos/full_1.png",
       "type": "image/png",
       "sizes": "128x128",
       "purpose": "any"
     },
     {
-      "src": "static/images/logos/main_1_3.png",
+      "src": "images/logos/main_1_3.png",
       "type": "image/png",
       "sizes": "192x192",
       "purpose": "maskable"
     },
     {
-      "src": "static/images/westmead_lr.png",
+      "src": "images/westmead_lr.jpg",
       "type": "image/png",
       "sizes": "192x192",
       "purpose": "any"

@@ -143,11 +143,72 @@ INSERT INTO notes(note_id, note_title, address, note_contents, user_id) VALUES
 (8, 'Heatwave Resilience Strategy', 'Athens, Greece', NULL, 10),
 (9, 'Seafront Path Activation', 'Tel Aviv, Israel', NULL, 10),
 (10, 'Civic Plaza Renewal', 'Buenos Aires, Argentina', NULL, 10);
-SELECT * FROM notes WHERE note_ID LIKE '3';
 
+SELECT * FROM notes WHERE note_ID LIKE '3';
 SELECT * FROM userinformation2 WHERE user_created LIKE '2025-08-22 13:30:48';
 SELECT * FROM userinformation2 db WHERE LENGTH(user_name) = 7;
 SELECT * FROM notes WHERE ( user_ID % 2 ) = 0 AND address LIKE "%UK%";
 SELECT * FROM notes JOIN userinformation2 ON notes.user_id = userinformation2.user_id WHERE ( user_name % 2 ) = 0 AND note_title LIKE "%Transit%";
 
-INSERT INTO notes(note_contents) VALUES (static\images\shinjuku-street.jpg);
+INSERT INTO articles(article_id, article_title, address, likes, views, completions, reposts, article_md, article_icon, user_id) VALUES
+(1, 'Transit Capacity Review', 'Shinjuku Station, Tokyo, Japan', 120, 350, 100, 5, 'transit_capacity_review.md', 'transit_capacity.png', 1),
+(2, 'Night Market Pedestrian Flow', 'La Rambla, Barcelona, Spain', 95, 210, 80, 4, 'night_market_flow.md', 'night_market.png', 1),
+(3, 'Bike Lane Pilot Study', 'Union Square, San Francisco, USA', 140, 400, 110, 6, 'bike_lane_pilot.md', 'bike_lane.png', 1),
+(4, 'Green Roof Assessment', 'City Hall, Toronto, Canada', 110, 280, 90, 5, 'green_roof_assessment.md', 'green_roof.png', 1),
+(5, 'Bus Rapid Transit Evaluation', 'Bogotá Bus Terminal, Bogotá, Colombia', 100, 250, 85, 4, 'bus_rapid_transit.md', 'bus_rapid.png', 1),
+
+(1, 'Smart Lighting Initiative', 'Central Square, Hong Kong, China', 130, 370, 120, 5, 'smart_lighting.md', 'smart_lighting.png', 2),
+(2, 'School Zone Safety Survey', 'Brooklyn High School, New York, USA', 90, 200, 75, 3, 'school_zone_safety.md', 'school_zone.png', 2),
+(3, 'Metro Expansion Impact', 'Gare du Nord, Paris, France', 150, 420, 130, 6, 'metro_expansion.md', 'metro.png', 2),
+(4, 'Urban Tree Canopy Analysis', 'Portland City Park, Portland, USA', 105, 260, 95, 4, 'tree_canopy_analysis.md', 'tree.png', 2),
+(5, 'Harborfront Redevelopment', 'Cape Town Waterfront, Cape Town, South Africa', 115, 300, 105, 5, 'harborfront_redevelopment.md', 'harbor.png', 2),
+
+(1, 'Walkability Audit', 'Old City, Chiang Mai, Thailand', 125, 340, 115, 5, 'walkability_audit.md', 'walkability.png', 3),
+(2, 'Riverbank Flood Mitigation', 'Danube River, Budapest, Hungary', 100, 270, 90, 4, 'riverbank_flood.md', 'flood.png', 3),
+(3, 'Pedestrian Crossing Upgrade', 'Times Square, New York, USA', 140, 390, 120, 6, 'pedestrian_crossing.md', 'crossing.png', 3),
+(4, 'Eco District Design', 'Vauban District, Freiburg, Germany', 115, 310, 100, 5, 'eco_district.md', 'eco.png', 3),
+(5, 'Historic Plaza Renewal', 'Zócalo, Mexico City, Mexico', 105, 290, 95, 4, 'historic_plaza.md', 'plaza.png', 3),
+
+(1, 'Water Transit Study', 'Venice Canals, Venice, Italy', 135, 360, 125, 5, 'water_transit.md', 'water.png', 4),
+(2, 'Metro Safety Notes', 'Moscow Metro, Moscow, Russia', 120, 330, 110, 4, 'metro_safety.md', 'metro_safety.png', 4),
+(3, 'Bus Electrification Plan', 'Stockholm Bus Station, Stockholm, Sweden', 110, 300, 105, 3, 'bus_electrification.md', 'bus_electric.png', 4),
+(4, 'Street Art Integration', 'Valparaíso Street, Valparaíso, Chile', 125, 350, 115, 5, 'street_art.md', 'art.png', 4),
+(5, 'Public Square Activation', 'Trafalgar Square, London, UK', 130, 370, 120, 4, 'public_square.md', 'square.png', 4),
+
+(1, 'Light Rail Corridor Plan', 'Dubai Marina, Dubai, UAE', 140, 400, 130, 5, 'light_rail.md', 'rail.png', 5),
+(2, 'Rural Town Square Study', 'Town Square, Kerry, Ireland', 100, 280, 90, 3, 'rural_square.md', 'square.png', 5),
+(3, 'Market Street Renewal', 'Chinatown, San Francisco, USA', 115, 310, 105, 4, 'market_street.md', 'market.png', 5),
+(4, 'Airport Transit Access', 'Heathrow Airport, London, UK', 130, 360, 120, 5, 'airport_transit.md', 'airport.png', 5),
+(5, 'Social Housing Expansion', 'Neighborhood, Athens, Greece', 110, 300, 100, 3, 'social_housing.md', 'housing.png', 5),
+
+(1, 'Seaside Retail Development', 'Promenade, Nice, France', 125, 340, 115, 5, 'seaside_retail.md', 'seaside.png', 6),
+(2, 'Cyclist Priority Streets', 'Downtown, Ghent, Belgium', 110, 300, 100, 4, 'cyclist_priority.md', 'cyclist.png', 6),
+(3, 'Airport Expansion Impacts', 'Changi Airport, Singapore, Singapore', 135, 370, 125, 5, 'airport_expansion.md', 'airport.png', 6),
+(4, 'Street Vendor Zoning', 'Old Quarter, Hanoi, Vietnam', 120, 320, 110, 4, 'street_vendor.md', 'vendor.png', 6),
+(5, 'Community Plaza Renewal', 'Main Plaza, Cusco, Peru', 115, 310, 105, 3, 'community_plaza.md', 'plaza.png', 6),
+
+(1, 'Heritage Street Renewal', 'Gion District, Kyoto, Japan', 130, 370, 120, 5, 'heritage_street.md', 'heritage.png', 7),
+(2, 'Smart Crosswalk Testing', 'Downtown, Helsinki, Finland', 110, 300, 100, 3, 'smart_crosswalk.md', 'crosswalk.png', 7),
+(3, 'Beachfront Promenade Study', 'Durban Beach, Durban, South Africa', 120, 330, 110, 4, 'beachfront_promenade.md', 'beach.png', 7),
+(4, 'Mountain Town Walkability', 'City Center, Innsbruck, Austria', 125, 350, 115, 5, 'mountain_walkability.md', 'mountain.png', 7),
+(5, 'Parking Garage Repurpose', 'Garage, Chicago, USA', 115, 310, 105, 3, 'parking_garage.md', 'garage.png', 7),
+
+(1, 'Food Market Activation', 'Grand Bazaar, Istanbul, Turkey', 135, 380, 125, 5, 'food_market.md', 'food.png', 8),
+(2, 'City Wall Integration', 'City Wall, Xi’an, China', 120, 340, 115, 4, 'city_wall.md', 'wall.png', 8),
+(3, 'Flood Resilience Plan', 'Delta, Dhaka, Bangladesh', 110, 320, 105, 3, 'flood_resilience.md', 'flood.png', 8),
+(4, 'Underground Mall Study', 'PATH, Toronto, Canada', 125, 360, 120, 4, 'underground_mall.md', 'mall.png', 8),
+(5, 'Festival Grounds Planning', 'Festival Grounds, Edinburgh, Scotland', 115, 310, 105, 3, 'festival_grounds.md', 'festival.png', 8),
+
+(1, 'Harbor Walk Plan', 'Circular Quay, Sydney, Australia', 140, 400, 130, 5, 'harbor_walk.md', 'harbor.png', 9),
+(2, 'Festival Plaza Review', 'Old Town, Prague, Czech Republic', 115, 320, 110, 4, 'festival_plaza.md', 'plaza.png', 9),
+(3, 'Car-Free District Design', 'City Center, Oslo, Norway', 125, 350, 115, 4, 'car_free_district.md', 'district.png', 9),
+(4, 'Tramway Expansion Study', 'Downtown, Vienna, Austria', 130, 370, 120, 5, 'tramway_expansion.md', 'tramway.png', 9),
+(5, 'Historic Dock Renewal', 'Dock, Liverpool, UK', 110, 300, 100, 3, 'historic_dock.md', 'dock.png', 9),
+
+(1, 'Community Farm Plan', 'Farm, Detroit, USA', 125, 340, 115, 4, 'community_farm.md', 'farm.png', 10),
+(2, 'Floating Housing Study', 'Canals, Amsterdam, Netherlands', 110, 300, 100, 3, 'floating_housing.md', 'floating.png', 10),
+(3, 'Transit Plaza Renewal', 'Plaza, Brussels, Belgium', 115, 310, 105, 4, 'transit_plaza.md', 'plaza.png', 10),
+(4, 'City Square Upgrade', 'Square, Vilnius, Lithuania', 120, 320, 110, 4, 'city_square.md', 'square.png', 10),
+(5, 'Smart Waste Pilot', 'Industrial Park, Shanghai, China', 105, 290, 95, 3, 'smart_waste.md', 'waste.png', 10);
+
+DELETE FROM notes

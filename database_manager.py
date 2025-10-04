@@ -5,20 +5,17 @@ import sqlite3 as sql
 
 DB_PATH = "database/data_source.db"
 
+
 # articles page
-
-
 def listExtension():
     con = sql.connect("database/data_source.db")
     cur = con.cursor()
-    data = cur.execute("SELECT * FROM notes").fetchall()
+    data = cur.execute("SELECT * FROM articles").fetchall()
     con.close()
     return data
 
 
 # user log in (thanks farley)
-
-
 def get_connection():
     con = sql.connect(DB_PATH)
     # Enable foreign keys
@@ -79,3 +76,92 @@ def update_user(user_ID, user_name=None, user_email=None, user_password=None):
             (user_password, user_ID),)
     con.commit()
     con.close()
+
+
+# note functions
+def get_user_notes(user_id):
+    """Get all notes for a user, ordered by most recently updated"""
+    con = get_connection()
+    cur = con.cursor()
+    cur.execute(
+        "SELECT * FROM notes WHERE user_id = ? ORDER BY updated_at DESC",
+        (user_id,)
+    )
+    notes = cur.fetchall()
+    con.close()
+    return notes
+
+
+def get_note_by_id(note_id):
+    """Get a specific note by ID"""
+    con = get_connection()
+    cur = con.cursor()
+    cur.execute("SELECT * FROM notes WHERE id = ?", (note_id,))
+    note = cur.fetchone()
+    con.close()
+    return note
+
+
+def create_note(title, content, user_id):
+    """Create a new note"""
+    con = get_connection()
+    cur = con.cursor()
+    cur.execute(
+        "INSERT INTO notes (title, content, user_id) VALUES (?, ?, ?)",
+        (title, content, user_id)
+    )
+    note_id = cur.lastrowid
+    con.commit()
+    con.close()
+    return note_id
+
+
+def update_note(note_id, title=None, content=None):
+    """Update a note's title and/or content"""
+    con = get_connection()
+    cur = con.cursor()
+
+    if title is not None and content is not None:
+        cur.execute((
+                "UPDATE notes SET title = ?, content = ?, "
+                "updated_at = CURRENT_TIMESTAMP WHERE id = ?"),
+            (title, content, note_id)
+        )
+
+    elif title is not None:
+        cur.execute((
+            "UPDATE notes SET title = ?, "
+            "updated_at = CURRENT_TIMESTAMP WHERE id = ?"),
+            (title, note_id)
+        )
+    elif content is not None:
+        cur.execute((
+            "UPDATE notes SET content = ?,"
+            "updated_at = CURRENT_TIMESTAMP WHERE id = ?",)
+            (content, note_id)
+        )
+
+    con.commit()
+    con.close()
+
+
+def delete_note(note_id):
+    """Delete a note"""
+    con = get_connection()
+    cur = con.cursor()
+    cur.execute("DELETE FROM notes WHERE id = ?", (note_id,))
+    con.commit()
+    con.close()
+
+
+def verify_note_ownership(note_id, user_id):
+    """Check if a note belongs to a user"""
+    con = get_connection()
+    cur = con.cursor()
+    cur.execute(
+        "SELECT id FROM notes WHERE id = ? AND user_id = ?",
+        (note_id, user_id)
+    )
+    result = cur.fetchone()
+    con.close()
+    return result is not None

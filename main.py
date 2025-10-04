@@ -1,5 +1,5 @@
-from flask import Flask, render_template, request
-from flask import flash, redirect, url_for, session
+from flask import Flask, render_template, request, jsonify
+from flask import flash, redirect, url_for, session, abort
 from datetime import timedelta
 import os
 import database_manager as dbh
@@ -60,7 +60,7 @@ def login():
     if request.method == "POST":
         email = request.form.get("email", "").strip()
         password = request.form.get("password", "")
-        remember = request.form.get("remember")  # Get checkbox value
+        remember = request.form.get("remember")  # checkbox value
 
         if not email or not password:
             flash("Please fill in all fields", "error")
@@ -73,7 +73,7 @@ def login():
                 "id": user[0],
                 "name": user[1],
                 "email": user[2],
-                "role": user[4],
+                "pfp": user[4],
             }
 
             if remember:
@@ -93,6 +93,100 @@ def logout():
     session.clear()
     flash("You have been logged out", "success")
     return redirect(url_for("home"))
+
+
+# notes functions
+@app.route('/notes')
+def notes_list():
+    if not is_logged_in():
+        return redirect(url_for("login"))
+
+    user = get_current_user()
+    notes = dbh.get_user_notes(user['id'])
+    return render_template('notes_list.html', notes=notes, user=user)
+
+
+@app.route('/notes/new')
+def new_note():
+    if not is_logged_in():
+        return redirect(url_for("login"))
+
+    user = get_current_user()
+    return render_template('notes.html', note_id=None, note_title='',
+                           note_content='', user=user)
+
+
+@app.route('/notes/<int:note_id>')
+def view_note(note_id):
+    if not is_logged_in():
+        return redirect(url_for("login"))
+
+    user = get_current_user()
+    note = dbh.get_note_by_id(note_id)
+
+    if not note:
+        abort(404)
+
+    # Check ownership (note structure: id, title, content,
+    # user_id, created_at, updated_at)
+    if note[3] != user['id']:  # note[3] is user_id
+        abort(403)
+
+    return render_template(
+        'notes.html',
+        note_id=note[0],       # id
+        note_title=note[1],    # title
+        note_content=note[2],  # content
+        user=user
+        )
+
+
+@app.route('/api/notes', methods=['POST'])
+def create_note():
+    if not is_logged_in():
+        return jsonify({'success': False, 'error': 'Not logged in'}), 401
+
+    user = get_current_user()
+    data = request.json
+    title = data.get('title', 'Untitled')
+    content = data.get('content', '')
+
+    note_id = dbh.create_note(title, content, user['id'])
+    return jsonify({'success': True, 'note_id': note_id})
+
+
+@app.route('/api/notes/<int:note_id>', methods=['PUT'])
+def update_note(note_id):
+    if not is_logged_in():
+        return jsonify({'success': False, 'error': 'Not logged in'}), 401
+
+    user = get_current_user()
+
+    # Verify ownership
+    if not dbh.verify_note_ownership(note_id, user['id']):
+        return jsonify({'success': False, 'error': 'Unauthorized'}), 403
+
+    data = request.json
+    title = data.get('title')
+    content = data.get('content')
+
+    dbh.update_note(note_id, title, content)
+    return jsonify({'success': True})
+
+
+@app.route('/api/notes/<int:note_id>', methods=['DELETE'])
+def delete_note(note_id):
+    if not is_logged_in():
+        return jsonify({'success': False, 'error': 'Not logged in'}), 401
+
+    user = get_current_user()
+
+    # Verify ownership
+    if not dbh.verify_note_ownership(note_id, user['id']):
+        return jsonify({'success': False, 'error': 'Unauthorized'}), 403
+
+    dbh.delete_note(note_id)
+    return jsonify({'success': True})
 
 
 if __name__ == "__main__":

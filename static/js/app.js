@@ -47,18 +47,3 @@ if (accountButton) {
     }
   });
 }
-
-// Check if we're on the login page (has a login form)
-const loginForm = document.querySelector('/login'); // adjust selector if needed
-
-if (loginForm) {
-  loginForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    
-    // Your login logic here
-    // If login successful:
-    localStorage.setItem('isLoggedIn', 'true');
-    
-    window.location.href = 'menu.html';
-  });
-}
