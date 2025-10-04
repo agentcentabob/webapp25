@@ -1,27 +1,11 @@
-/* Remove these global styles that break the layout */
-/* * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    background: #f5f7fa;
-    color: #2c3e50;
-} */
-
-/* Keep everything else the same, starting with: */
 .note-editor-container {
-    max-width: 1400px;
+    max-width: 1600px;
     margin: 0 auto;
     background: #fff;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
 }
-
-/* ... rest of your CSS stays the same ... */
-
 .editor-header {
     padding: 20px 30px;
     border-bottom: 1px solid #e1e8ed;
@@ -86,8 +70,14 @@ body {
 .editor-body {
     display: flex;
     height: 600px;
+    width: 100%;
 }
-.editor-pane {
+.EasyMDEContainer {
+    width: 100%;
+    max-width: none;
+    text-align: left;
+}
+/*.editor-pane {
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -113,7 +103,7 @@ body {
     flex: 1;
     overflow-y: auto;
     padding: 20px;
-}
+}*/
 .note-editor {
     width: 100%;
     height: 100%;
@@ -127,41 +117,11 @@ body {
 .note-editor::placeholder {
     color: #95a5a6;
 }
-.markdown-preview {
+/*.markdown-preview {
     font-size: 15px;
     line-height: 1.7;
     color: #2c3e50;
 }
-/* Markdown preview styling */
-.markdown-preview h1 {
-    font-size: 2em;
-    margin: 0.67em 0;
-    font-weight: 700;
-    border-bottom: 2px solid #e1e8ed;
-    padding-bottom: 0.3em;
-}
-.markdown-preview h2 {
-    font-size: 1.5em;
-    margin: 0.75em 0 0.5em 0;
-    font-weight: 600;
-    border-bottom: 1px solid #e1e8ed;
-    padding-bottom: 0.3em;
-}
-.markdown-preview h3 {
-    font-size: 1.25em;
-    margin: 0.75em 0 0.5em 0;
-    font-weight: 600;
-}
-.markdown-preview h4 {
-    font-size: 1.1em;
-    margin: 0.75em 0 0.5em 0;
-    font-weight: 600;
-}
-.markdown-preview h5,
-.markdown-preview h6 {
-    font-size: 1em;
-    margin: 0.75em 0 0.5em 0;
-    font-weight: 600;
 }
 .markdown-preview p {
     margin: 1em 0;
@@ -249,7 +209,7 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
-}
+}*/
 .last-saved {
     font-style: italic;
 }
