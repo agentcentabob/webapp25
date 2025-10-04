@@ -6,11 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <meta http-equiv="Content-Security-Policy" content="script-src 'self';" />
     <link rel="stylesheet" href="static/css/style.css" />
-    <link rel="manifest" href="static/manifest.json" />
-    <link rel="icon" type="image" href="static/images/logos/favicon_1_4.png">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"/>
     <script src="/static/js/app.js"></script>
-    <script src="/static/js/animations.js"></script>
+
+    <link rel="icon" type="image/png" sizes="96x96" href="{{ url_for('static', filename='favicon/favicon-96x96.png') }}" />
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='favicon/favicon.svg') }}">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='favicon/apple-touch-icon.png') }}">
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
 </head>
 
   <div class="popup">
