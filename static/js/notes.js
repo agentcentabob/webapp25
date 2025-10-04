@@ -1,15 +1,12 @@
-// notes.js - JavaScript for markdown note editor
-// Wrap everything in an IIFE to avoid conflicts with other scripts
+// notes.js - With autosave functionality
 (function() {
     'use strict';
     
-    let currentNoteId = null;
-    let autoSaveTimeout;
     let easyMDE;
+    let autoSaveTimeout;
+    let hasChanges = false;
 
-    // Initialize EasyMDE when DOM is ready
     document.addEventListener('DOMContentLoaded', function() {
-        // Only initialize if we're on the notes page
         if (!document.getElementById('noteContent')) {
             return;
         }
@@ -17,12 +14,10 @@
         initEditor();
     });
 
-    // Initialize EasyMDE editor
     function initEditor() {
-        // Check if EasyMDE is loaded
         if (typeof EasyMDE === 'undefined') {
-            console.error('EasyMDE library not loaded. Check CDN link or Content Security Policy.');
-            alert('Editor library failed to load. Please check your internet connection or contact support.');
+            console.error('EasyMDE library not loaded.');
+            alert('Editor library failed to load. Please refresh the page.');
             return;
         }
         
@@ -46,168 +41,97 @@
             }
         });
 
-        // Auto-save on content change
+        // Auto-save on content change (5 seconds after stopping typing)
         easyMDE.codemirror.on("change", function() {
+            hasChanges = true;
             clearTimeout(autoSaveTimeout);
             autoSaveTimeout = setTimeout(() => {
-                if (currentNoteId) {
-                    saveNote();
-                }
-            }, 2000);
+                autoSave();
+            }, 5000);
         });
 
-        // Load initial content from page data
-        const noteIdElement = document.getElementById('noteIdData');
-        const noteTitleElement = document.getElementById('noteTitleData');
-        const noteContentElement = document.getElementById('noteContentData');
-        
-        if (noteIdElement && noteIdElement.value) {
-            currentNoteId = parseInt(noteIdElement.value);
-        }
-        
-        if (noteTitleElement && noteTitleElement.value) {
-            document.getElementById('noteTitle').value = noteTitleElement.value;
-        }
-        
-        if (noteContentElement && noteContentElement.value) {
-            easyMDE.value(noteContentElement.value);
-        }
-        
         // Auto-save on title change
         const titleInput = document.getElementById('noteTitle');
         if (titleInput) {
             titleInput.addEventListener('input', () => {
+                hasChanges = true;
                 clearTimeout(autoSaveTimeout);
                 autoSaveTimeout = setTimeout(() => {
-                    if (currentNoteId) {
-                        saveNote();
-                    }
-                }, 2000);
+                    autoSave();
+                }, 5000);
+            });
+        }
+
+        // Handle delete button
+        const deleteBtn = document.getElementById('deleteBtn');
+        if (deleteBtn) {
+            deleteBtn.addEventListener('click', function() {
+                if (confirm('Are you sure you want to delete this note?')) {
+                    document.getElementById('deleteForm').submit();
+                }
+            });
+        }
+
+        // Before form submission, sync EasyMDE content to textarea
+        const form = document.getElementById('noteForm');
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                const textarea = document.getElementById('noteContent');
+                textarea.value = easyMDE.value();
             });
         }
     }
 
-    const saveBtn = document.getElementById('saveBtn');
-    if (saveBtn) {
-        saveBtn.addEventListener('click', saveNote);
-    }
-    
-    // Delete button click handler
-    const deleteBtn = document.getElementById('deleteBtn');
-    if (deleteBtn) {
-        deleteBtn.addEventListener('click', deleteNote);
-    }
-
-    // Get current note data
-    function getCurrentNoteData() {
-        return {
-            title: document.getElementById('noteTitle').value,
-            content: easyMDE.value()
-        };
-    }
-
-    // Save the current note
-    function saveNote() {
-        if (!currentNoteId) {
-            // Create new note
-            createNote();
-            return;
-        }
-
-        const noteData = getCurrentNoteData();
+    function autoSave() {
+        if (!hasChanges) return;
         
-        fetch('/api/notes/' + currentNoteId, {
-            method: 'PUT',
-            headers: { 
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(noteData)
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                updateLastSaved('Saved at ' + new Date().toLocaleTimeString());
-                console.log('Note saved successfully');
-            } else {
-                console.error('Error saving note:', data.error);
-                alert('Error saving note: ' + (data.error || 'Unknown error'));
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Error saving note. Please check your connection.');
-        });
-    }
-
-    // Create a new note
-    function createNote() {
-        const noteData = getCurrentNoteData();
+        // Sync EasyMDE content to textarea
+        const textarea = document.getElementById('noteContent');
+        textarea.value = easyMDE.value();
         
-        fetch('/api/notes', {
+        const form = document.getElementById('noteForm');
+        const formData = new FormData(form);
+        
+        // Submit form via fetch without reloading page
+        fetch(form.action || window.location.href, {
             method: 'POST',
-            headers: { 
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(noteData)
+            body: formData
         })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                currentNoteId = data.note_id;
-                updateLastSaved('Saved at ' + new Date().toLocaleTimeString());
-                // Update URL without reload
-                window.history.pushState({}, '', '/notes/' + data.note_id);
-                console.log('Note created successfully');
+        .then(response => {
+            if (response.ok) {
+                updateLastSaved('Auto-saved at ' + new Date().toLocaleTimeString());
+                hasChanges = false;
+                
+                // If this was a new note, update URL to point to the note
+                return response.text();
             } else {
-                console.error('Error creating note:', data.error);
-                alert('Error creating note: ' + (data.error || 'Unknown error'));
+                updateLastSaved('Error saving');
+            }
+        })
+        .then(html => {
+            // Check if we were redirected (new note created)
+            // This is a bit hacky but works
+            if (html && html.includes('/notes/') && !window.location.pathname.match(/\/notes\/\d+/)) {
+                // Extract note ID from response and update URL
+                const match = html.match(/\/notes\/(\d+)/);
+                if (match) {
+                    const noteId = match[1];
+                    window.history.replaceState({}, '', '/notes/' + noteId);
+                    // Update form action
+                    document.getElementById('noteForm').action = '/notes/' + noteId;
+                }
             }
         })
         .catch(error => {
-            console.error('Error:', error);
-            alert('Error creating note. Please check your connection.');
+            console.error('Auto-save error:', error);
+            updateLastSaved('Error saving');
         });
     }
 
-    // Delete the current note
-    function deleteNote() {
-        if (!currentNoteId) {
-            alert('No note to delete');
-            return;
-        }
-
-        if (!confirm('Are you sure you want to delete this note?')) {
-            return;
-        }
-
-        fetch('/api/notes/' + currentNoteId, {
-            method: 'DELETE'
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                // Redirect to notes list
-                window.location.href = '/notes';
-            } else {
-                console.error('Error deleting note:', data.error);
-                alert('Error deleting note: ' + (data.error || 'Unknown error'));
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Error deleting note. Please check your connection.');
-        });
-    }
-
-    // Update last saved timestamp
     function updateLastSaved(text) {
         const lastSavedElement = document.getElementById('lastSaved');
         if (lastSavedElement) {
             lastSavedElement.textContent = text;
         }
     }
-
-    // Expose functions globally so onclick handlers work
-    window.saveNote = saveNote;
-    window.deleteNote = deleteNote;
 })();

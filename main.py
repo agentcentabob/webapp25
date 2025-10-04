@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request
 from flask import flash, redirect, url_for, session, abort
 from datetime import timedelta
 import os
@@ -210,27 +210,32 @@ def deleteacc():
 
 
 # notes
-@app.route('/notes')
-def notes_list():
-    if not is_logged_in():
-        return redirect(url_for("login"))
-
-    user = get_current_user()
-    notes = dbh.get_user_notes(user['id'])
-    return render_template('notes_list.html', notes=notes, user=user)
-
-
-@app.route('/notes/new')
+@app.route('/notes/new', methods=['GET', 'POST'])
 def new_note():
     if not is_logged_in():
+        flash("Sign in to create notes!", "info")
         return redirect(url_for("login"))
 
     user = get_current_user()
+
+    if request.method == 'POST':
+        title = request.form.get('title', 'Untitled')
+        content = request.form.get('content', '')
+
+        try:
+            note_id = dbh.create_note(title, content, user['id'])
+            flash("Note created successfully!", "success")
+            return redirect(url_for('view_note', note_id=note_id))
+        except Exception as e:
+            print(f"Error creating note: {e}")
+            flash("Error creating note", "error")
+            return redirect(url_for('new_note'))
+
     return render_template('notes.html', note_id=None, note_title='',
                            note_content='', user=user)
 
 
-@app.route('/notes/<int:note_id>')
+@app.route('/notes/<int:note_id>', methods=['GET', 'POST'])
 def view_note(note_id):
     if not is_logged_in():
         return redirect(url_for("login"))
@@ -241,62 +246,26 @@ def view_note(note_id):
     if not note:
         abort(404)
 
-    if note[0] != user['id']:  # note[0] is user_id
+    if note[0] != user['id']:
         abort(403)
 
-    return render_template('blank.html',
+    if request.method == 'POST':
+        title = request.form.get('title')
+        content = request.form.get('content')
+
+        try:
+            dbh.update_note(note_id, title, content)
+            flash("Note saved!", "success")
+            return redirect(url_for('view_note', note_id=note_id))
+        except Exception as e:
+            print(f"Error creating note: {e}")
+            flash("Error saving note", "error")
+
+    return render_template('notes.html',
                            note_id=note[1],
                            note_title=note[2],
                            note_content=note[6],
                            user=user)
-
-
-@app.route('/api/notes', methods=['POST'])
-def create_note():
-    if not is_logged_in():
-        return jsonify({'success': False, 'error': 'Not logged in'}), 401
-
-    user = get_current_user()
-    data = request.json
-    title = data.get('title', 'Untitled')
-    content = data.get('content', '')
-
-    note_id = dbh.create_note(title, content, user['id'])
-    return jsonify({'success': True, 'note_id': note_id})
-
-
-@app.route('/api/notes/<int:note_id>', methods=['PUT'])
-def update_note(note_id):
-    if not is_logged_in():
-        return jsonify({'success': False, 'error': 'Not logged in'}), 401
-
-    user = get_current_user()
-
-    # Verify ownership
-    if not dbh.verify_note_ownership(note_id, user['id']):
-        return jsonify({'success': False, 'error': 'Unauthorized'}), 403
-
-    data = request.json
-    title = data.get('title')
-    content = data.get('content')
-
-    dbh.update_note(note_id, title, content)
-    return jsonify({'success': True})
-
-
-@app.route('/api/notes/<int:note_id>', methods=['DELETE'])
-def delete_note(note_id):
-    if not is_logged_in():
-        return jsonify({'success': False, 'error': 'Not logged in'}), 401
-
-    user = get_current_user()
-
-    # Verify ownership
-    if not dbh.verify_note_ownership(note_id, user['id']):
-        return jsonify({'success': False, 'error': 'Unauthorized'}), 403
-
-    dbh.delete_note(note_id)
-    return jsonify({'success': True})
 
 
 if __name__ == "__main__":

@@ -1,4 +1,5 @@
-* {
+/* Remove these global styles that break the layout */
+/* * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -7,8 +8,9 @@
 body {
     background: #f5f7fa;
     color: #2c3e50;
-}
+} */
 
+/* Keep everything else the same, starting with: */
 .note-editor-container {
     max-width: 1400px;
     margin: 0 auto;
@@ -17,6 +19,8 @@ body {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
 }
+
+/* ... rest of your CSS stays the same ... */
 
 .editor-header {
     padding: 20px 30px;
