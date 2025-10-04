@@ -185,7 +185,28 @@ def update():
     else:
         flash("No changes made", "info")
 
-    return redirect(url_for("account"), hide_search=True)
+    return redirect(url_for("account"))
+
+
+# delete account (unused currently)
+@app.route("/deleteacc", methods=["POST"])
+def deleteacc():
+    user = get_current_user()
+    if not user:
+        flash("You must be logged in to delete your account", "error")
+        return redirect(url_for("login"))
+
+    # optional: confirm password before deletion
+    password = request.form.get("password", "")
+    if user["password"] != password:
+        flash("Incorrect password", "error")
+        return redirect(url_for("account"))
+
+    # delete the user
+    dbh.delete_user(user["id"])
+    session.pop("user", None)
+    flash("Account deleted successfully", "success")
+    return redirect(url_for("home"))
 
 
 # notes

@@ -321,6 +321,11 @@ a:active {
   background: hsl(3, 21%, 93%);
 }
 
+.log-btn.delete{
+  color: hsl(3, 100%, 10%);
+  background: hsl(3, 21%, 88%);
+}
+
 /* w3: forgot password and create account */
 .loginextras-container {
   display: flex;
