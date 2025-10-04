@@ -9,19 +9,19 @@
   <a href="data">Data</a>
   <a href="map">Map</a>
   <a href="articles">Articles</a>
-  <a href="more">More</a>
+  <a href="about">About</a>
   <hr>
   <a href="blank">New Note</a>
 
 <div class="accountzone">
   <a href="account" class="accountbtn">
     {% if session.get('user') %}
-    <img src="/static/icons/account_in.png">
+    <img src="/static/icons/account_in.png" alt="No profile picture icon">
     <div class="accountname">
     <span class="yes">{{ session.user.name }}</span>
     </div>
     {% else %}
-    <img src="/static/icons/account_out.png">
+    <img src="/static/icons/account_out.png" alt="Not logged in icon">
     <div class="accountname">
     <span class="no">Click to login</span>
     </div>

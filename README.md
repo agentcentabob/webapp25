@@ -100,6 +100,21 @@ development log started in august 18th in line with course shift away from desig
 - seo: 75
 
 low performance rating was linked to long load times of fonts and images. unfinished home page styling also led to slightly reduced best practices and performance marks.
+#### october 4, 2025 (week 1, school holidays)
+##### home page
+- performance: 100
+- accessibility: 88 --> 100
+- best practices: 100
+- seo: 73 --> 100
+
+accessibility and seo ratings were low as some recently images lacked alt text. the page also had no meta description, and the 'more' link in the menu was too generic for the seo rating. revisions to the detected errors saw a significant improvement in marks.
+##### log in page
+- performance: 78
+- accessibility: 92
+- best practices: 100
+- seo: 100
+
+render blocking requests caused by the imported fonts and icons saw a low performance score. marks were deducted from accessibility due to some buttons with low contrast. revisions were not necessary.
 
 ### task list
 - [x] fix styling of navigation bar

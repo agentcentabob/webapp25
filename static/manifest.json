@@ -6,7 +6,7 @@
   "background_color": "#fdfdfd",
   "theme_color": "#14E6DD",
   "orientation": "landscape-primary",
-  "description": "The premier notebook web application for urban planners and designers.",
+  "description": "URBANNOTES: Write, explore, and map your thoughts on urban planning and design, with featured articles and geolocated notes.",
   "icons": [
     {
       "src": "/static/favicon/web-app-manifest-192x192.png",
