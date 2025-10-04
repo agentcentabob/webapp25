@@ -124,12 +124,12 @@ low performance rating was linked to long load times of fonts and images. unfini
     - [ ] forgot password page functionality
 - [ ] note taking feature functionality
     - [ ] inputting and saving notes
-    - [ ] viewing notes retrospectively
+    - [ ] viewing and accessing notes in library feature
 - [ ] articles feature functionality
     - [ ] link to view articles
-    - [ ] generate 100 articles
+    - [ ] generate articles and add to database
+    - [ ] show username of article author in browsing page
 - [ ] offline functionality
 - [ ] search bar functionality
 - [ ] continue investigating containers, vm and other ways of running the web page
-- [ ] dynamic account settings text in menu
 - [ ] dynamic sidebar
