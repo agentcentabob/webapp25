@@ -261,13 +261,14 @@ def view_note(note_id):
         title = request.form.get('title')
         content = request.form.get('content')
         address = request.form.get('address')
-    try:
-        dbh.update_note(note_id, title, content, address)
-        flash("Note saved!", "success")
-        return redirect(url_for('view_note', note_id=note_id))
-    except Exception as e:
-        print(f"Error creating note: {e}")
-        flash("Error saving note", "error")
+
+        try:
+            dbh.update_note(note_id, title, content, address)
+            flash("Note saved!", "success")
+            return redirect(url_for('view_note', note_id=note_id))
+        except Exception as e:
+            print(f"Error saving note: {e}")
+            flash("Error saving note", "error")
 
     return render_template('notes.html',
                            note_id=note[1],
@@ -296,6 +297,19 @@ def delete_note(note_id):
         print(f"Error deleting note: {e}")
         flash("Error deleting note", "error")
         return redirect(url_for('view_note', note_id=note_id))
+
+
+# library
+@app.route('/notes')
+def notes_library():
+    if not is_logged_in():
+        flash("Sign in to view your notes!", "info")
+        return redirect(url_for("login"))
+
+    user = get_current_user()
+    notes = dbh.get_user_notes(user['id'])
+
+    return render_template('notes_library.html', notes=notes, user=user)
 
 
 if __name__ == "__main__":
