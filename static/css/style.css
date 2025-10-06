@@ -59,6 +59,24 @@ a:active {
   border-width: 10px;
 }
 
+/* footer */
+.footer {
+  margin-top: 4rem;
+  padding: 2rem 0;
+  text-align: center;
+  border-top: 1px solid rgba(148, 163, 184, 0.1);
+  animation: fadeIn 1s ease;
+}
+
+.footer p {
+  color: #bbbbbb;
+}
+
+.footer strong {
+  color: var(--primary);
+  font-style: bold;
+}
+
 /* PAGE TITLE */
 .pagetitle a:link {
   /* title part with link */
