@@ -276,11 +276,33 @@ def delete_note(note_id):
     try:
         dbh.delete_note(note_id)
         flash("Note deleted successfully!", "success")
-        return redirect(url_for('home'))
+        return redirect(url_for('notes_library'))
     except Exception as e:
         print(f"Error deleting note: {e}")
         flash("Error deleting note", "error")
         return redirect(url_for('view_note', note_id=note_id))
+
+
+@app.route('/notes/<int:note_id>/rename', methods=['POST'])
+def rename_note(note_id):
+    if not is_logged_in():
+        return redirect(url_for("login"))
+
+    user = get_current_user()
+
+    # Verify ownership
+    if not dbh.verify_note_ownership(note_id, user['id']):
+        abort(403)
+
+    try:
+        new_title = request.form.get('title')
+        dbh.update_note(note_id, new_title)
+        flash('Note renamed successfully!', 'success')
+        return redirect(url_for('notes_library'))
+    except Exception as e:
+        print(f"Error renaming note: {e}")
+        flash('Failed to rename note', 'error')
+        return redirect(url_for('notes_library'))
 
 
 # library
