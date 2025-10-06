@@ -1,18 +1,18 @@
-// DOM Elements
+// dom elements
 const searchInput = document.getElementById('searchInput');
 const sortSelect = document.getElementById('sortSelect');
 const notesGrid = document.getElementById('notesGrid');
 const notesList = document.getElementById('notesList');
 
-// Get all note cards and list items
+// get all items in list and card form
 const noteCards = notesGrid ? Array.from(notesGrid.querySelectorAll('.note-card')) : [];
 const noteListItems = notesList ? Array.from(notesList.querySelectorAll('.note-list-item')) : [];
 
-// View toggle elements
+// view toggle elements
 const viewBtns = document.querySelectorAll('.view-btn');
 let currentView = 'grid';
 
-// Modal elements
+// **popup (modal) elements
 const renameModal = document.getElementById('renameModal');
 const deleteModal = document.getElementById('deleteModal');
 const renameInput = document.getElementById('renameInput');
@@ -24,9 +24,7 @@ const deleteConfirmBtn = document.getElementById('deleteConfirmBtn');
 
 let currentNoteId = null;
 
-// ============================================
-// SEARCH FUNCTIONALITY
-// ============================================
+// **search
 if (searchInput) {
     searchInput.addEventListener('input', function(e) {
         const query = e.target.value.toLowerCase().trim();
@@ -47,14 +45,12 @@ if (searchInput) {
     });
 }
 
-// ============================================
-// SORTING FUNCTIONALITY
-// ============================================
+// **sort
 if (sortSelect) {
     sortSelect.addEventListener('change', function(e) {
         const sortBy = e.target.value;
         
-        // Sort both views
+        // sorting both views
         sortNotes(noteCards, notesGrid, sortBy);
         sortNotes(noteListItems, notesList, sortBy);
     });
@@ -78,22 +74,20 @@ function sortNotes(items, container, sortBy) {
         }
     });
     
-    // Reappend in sorted order
+    // reappend in sorted order
     sorted.forEach(item => container.appendChild(item));
 }
 
-// ============================================
-// VIEW TOGGLE FUNCTIONALITY
-// ============================================
+// **change of views
 viewBtns.forEach(btn => {
     btn.addEventListener('click', function() {
         const view = this.dataset.view;
         
-        // Update active button
+        // update active button
         viewBtns.forEach(b => b.classList.remove('active'));
         this.classList.add('active');
         
-        // Toggle views
+        // switch views
         if (view === 'grid') {
             notesGrid.classList.add('active');
             notesList.classList.remove('active');
@@ -104,16 +98,14 @@ viewBtns.forEach(btn => {
             currentView = 'list';
         }
         
-        // Reapply search filter to new view
+        // reapply search to new view
         if (searchInput.value) {
             searchInput.dispatchEvent(new Event('input'));
         }
     });
 });
 
-// ============================================
-// RENAME FUNCTIONALITY
-// ============================================
+// **rename
 document.addEventListener('click', function(e) {
     if (e.target.classList.contains('rename') || e.target.closest('.rename')) {
         e.preventDefault();
@@ -140,7 +132,7 @@ renameConfirmBtn.addEventListener('click', function() {
         return;
     }
     
-    // Create a form and submit it (uses Flask flash system)
+    // create form and submit
     const form = document.createElement('form');
     form.method = 'POST';
     form.action = `/notes/${currentNoteId}/rename`;
@@ -155,7 +147,7 @@ renameConfirmBtn.addEventListener('click', function() {
     form.submit();
 });
 
-// Allow Enter key to confirm rename
+// enter key to rename
 renameInput.addEventListener('keypress', function(e) {
     if (e.key === 'Enter') {
         renameConfirmBtn.click();
@@ -167,9 +159,7 @@ function closeRenameModal() {
     currentNoteId = null;
 }
 
-// ============================================
-// DELETE FUNCTIONALITY
-// ============================================
+// **delete
 document.addEventListener('click', function(e) {
     if (e.target.classList.contains('delete') || e.target.closest('.delete')) {
         e.preventDefault();
@@ -187,7 +177,7 @@ document.addEventListener('click', function(e) {
 deleteCancelBtn.addEventListener('click', closeDeleteModal);
 
 deleteConfirmBtn.addEventListener('click', function() {
-    // Create a form and submit it (uses Flask flash system)
+    // create form and submit
     const form = document.createElement('form');
     form.method = 'POST';
     form.action = `/notes/${currentNoteId}/delete`;
@@ -200,9 +190,7 @@ function closeDeleteModal() {
     currentNoteId = null;
 }
 
-// ============================================
-// CLOSE MODALS ON OUTSIDE CLICK
-// ============================================
+// close popup on outside click
 renameModal.addEventListener('click', function(e) {
     if (e.target === renameModal) {
         closeRenameModal();
@@ -215,9 +203,7 @@ deleteModal.addEventListener('click', function(e) {
     }
 });
 
-// ============================================
-// CLOSE MODALS ON ESC KEY
-// ============================================
+// close popup with esc key
 document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
         closeRenameModal();

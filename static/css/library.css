@@ -67,7 +67,7 @@
     border-color: #4CAF50;
 }
 
-/* View Toggle Styles */
+/* view toggling */
 .view-controls {
     display: flex;
     gap: 8px;
@@ -101,7 +101,7 @@
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-/* Card View Styles */
+/* card view */
 .notes-grid {
     display: none;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -197,7 +197,7 @@
     color: #888;
 }
 
-/* List View Styles */
+/* list view */
 .notes-list {
     display: none;
     flex-direction: column;
@@ -265,7 +265,7 @@
     gap: 4px;
 }
 
-/* Action Buttons */
+/* actions */
 .note-actions {
     display: flex;
     gap: 8px;
@@ -312,7 +312,7 @@
     color: #f44336;
 }
 
-/* Modal Styles */
+/* popups (modals) */
 .modal {
     display: none;
     position: fixed;
@@ -412,7 +412,7 @@
     background: #d32f2f;
 }
 
-/* Empty State */
+/* empty (no notes) */
 .empty-state {
     text-align: center;
     padding: 80px 20px;
@@ -450,13 +450,13 @@
     background: #45a049;
 }
 
-/* Hide notes utility */
+/* hide notes utility */
 .note-card[style*="display: none"],
 .note-list-item[style*="display: none"] {
     display: none !important;
 }
 
-/* Responsive Design */
+/* responsivity */
 @media (max-width: 768px) {
     .library-header {
         flex-direction: column;

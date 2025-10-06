@@ -269,7 +269,7 @@ def delete_note(note_id):
 
     user = get_current_user()
 
-    # Verify ownership
+    # verify ownership
     if not dbh.verify_note_ownership(note_id, user['id']):
         abort(403)
 
@@ -290,7 +290,7 @@ def rename_note(note_id):
 
     user = get_current_user()
 
-    # Verify ownership
+    # verify ownership
     if not dbh.verify_note_ownership(note_id, user['id']):
         abort(403)
 

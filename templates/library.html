@@ -37,7 +37,7 @@
         </div>
 
         {% if notes %}
-        <!-- Card View -->
+        <!-- card view -->
         <div class="notes-grid active" id="notesGrid">
             {% for note in notes %}
             <div class="note-card" 
@@ -78,7 +78,7 @@
             {% endfor %}
         </div>
 
-        <!-- List View -->
+        <!-- list view -->
         <div class="notes-list" id="notesList">
             {% for note in notes %}
             <div class="note-list-item" 
@@ -119,7 +119,7 @@
         {% endif %}
     </div>
 
-    <!-- Rename Modal -->
+    <!-- rename popup -->
     <div id="renameModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">✏️ Rename Note</div>
@@ -133,7 +133,7 @@
         </div>
     </div>
 
-    <!-- Delete Modal -->
+    <!-- delete popup -->
     <div id="deleteModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">🗑️ Delete Note</div>
