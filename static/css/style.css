@@ -414,7 +414,8 @@ span.loginextras a:visited, span.loginextras a:active, span.loginextras a:link {
   overflow: hidden;
 }
 
-.acl-read-btn {
+.acl-read-btn,
+.green-btn {
   border: none;
   background: none;
   border-radius: 5px;
@@ -429,7 +430,10 @@ span.loginextras a:visited, span.loginextras a:active, span.loginextras a:link {
   margin-bottom: 1rem;
 }
 
-.acl-read-btn:focus, .acl-read-btn:hover {
+.acl-read-btn:focus,
+.acl-read-btn:hover,
+.green-btn:focus,
+.green-btn:hover {
   box-shadow: 1px 1px 2px rgba(21, 21, 21, 0.2);
   background: hsl(111, 21%, 86%);
 }
