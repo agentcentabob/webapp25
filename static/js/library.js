@@ -1,10 +1,10 @@
-// Search and filter functionality
+// search and filters
 const searchInput = document.getElementById('searchInput');
 const sortSelect = document.getElementById('sortSelect');
 const notesGrid = document.getElementById('notesGrid');
 const noteCards = notesGrid ? Array.from(notesGrid.querySelectorAll('.note-card')) : [];
 
-// Search functionality
+// search
 if (searchInput) {
     searchInput.addEventListener('input', function(e) {
         const query = e.target.value.toLowerCase().trim();
@@ -22,7 +22,7 @@ if (searchInput) {
     });
 }
 
-// Sort functionality
+// sorting
 if (sortSelect) {
     sortSelect.addEventListener('change', function(e) {
         const sortBy = e.target.value;
@@ -44,7 +44,7 @@ if (sortSelect) {
             }
         });
         
-        // Re-append in sorted order
+        // reappend in sorted order
         sorted.forEach(card => notesGrid.appendChild(card));
     });
 }

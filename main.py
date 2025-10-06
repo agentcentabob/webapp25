@@ -17,27 +17,11 @@ def get_current_user():
     return session.get("user", None)
 
 
-# rendering pages
+# home page render
 @app.route("/")
 def home():
     user = get_current_user()
     return render_template("index.html", user=user)
-
-
-@app.route("/<page>")
-def render_page(page):
-    page += '.html'
-    # security? prevent directory traversal attacks
-    if ".." in page or page.startswith("/"):
-        return render_template("404.html"), 404
-    # check if template exists
-    template_path = os.path.join(app.template_folder, page)
-    if os.path.exists(template_path):
-        user = get_current_user()
-        # pass the page name to the template render not the full path
-        return render_template(page, user=user)
-    else:
-        return render_template("404.html"), 404
 
 
 # articles
@@ -307,9 +291,34 @@ def notes_library():
         return redirect(url_for("login"))
 
     user = get_current_user()
+    print(f"User ID: {user['id']}")  # debugging in terminal
     notes = dbh.get_user_notes(user['id'])
+    print(f"Notes found: {len(notes)}")  # debugging in terminal
+    print(f"Notes: {notes}")  # debugging in terminal
 
-    return render_template('notes_library.html', notes=notes, user=user)
+    return render_template('library.html', notes=notes, user=user)
+
+
+# rendering other pages
+@app.route("/<page>")
+def render_page(page):
+    # reserved routes
+    reserved = ['notes', 'articles', 'login', 'join', 'account',
+                'logout', 'update', 'deleteacc']
+    if page in reserved:
+        return render_template("404.html"), 404
+
+    page += '.html'
+    # security? prevent directory traversal attacks
+    if ".." in page or page.startswith("/"):
+        return render_template("404.html"), 404
+    # check if template exists
+    template_path = os.path.join(app.template_folder, page)
+    if os.path.exists(template_path):
+        user = get_current_user()
+        return render_template(page, user=user)
+    else:
+        return render_template("404.html"), 404
 
 
 if __name__ == "__main__":

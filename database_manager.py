@@ -84,7 +84,7 @@ def user_exists(username=None, email=None, exclude_id=None):
     if username:
         cur.execute(
             "SELECT 1 FROM userinformation2 WHERE "
-            "LOWER(user_name) = LOWER(?) AND user_id != ?",
+            "LOWER(user_name) = LOWER(?) AND user_ID != ?",
             (username, exclude_id),
         )
         if cur.fetchone():
@@ -104,12 +104,12 @@ def user_exists(username=None, email=None, exclude_id=None):
 
 
 # note functions
-def get_user_notes(user_id):
+def get_user_notes(user_ID):
     con = get_connection()
     cur = con.cursor()
     cur.execute(
-        "SELECT * FROM notes WHERE user_id = ? ORDER BY date_modified DESC",
-        (user_id,)
+        "SELECT * FROM notes WHERE user_ID = ? ORDER BY date_modified DESC",
+        (user_ID,)
     )
     notes = cur.fetchall()
     con.close()
@@ -129,8 +129,8 @@ def create_note(title, content, user_id, address=None):
     con = get_connection()
     cur = con.cursor()
     cur.execute(
-        "INSERT INTO notes (note_title, address, "
-        "note_md, user_id) VALUES (?, ?, ?, ?)",
+        "INSERT INTO notes (note_title, address, note_md,"
+        " user_id, date_modified) VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP)",
         (title, address, content, user_id)
     )
     note_id = cur.lastrowid

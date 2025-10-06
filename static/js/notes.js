@@ -41,16 +41,16 @@
             }
         });
 
-        // Auto-save on content change (5 seconds after stopping typing)
+        // autosave on content change after 2 seconds without typing
         easyMDE.codemirror.on("change", function() {
             hasChanges = true;
             clearTimeout(autoSaveTimeout);
             autoSaveTimeout = setTimeout(() => {
                 autoSave();
-            }, 5000);
+            }, 2000);
         });
 
-        // Auto-save on title change
+        // autosave on title change after 2 seconds without typing
         const titleInput = document.getElementById('noteTitle');
         if (titleInput) {
             titleInput.addEventListener('input', () => {
@@ -58,11 +58,11 @@
                 clearTimeout(autoSaveTimeout);
                 autoSaveTimeout = setTimeout(() => {
                     autoSave();
-                }, 5000);
+                }, 2000);
             });
         }
 
-        // Handle delete button
+        // delete button
         const deleteBtn = document.getElementById('deleteBtn');
         if (deleteBtn) {
             deleteBtn.addEventListener('click', function() {
@@ -72,7 +72,7 @@
             });
         }
 
-        // Before form submission, sync EasyMDE content to textarea
+        // before form submission, sync EasyMDE content to textarea
         const form = document.getElementById('noteForm');
         if (form) {
             form.addEventListener('submit', function(e) {
