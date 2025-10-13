@@ -7,8 +7,38 @@
   font-family: "Mozilla Text", sans-serif;
 }
 
+:root {
+  --darkgreen: #3fa053;
+  --lightgreen: #c3f2bd; /* slightly lighter than design brief */
+  --lightblue: #b9daff;
+  --darkgrey: #313633;
+  --bkgwhite: #fdfdfd;
+  /* flash */
+  --fl-lred: #f8d7da;
+  --fl-dred: #721c24;
+  --fl-bred: #f5c6cb;
+  --fl-lblue: #cce5ff;
+  --fl-dblue: #004085;
+  --fl-bblue: #b8daff;
+  --fl-lgreen: #d4edda;
+  --fl-dgreen: #155724;
+  --fl-bgreen: #c3e6cb;
+  /* buttons */
+  --btn-greenbg: hsl(110, 21%, 93%);
+  --btn-greenbghover: hsl(111, 21%, 86%);
+  --btn-greentext: hsl(141, 100%, 25%);
+  --btn-redbg: hsl(3, 21%, 93%);
+  --btn-redbghover: hsl(3, 21%, 86%);
+  --btn-redtext: hsl(3, 100%, 25%);
+  /* button hover shadows */
+  --btn-shadow: rgba(21, 21, 21, 0.2);
+  /* dynamic sidebar widths */
+  --sidebar-width: 160px;
+  --sidebar-collapsed: 60px;
+}
+
 body {
-  background: #fdfdfd;
+  background: var(--bkgwhite);
   font-size: 1rem;
   margin-left: 400px;
   margin-right: 400px;
@@ -32,15 +62,15 @@ main {
 
 /* default link colours */
 a:visited {
-  color: #000000;
+  color: #000;
 }
 
 a:hover {
-  color: #bbbbbb;
+  color: #bbb;
 }
 
 a:active {
-  color: #888888;
+  color: #888;
 }
 
 /* featured image */
@@ -52,9 +82,9 @@ a:active {
 
 /* embedded map */
 .embedmap iframe {
-  width: 800px;
-  height: 400px;
-  border: #000000;
+  width: 1000px;
+  height: 600px;
+  border: #000;
   border-radius: 4px;
   border-width: 10px;
 }
@@ -65,15 +95,10 @@ a:active {
   padding: 2rem 0;
   text-align: center;
   border-top: 1px solid rgba(148, 163, 184, 0.1);
-  animation: fadeIn 1s ease;
-}
-
-.footer p {
-  color: #bbbbbb;
 }
 
 .footer strong {
-  color: var(--primary);
+  color: var(--darkgreen);
   font-style: bold;
 }
 
@@ -84,7 +109,7 @@ a:active {
   font-size: xx-large;
   font-weight: bold;
   text-align: center;
-  color: #000000;
+  color: #000;
   text-decoration: none;
 
   /* centering */
@@ -139,23 +164,23 @@ a:active {
 
 /* error */
 .flash.error {
-  background-color: #f8d7da;
-  color: #721c24;
-  border-color: #f5c6cb;
+  background-color: var(--fl-lred);
+  color: var(--fl-dred);
+  border-color: var(--fl-bred);
 }
 
 /* success */
 .flash.success {
-  background-color: #d4edda;
-  color: #155724;
-  border-color: #c3e6cb;
+  background-color: var(--fl-lgreen);
+  color: var(--fl-dgreen);
+  border-color: var(--fl-bgreen);
 }
 
 /* info */
 .flash.info {
-  background-color: #cce5ff;
-  color: #004085;
-  border-color: #b8daff;
+  background-color: var(--fl-lblue);
+  color: var(--fl-dblue);
+  border-color: var(--fl-bblue);
 }
 
 /* w3: SEARCH BAR */
@@ -199,7 +224,7 @@ a:active {
   height: 20px;
   background-color: #aaa;
   margin-right: 8px;
-  color: #fdfdfd;
+  color: var(--bkgwhite);
 }
 
 /* w3: adjust search field when screen is less than 600px wide
@@ -216,51 +241,6 @@ a:active {
     border: 1px solid #ccc;
   }
 } */
-
-/* MENU ACCOUNT BUTTON */
-.accountzone {
-  position: fixed;
-  bottom: 10px;
-  left: 10px;
-  width: 140px;
-}
-
-.accountbtn {
-  display: flex;
-  gap: 8px;
-  border: none;
-  cursor: pointer;
-  border-radius: 18px;
-  background-color: #f4fff4;
-  text-decoration: none;
-}
-
-.accountbtn img {
-  width: 50px;           /* fixed icon size */
-  height: 50px;          /* fixed height to match width */
-  object-fit: contain;    /* keeps aspect ratio */
-}
-
-.accountbtn:hover {
-  background: #eeeeee;
-}
-
-.accountname {
-  display: inline-block;
-  max-width: 70px;
-  font-size: 14px;
-  line-height: 1.2;
-}
-
-.accountname .yes {
-  color: black;
-  font-style: normal;
-}
-
-.accountname .no {
-  color: #444;
-  font-style: italic;
-}
 
 /* w3: LOG IN PAGE */
 .login-container {
@@ -314,26 +294,26 @@ a:active {
 }
 
 .log-btn.login:focus, .log-btn.login:hover {
-  box-shadow: 1px 1px 2px rgba(21, 21, 21, 0.2);
-  background: hsl(111, 21%, 86%);
+  box-shadow: 1px 1px 2px var(--btn-shadow);
+  background: var(--btn-greenbghover);
 }
 
 .log-btn.logout:focus, .log-btn.logout:hover {
-  box-shadow: 1px 1px 2px rgba(21, 21, 21, 0.2);
-  background: hsl(3, 21%, 86%);
+  box-shadow: 1px 1px 2px var(--btn-shadow);
+  background: var(--btn-redbghover);
 }
 
-.log-btn.login{
-  color: hsl(141, 100%, 25%);
-  background: hsl(110, 21%, 93%);
+.log-btn.login {
+  color: var(--btn-greentext);
+  background: var(--btn-greenbg);
 }
 
-.log-btn.logout{
-  color: hsl(3, 100%, 25%);
-  background: hsl(3, 21%, 93%);
+.log-btn.logout {
+  color: var(--btn-redtext);
+  background: var(--btn-redbg);
 }
 
-.log-btn.delete{
+.log-btn.delete {
   color: hsl(3, 100%, 10%);
   background: hsl(3, 21%, 88%);
 }
@@ -364,7 +344,7 @@ span.loginextras a {
 }
 
 span.loginextras a:hover {
-  background-color: #cccccc;
+  background-color: #ccc;
   cursor: pointer;
 }
 
@@ -443,8 +423,8 @@ span.loginextras a:visited, span.loginextras a:active, span.loginextras a:link {
   margin: 8px 1rem;
   padding: 0.25rem 2rem;
   transition: all 0.25s ease-in-out;
-  background: hsl(110, 21%, 93%);
-  color: hsl(141, 100%, 22%);
+  background: var(--btn-greenbg);
+  color: var(--btn-greentext);
   margin-bottom: 1rem;
 }
 
@@ -472,32 +452,27 @@ span.loginextras a:visited, span.loginextras a:active, span.loginextras a:link {
 }
 
 .lostnum {
-  color: #33aa33;
+  color: var(--darkgreen);
   font-size: 400px;
   text-align: center;
 }
 
-:root {
-  --sidebar-width: 160px; /* your current width */
-  --sidebar-collapsed: 60px;
-}
-
-/* SIDEBAR */
+/* UPDATED SIDEBAR */
 .sidenav {
   height: 100%;
-  width: var(--sidebar-width);
+  width: 160px;
   z-index: 1;
   position: fixed;
   top: 0;
   left: 0;
-  background: #e1ffea;
+  background: var(--lightgreen);
   border-top-right-radius: 12px;
   border-bottom-right-radius: 12px;
   box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
   /* collapsibility */
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* keep links left-aligned */
+  align-items: stretch;
   padding-bottom: 6px;
   overflow-x: visible;
   transition: width 0.3s ease;
@@ -526,24 +501,24 @@ span.loginextras a:visited, span.loginextras a:active, span.loginextras a:link {
   text-align: left;
 }
 
-.sidenav a:hover {
+.sidenav a:hover, .newnote:hover {
   color: #aaa;
 }
 
 .sidenav.collapsed a span,
-.sidenav.collapsed .accountname {
+.sidenav.collapsed .account-text {
   display: none;
 }
 
-/* toggle button */
+/* collapse button */
 .toggle-btn {
   position: absolute;
   top: 50%;
-  right: -14px; /* sits outside the sidebar edge */
+  right: -14px;
   transform: translateY(-50%);
   width: 28px;
   height: 28px;
-  background-color: #e1ffea; /* match sidebar or make custom */
+  background-color: var(--lightgreen);
   border: none;
   border-radius: 50%;
   display: flex;
@@ -558,33 +533,29 @@ span.loginextras a:visited, span.loginextras a:active, span.loginextras a:link {
 
 .toggle-btn #arrow {
   font-size: 14px;
-  transform: rotate(180deg); /* points left initially */
+  transform: rotate(180deg);
   transition: transform 0.3s ease;
 }
 
 .sidenav.collapsed .toggle-btn #arrow {
-  transform: rotate(0deg); /* arrow is rotated right when collapsed */
+  transform: rotate(0deg);
 }
 
 /* text hiding and showing with collapse */
-/* initially hide icons, show text */
 .link-icon {
   margin-right: 8px;
   font-size: 20px;
   display: none;
 }
 
-/* hide text when collapsed */
 .sidenav.collapsed .link-text {
   display: none;
 }
 
-/* show icons only when collapsed */
 .sidenav.collapsed .link-icon {
   display: inline-block;
 }
 
-/* center icons when text is gone */
 .sidenav.collapsed a {
   text-align: center;
 }
@@ -594,7 +565,72 @@ span.loginextras a:visited, span.loginextras a:active, span.loginextras a:link {
   margin-left: var(--sidebar-collapsed);
 }
 
-/* responsive adjustments, not sure if used */
+/* NEW NOTE ZONE */
+.bottomleft {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: auto;
+  width: 100%;
+  padding: 0;
+}
+
+.newnote {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #666;
+  display: block;
+  width: 100%;
+  transition: opacity 0.2s ease;
+  overflow-x: hidden;
+  text-align: left;
+  border: none;
+  background-color: transparent;
+}
+
+.sidenav.collapsed .newnote {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  margin: 0 auto;
+}
+
+/* ACCOUNT ZONE ONLY */
+.accountzone {
+  display: flex !important;
+  align-items: center;
+  gap: 12px;
+  background-color: #fff;
+  padding: 12px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #333;
+  transition: background-color 0.2s;
+  margin: 0 8px;
+  width: auto;
+}
+
+.accountzone:hover {
+  background-color: #f0f0f0;
+}
+
+.accountzone-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.accountzone-text {
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* responsive adjustments */
 @media screen and (max-height: 450px) {
   .sidenav { padding-top: 15px; }
   .sidenav a { font-size: 18px; }
