@@ -1,9 +1,10 @@
 # webapp25
 10cpt: assessment task 3 - web application
 
-this project aims to create a functional web application using sqlite, javascript, css and html
+this project aims to create a functional web application using sqlite3, javascript, python, css and html
 
 ## table of contents
+- [disclaimer](documentation/DISCLAIMER.md): resources used (including ai)
 - [design brief: urban planning notebook](#design-brief-urban-planning-notebook): fonts, colours, themes, designs, dataflow
 - [workbook](#workbook): algorithm, test cases, queries, development log, lighthouse reports, task list
 
@@ -65,7 +66,7 @@ the algorithm was created for the functionality of the log in page. see on lucid
 | tc-li-1  | successful log in | - user has an account in data base<br>- user knows their credentials | 1. open login page<br>2. enter valid credentials in provided prompts<br>3. click 'log in' | user is redirected to account page
 | tc-li-2 | failed log in (wrong password) | - user has an account in data base<br>- user knows their email or username but not their password | 1. open login page<br>2. enter valid username and invalid password in provided prompts<br>3. click 'log in' | user is prompted that their password is incorrect and login fails
 ### queries
-also stored in main.sqlite3-query
+also stored in [test_cases.sql](database/test_cases.sql)
 1. queries all notes that have id *3*, regardless of user --> `SELECT * FROM notes WHERE note_ID LIKE '3';`
 2. queries all users created at time of database creation --> `SELECT * FROM userinformation2 WHERE user_created LIKE '2025-08-22 13:30:48';`
 3. queries all users with username with a character length of *7* --> `SELECT * FROM userinformation2 db WHERE LENGTH(user_name) = 7;`
@@ -89,8 +90,7 @@ development log started in august 18th in line with course shift away from desig
 | 28/8* | added image
 | 1/9 | fixed data entries showing with images and fixed width but caused merge error |
 | 3/9* | fixed merge issue and adjusted file names
-
-*discontinued development log on 3/9 in favour of commit messages*
+development log discontinued on 3/9 in favour of commit messages
 
 ### lighthouse reports
 #### september 18, 2025 (week 9)
@@ -118,32 +118,47 @@ render blocking requests caused by the imported fonts and icons saw a low perfor
 
 ### task list
 - [x] fix styling of navigation bar
-- [ ] learn how to integrate complex queries into python functions for displaying data
+- [x] learn how to integrate complex queries into python functions for displaying data
 - [x] fix display of cards to show in grid format instead of long column
 - [x] make table of contents for readme
-- [ ] finish styling all pages
+- [ ] finish styling all pages to sitewide theme
     - [ ] home page
-    - [ ] library and data pages
-    - [ ] map page
+    - [ ] library page
+    - [x] map page
     - [ ] more page (contact, about)
     - [ ] new note
     - [x] log in page
     - [x] account settings page
-- [ ] account features
+    - [x] articles page
+- [x] account features
     - [x] correct html input
-    - [ ] integrate log in features into rest of website
+    - [x] integrate log in features into rest of website
     - [x] dynamic account settings text in menu
     - [x] style create account page
     - [x] account page functionality
-    - [ ] finish delete account feature
-- [ ] note taking feature functionality
-    - [ ] inputting and saving notes
-    - [ ] viewing and accessing notes in library feature
-- [ ] articles feature functionality
-    - [ ] link to view articles
-    - [ ] generate articles and add to database
-    - [ ] show username of article author in browsing page
-- [ ] offline functionality
+- [x] note taking feature functionality
+    - [x] inputting and saving notes
+    - [x] viewing and accessing notes in library feature
+- [x] articles feature functionality
+    - [x] link to view articles
+    - [x] generate articles and import to database
+    - [x] show username of article author in browsing page
+- [ ] profile page
+    - [ ] access to user settings
+    - [ ] profile picture
+    - [ ] shows your posts
 - [ ] search bar functionality
+- [ ] sidebar
+    - [x] new note button location
+    - [x] collapsibility
+    - [ ] finished styling
+
+### deferred tasks
+*these tasks would see improvements to the website, however they are not within the current scope and timeline of the project*
+
+- [ ] delete account feature
+- [ ] offline functionality
 - [ ] continue investigating containers, vm and other ways of running the web page
-- [x] dynamic sidebar
+- [ ] profile page statistics/history section (likes, reposts, views, completions of other articles)
+- [ ] styling of account zone at bottom of menu
+- [ ] pins showing for locations of notes on map
