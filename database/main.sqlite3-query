@@ -211,4 +211,9 @@ INSERT INTO articles(article_id, article_title, address, likes, views, completio
 (4, 'City Square Upgrade', 'Square, Vilnius, Lithuania', 120, 320, 110, 4, 'city_square.md', 'square.png', 10),
 (5, 'Smart Waste Pilot', 'Industrial Park, Shanghai, China', 105, 290, 95, 3, 'smart_waste.md', 'waste.png', 10);
 
-DELETE FROM notes
+UPDATE articles 
+SET article_md = REPLACE(
+    article_md,
+    'https://images.unsplash.com/',
+    '/static/images/placeholder.png')
+WHERE user_ID = 1 AND article_ID = 1;

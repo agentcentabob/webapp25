@@ -1,8 +1,10 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 from flask import flash, redirect, url_for, session, abort
 from datetime import timedelta
 import os
+import binascii
 import database_manager as dbh
+import markdown2
 
 app = Flask(__name__)
 app.secret_key = "session_key"
@@ -32,10 +34,21 @@ def data():
     return render_template("/articles.html", content=data, user=user)
 
 
-@app.route("/article/<int:user_id>/<int:note_id>")
-def article(user_id, note_id):
-    flash("Article viewing feature coming soon!", "info")
-    return redirect(url_for('data'))
+@app.route("/article/<int:user_id>/<int:article_id>")
+def article(user_id, article_id):
+    article_data = dbh.get_article_by_id(
+        user_id, article_id)
+    if not article_data:
+        abort(404)
+    article_html = markdown2.markdown(
+        article_data[10])
+    print("Markdown converted:")
+    user = get_current_user()
+    return render_template(
+        "article_view.html",
+        article=article_data,
+        article_html=article_html,
+        user=user)
 
 
 # account settings
@@ -341,6 +354,19 @@ def render_page(page):
         return render_template(page, user=user)
     else:
         return render_template("404.html"), 404
+
+
+# map
+@app.route('/map')
+def map_page():
+    nonce = binascii.hexlify(os.urandom(16)).decode()
+    return render_template('map.html', nonce=nonce)
+
+
+@app.route('/api/notes-locations')
+def notes_locations():
+    notes = dbh.execute('SELECT note_title, address FROM notes').fetchall()
+    return jsonify([{'title': n[0], 'location': n[1]} for n in notes])
 
 
 if __name__ == "__main__":

@@ -8,13 +8,13 @@
     <div class="acl-card">
         <img
             class="acl-card-image"
-            src="{{ row[5] }}"
-            alt="Snapshot of note {{ row[1] }}'s location."/>
+            src="{{ row[12] }}"
+            alt=" Cover image not available due to AI article generation limitations"/>
         <h1 class="acl-card-name">{{ row[2] }}</h1>
         <p class="acl-card-about">{{ row[3] }}</p>
         <p class="acl-card-about">{{ row[4] }}</p>
-        <p class="acl-card-about">By user {{ row[0] }}</p>
-        <a class="acl-card-link" href="{{ url_for('article', user_id=row[0], note_id=row[1]) }}">
+        <p class="acl-card-about">By {{ row[12] }}</p>
+        <a class="acl-card-link" href="{{ url_for('article', user_id=row[0], article_id=row[1]) }}">
             <button class="acl-read-btn">Read More</button>
         </a>
     </div>

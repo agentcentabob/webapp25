@@ -7,10 +7,15 @@ DB_PATH = "database/data_source.db"
 
 
 # articles page
+# modified to include reference to users from user table via primary key
 def listExtension():
     con = sql.connect("database/data_source.db")
     cur = con.cursor()
-    data = cur.execute("SELECT * FROM articles").fetchall()
+    data = cur.execute(
+        "SELECT a.*, u.user_name FROM articles a "
+        "JOIN userinformation2 u ON a.user_ID = u.user_ID "
+        "ORDER BY a.date_modified DESC"
+    ).fetchall()
     con.close()
     return data
 
@@ -184,3 +189,17 @@ def verify_note_ownership(note_id, user_id):
     result = cur.fetchone()
     con.close()
     return result is not None
+
+
+def get_article_by_id(user_id, article_id):
+    con = get_connection()
+    cur = con.cursor()
+    cur.execute(
+        "SELECT a.*, u.user_name FROM articles a "
+        "JOIN userinformation2 u ON a.user_ID = u.user_ID "
+        "WHERE a.user_ID = ? AND a.article_ID = ?",
+        (user_id, article_id)
+    )
+    article = cur.fetchone()
+    con.close()
+    return article

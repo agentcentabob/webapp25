@@ -1,0 +1,34 @@
+{% extends 'layout.html' %}
+{% block head %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/reading.css') }}">
+  <title>{{ article[2] }} - URBANNOTES</title>
+{% endblock %}
+
+{% block content %}
+<div class="article-container">
+  <!-- cover image -->
+  <div class="article-cover">
+    <img src="{{ article[12] }}" alt=" Cover image not available due to AI article generation limitations" class="article-cover-img"/>
+  </div>
+
+  <!-- title -->
+  <div class="article-header">
+    <h1 class="article-title">{{ article[2] }}</h1>
+    <p class="article-location">📍 {{ article[3] }}</p>
+    <div class="article-meta">
+      <span class="article-author">By {{ article[12] }}</span>
+      <span class="article-date">Published: {{ article[4] }}</span>
+      <span class="article-date">Updated: {{ article[5] }}</span>
+    </div>
+    <!--<div class="article-stats"> not yet added functionally
+      <span class="stat">👁️ {{ article[7] }} views</span>
+      <span class="stat">❤️ {{ article[6] }} likes</span>
+    </div>-->
+  </div>
+
+  <!-- content (markdown rendered as html) -->
+  <div class="article-content">
+    {{ article_html|safe }}
+  </div>
+</div>
+{% endblock %}
