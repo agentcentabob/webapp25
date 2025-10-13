@@ -1,0 +1,161 @@
+/* SIDEBAR */
+.sidenav {
+  height: 100%;
+  width: var(--sidebar-width);
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: var(--lightgreen);
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+  /* collapsibility */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch; /* keep links left-aligned */
+  padding-bottom: 6px;
+  overflow-x: visible;
+  transition: width 0.3s ease;
+}
+
+.sidenav.collapsed {
+  width: var(--sidebar-collapsed);
+}
+
+.sidenav-logo {
+  width: 100%;
+  object-fit: cover;
+  padding-top: 8px;
+  padding-left: 3px;
+}
+
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #666;
+  display: block;
+  width: 100%;
+  transition: opacity 0.2s ease;
+  overflow-x: hidden;
+  text-align: left;
+}
+
+.sidenav a:hover {
+  color: #aaa;
+}
+
+.sidenav.collapsed a span,
+.sidenav.collapsed .accountname {
+  display: none;
+}
+
+/* toggle button */
+.toggle-btn {
+  position: absolute;
+  top: 50%;
+  right: -14px; /* sits outside the sidebar edge */
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  background-color: var(--lightgreen); /* match sidebar or make custom */
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  vertical-align: center;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.3s ease;
+  z-index: 10;
+}
+
+.toggle-btn #arrow {
+  font-size: 14px;
+  transform: rotate(180deg); /* points left initially */
+  transition: transform 0.3s ease;
+}
+
+.sidenav.collapsed .toggle-btn #arrow {
+  transform: rotate(0deg); /* arrow is rotated right when collapsed */
+}
+
+/* text hiding and showing with collapse */
+/* initially hide icons, show text */
+.link-icon {
+  margin-right: 8px;
+  font-size: 20px;
+  display: none;
+}
+
+/* hide text when collapsed */
+.sidenav.collapsed .link-text {
+  display: none;
+}
+
+/* show icons only when collapsed */
+.sidenav.collapsed .link-icon {
+  display: inline-block;
+}
+
+/* center icons when text is gone */
+.sidenav.collapsed a {
+  text-align: center;
+}
+
+/* main content adjustment */
+.sidenav.collapsed ~ main {
+  margin-left: var(--sidebar-collapsed);
+}
+
+/* responsive adjustments, not sure if used */
+@media screen and (max-height: 450px) {
+  .sidenav { padding-top: 15px; }
+  .sidenav a { font-size: 18px; }
+}
+
+/* MENU2 ACCOUNT BUTTON */
+.accountzone {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  width: 140px;
+}
+
+.accountbtn {
+  display: flex;
+  border: none;
+  cursor: pointer;
+  border-radius: 18px;
+  background-color: var(--btn-greenbg);
+  text-decoration: none;
+}
+
+.accountbtn img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain; 
+}
+
+.accountbtn:hover {
+  background: #eee;
+}
+
+.accountname {
+  display: inline-block;
+  max-width: 70px;
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+.accountname .yes {
+  color: black;
+  font-style: normal;
+}
+
+.accountname .no {
+  color: #444;
+  font-style: italic;
+}
