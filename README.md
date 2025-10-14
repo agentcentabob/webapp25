@@ -93,6 +93,7 @@ development log started in august 18th in line with course shift away from desig
 | 3/9* | fixed merge issue and adjusted file names
 
 development log discontinued on 3/9 in favour of commit messages and regularly updated to do list
+
 *note: commit times, line changes and messages may not be consistent. during final weeks of development, some commits were delayed and some were staged in multiple rounds to provide more detailed messages*
 
 ### lighthouse reports
@@ -143,7 +144,6 @@ render blocking requests caused by the imported fonts and icons saw a low perfor
     - [x] inputting and saving notes
     - [x] viewing and accessing notes in library feature
     - [ ] inserting images
-    - [ ] sharing via link
 - [x] articles feature functionality
     - [x] link to view articles
     - [x] generate articles and import to database
@@ -153,7 +153,7 @@ render blocking requests caused by the imported fonts and icons saw a low perfor
     - [x] profile picture and bio
     - [x] shows your posts
 - [ ] search bar feature
-    - [ ] landing page with redirects
+    - [x] landing page with redirects
     - [ ] functional bar
 - [x] sidebar
     - [x] new note button location
@@ -169,3 +169,4 @@ render blocking requests caused by the imported fonts and icons saw a low perfor
 - [ ] profile page statistics/history section (likes, reposts, views, completions of other articles)
 - [ ] pins showing for locations of notes on map
 - [ ] posting articles from notes
+- [ ] sharing individual notes via url

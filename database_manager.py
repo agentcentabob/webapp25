@@ -290,7 +290,8 @@ def search_all(query):
     }
 
     # searching users
-    cur.execute("SELECT user_id, user_name "
+    # searching users
+    cur.execute("SELECT user_id, user_name, user_pfp "
                 "FROM userinformation2 WHERE LOWER(user_name) LIKE ?",
                 ('%' + query.lower() + '%',))
     users = cur.fetchall()
@@ -298,8 +299,8 @@ def search_all(query):
         results['users'].append({
             'id': user[0],
             'name': user[1],
-            'type': 'user'
-        })
+            'pfp': user[2],
+            'type': 'user'})
 
     # searching notes
     cur.execute("""SELECT user_id, note_ID, note_title, address, note_md

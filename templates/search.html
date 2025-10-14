@@ -12,9 +12,17 @@
     {% if results.users %}
       <h3>Users</h3>
       <ul class="search-results-list">
-        {% for user in results.users %}
+        {% for search_user in results.users %}
           <li>
-            <a href="{{ url_for('profile', user_id=user.id) }}">{{ user.name }}</a>
+            <a href="{{ url_for('user_profile', user_id=search_user.id) }}">
+              {% if search_user.pfp %}
+                <img src="{{ search_user.pfp }}" alt="Profile picture" class="search-pfp">
+              {% else %}
+                <img src="{{ url_for('static', filename='icons/account_in.png') }}" 
+                     alt="Default profile picture" class="search-pfp">
+              {% endif %}
+              {{ search_user.name }}
+            </a>
           </li>
         {% endfor %}
       </ul>
@@ -40,7 +48,9 @@
       <ul class="search-results-list">
         {% for article in results.articles %}
           <li>
-            <a href="{{ url_for('view_article', article_id=article.id) }}">{{ article.title }}</a>
+            <a href="{{ url_for('article', user_id=article.author_id, article_id=article.id) }}">
+              {{ article.title }}
+            </a>
             <p class="preview">{{ article.content }}</p>
             {% if article.address %}
               <p class="address">Location: {{ article.address }}</p>

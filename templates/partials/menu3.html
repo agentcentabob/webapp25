@@ -20,9 +20,9 @@
         <span class="link-text">New Note</span>
         <span class="link-icon">&#10133;</span>
     </button>
-    <a href="{{ url_for('user_profile', user_id=user.id) }}" class="accountzone">
+    <a href="{{ url_for('user_profile', user_id=user['id']) if user else url_for('login') }}" class="accountzone">
       <img src="{{ user['pfp'] if user and user['pfp'] else url_for('static', filename='icons/account_in.png') }}" alt="Profile" class="accountzone-icon">
-      <span class="accountzone-text">{% if session.get('user') %}{{ session.user.name }}{% else %}Click to login{% endif %}</span>
+      <span class="accountzone-text">{% if user %}{{ user['name'] }}{% else %}Click to login{% endif %}</span>
     </a>
   </div>
 

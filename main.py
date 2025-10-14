@@ -70,14 +70,14 @@ def user_profile(user_id):
         abort(404)
 
     articles = dbh.get_user_articles(user_id)
-    current_user = get_current_user()
-    is_own_profile = current_user and current_user["id"] == user_id
+    user = get_current_user()
+    is_own_profile = user and user["id"] == user_id
 
     return render_template("user_profile.html",
                            profile_user=user_data,
                            articles=articles,
                            is_own_profile=is_own_profile,
-                           user=current_user)
+                           user=user)
 
 
 # log in page
@@ -145,7 +145,7 @@ def join():
             "id": new_user[0],
             "name": new_user[1],
             "email": new_user[2],
-            "role": new_user[4],  # adjust if role is set elsewhere
+            "pfp": new_user[4],
         }
 
         flash("Account created successfully!", "success")
@@ -202,13 +202,14 @@ def update():
     if 'pfp' in request.files:
         file = request.files['pfp']
         if file and file.filename != '':
-            # Save file to uploads folder
-            os.makedirs('database/uploads', exist_ok=True)
+            # save file to uploads folder (must be in static for flask to
+            # serve unless new route is created)
+            os.makedirs('static/uploads', exist_ok=True)
             filename = f"pfp_{user_id}_{binascii.
                                         hexlify(os.urandom(8)).decode()}.png"
-            filepath = os.path.join('database/uploads', filename)
+            filepath = os.path.join('static/uploads', filename)
             file.save(filepath)
-            # Update database with new pfp path
+            # update database with new pfp path
             dbh.update_user(user_ID=user_id, user_pfp=f"/{filepath}")
             updated_fields.append("profile picture")
 
@@ -397,23 +398,18 @@ def render_page(page):
 # map (includes deferred pin features)
 @app.route('/map')
 def map_page():
-    # nonce = binascii.hexlify(os.urandom(16)).decode()
-    # line below (, nonce=nonce)
-    return render_template('map.html')
-
-
-# @app.route('/api/notes-locations')
-# def notes_locations():
-#     notes = dbh.execute('SELECT note_title, address FROM notes').fetchall()
-#     return jsonify([{'title': n[0], 'location': n[1]} for n in notes])
+    user = get_current_user()
+    return render_template('map.html', user=user)
 
 
 # search
 @app.route('/search')
 def search():
     query = request.args.get('q', '').strip()
+    user = get_current_user()
     if not query:
-        return render_template('search.html', query='', results=None)
+        return render_template('search.html', query='',
+                               results=None, user=user)
 
     results = dbh.search_all(query)
     total_results = sum(len(results[key]) for key in results)
@@ -422,7 +418,7 @@ def search():
                            query=query,
                            results=results,
                            total_results=total_results,
-                           user=get_current_user())
+                           user=user)
 
 
 if __name__ == "__main__":
