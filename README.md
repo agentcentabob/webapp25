@@ -5,7 +5,6 @@ this project aims to create a functional web application using sqlite3, javascri
 
 ## table of contents
 - [disclaimer](documentation/DISCLAIMER.md): resources used (including ai)
-- [operating instructions](#):
 - [design brief: urban planning notebook](#design-brief-urban-planning-notebook): fonts, colours, themes, designs, dataflow
 - [workbook](#workbook): algorithm, test cases, queries, development log, lighthouse reports, task list
 
