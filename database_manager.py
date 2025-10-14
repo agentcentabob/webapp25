@@ -1,7 +1,4 @@
 import sqlite3 as sql
-# import random
-# import string
-# from datetime import datetime
 
 DB_PATH = "database/data_source.db"
 
@@ -203,3 +200,50 @@ def get_article_by_id(user_id, article_id):
     article = cur.fetchone()
     con.close()
     return article
+
+
+# profile
+def get_user_articles(user_id):
+    con = get_connection()
+    cur = con.cursor()
+    cur.execute(
+        "SELECT * FROM articles WHERE user_ID = ? ORDER BY date_modified DESC",
+        (user_id,)
+    )
+    articles = cur.fetchall()
+    con.close()
+    return articles
+
+
+def update_last_signin(user_id):
+    con = get_connection()
+    cur = con.cursor()
+    cur.execute(
+        "UPDATE userinformation2 SET last_signin = "
+        "CURRENT_TIMESTAMP WHERE user_ID = ?",
+        (user_id,)
+    )
+    con.commit()
+    con.close()
+
+
+def update_user_bio(user_id, bio):
+    con = get_connection()
+    cur = con.cursor()
+    cur.execute(
+        "UPDATE userinformation2 SET user_bio = ? WHERE user_ID = ?",
+        (bio, user_id)
+    )
+    con.commit()
+    con.close()
+
+
+def update_user_pfp(user_id, pfp_path):
+    con = get_connection()
+    cur = con.cursor()
+    cur.execute(
+        "UPDATE userinformation2 SET user_pfp = ? WHERE user_ID = ?",
+        (pfp_path, user_id)
+    )
+    con.commit()
+    con.close()

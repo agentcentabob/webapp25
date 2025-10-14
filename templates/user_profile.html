@@ -1,0 +1,98 @@
+{% extends 'layout.html' %} 
+{% block head %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}"/>
+  <title>Profile - URBANNOTES</title>
+{% endblock %}
+{% block content %}
+
+<!-- Profile Header -->
+<div class="profile-header">
+  <img 
+    class="profile-pfp" 
+    src="{{ profile_user[4] if profile_user[4] else 'https://via.placeholder.com/100' }}" 
+    alt="Profile picture">
+  <div class="profile-info">
+    <h1>{{ profile_user[1] }} #{{ profile_user[0] }}</h1>
+    <p>{{ profile_user[8] if profile_user[8] else 'No bio yet' }}</p>
+    <p>Joined {{ profile_user[5][:7] if profile_user[5] else 'recently' }}</p>
+  </div>
+</div>
+
+<!-- Tabs -->
+<div class="tabs">
+    <button class="tab-btn active" data-tab="articles">Articles</button>
+    <button class="tab-btn" data-tab="statistics">Statistics</button>
+    {% if is_own_profile %}
+    <button class="tab-btn" data-tab="settings">Settings</button>
+    {% endif %}
+</div>
+
+<!-- Articles Tab -->
+<div id="articles" class="tab-content active">
+  <div class="acl-container">
+    {% if articles %}
+      {% for row in articles %}
+      <div class="acl-card">
+        <img
+            class="acl-card-image"
+            src="{{ row[12] }}"
+            alt="Cover image not available due to AI article generation limitations"/>
+        <h1 class="acl-card-name">{{ row[2] }}</h1>
+        <p class="acl-card-about">{{ row[3] }}</p>
+        <p class="acl-card-about">{{ row[4] }}</p>
+        <p class="acl-card-about">By {{ profile_user[1] }}</p>
+        <a class="acl-card-link" href="{{ url_for('article', user_id=row[0], article_id=row[1]) }}">
+            <button class="acl-read-btn">Read More</button>
+        </a>
+      </div>
+      {% endfor %}
+    {% else %}
+      <p>No articles yet</p>
+    {% endif %}
+  </div>
+</div>
+
+<!-- Statistics Tab -->
+<div id="statistics" class="tab-content">
+  <div class="statistics-box">
+    Statistics
+  </div>
+</div>
+
+<!-- Settings Tab (only for own profile) -->
+{% if is_own_profile %}
+<div id="settings" class="tab-content">
+  <br><br>
+  <h1>Account Settings</h1>
+  <div class="accountdetails">
+    <text>Logged in as <b>{{ user.name }}</b> &#40;#{{ user.id }}&#41;</text>
+  </div>
+
+  <div class="login-container">
+    <form action="{{ url_for('update') }}" method="post" enctype="multipart/form-data">
+      <label for="username"><b>Change <span class="tooltip" title="{{ user.name }}">username</span></b></label>
+      <input type="text" placeholder="Enter new username" name="username">
+
+      <label for="email"><b>Change <span class="tooltip" title="{{ user.email }}">email</span></b></label>
+      <input type="text" placeholder="Enter new email" name="email">
+
+      <label for="password"><b>Change password</b></label>
+      <input type="password" placeholder="Enter new password" name="password">
+
+      <label for="bio"><b>Change bio</b></label>
+      <textarea placeholder="Enter your bio" name="bio" maxlength="500" rows="3"></textarea>
+
+      <label for="pfp"><b>Change profile picture</b></label>
+      <input type="file" name="pfp" accept="image/*">
+
+      <button class="log-btn login" type="submit">Update settings</button>  
+    </form>
+
+    <form action="{{ url_for('logout') }}" method="post">
+      <button class="log-btn logout" type="submit">Logout</button>
+    </form>
+  </div>
+</div>
+{% endif %}
+<script src="{{ url_for('static', filename='js/profile.js') }}"></script>
+{% endblock %}

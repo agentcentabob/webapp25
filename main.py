@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request  # , jsonify
 from flask import flash, redirect, url_for, session, abort
 from datetime import timedelta
 import os
@@ -60,6 +60,24 @@ def account():
                                user=user, hide_search=True)
     else:
         return redirect(url_for("login"))
+
+
+# rendering user page
+@app.route("/user/<int:user_id>")
+def user_profile(user_id):
+    user_data = dbh.get_user_by_id(user_id)
+    if not user_data:
+        abort(404)
+
+    articles = dbh.get_user_articles(user_id)
+    current_user = get_current_user()
+    is_own_profile = current_user and current_user["id"] == user_id
+
+    return render_template("user_profile.html",
+                           profile_user=user_data,
+                           articles=articles,
+                           is_own_profile=is_own_profile,
+                           user=current_user)
 
 
 # log in page
@@ -144,8 +162,8 @@ def logout():
     return redirect(url_for("home"))
 
 
-@app.route("/update", methods=["POST"])
-def update():
+@app.route("/update2", methods=["POST"])
+def update2():
     user = get_current_user()
     user_id = user["id"]
     new_username = request.form.get("username")
@@ -192,7 +210,75 @@ def update():
     return redirect(url_for("account"))
 
 
-# delete account (unused currently)
+@app.route("/update", methods=["POST"])
+def update():
+    user = get_current_user()
+    user_id = user["id"]
+    new_username = request.form.get("username")
+    new_email = request.form.get("email")
+    new_password = request.form.get("password")
+    new_bio = request.form.get("bio")
+    updated_fields = []
+
+    # check for duplicate username
+    if new_username:
+        if dbh.user_exists(username=new_username, exclude_id=user_id):
+            flash("Username unavailable", "error")
+            return redirect(url_for("account"))
+        dbh.update_user(user_ID=user_id, user_name=new_username)
+        updated_fields.append("username")
+
+    # check for duplicate email
+    if new_email:
+        if dbh.user_exists(email=new_email, exclude_id=user_id):
+            flash("Email already in use", "error")
+            return redirect(url_for("account"))
+        dbh.update_user(user_ID=user_id, user_email=new_email)
+        updated_fields.append("email")
+
+    # update password if provided
+    if new_password:
+        dbh.update_user(user_ID=user_id, user_password=new_password)
+        updated_fields.append("password")
+
+    # update bio if provided
+    if new_bio:
+        dbh.update_user_bio(user_id, new_bio)
+        updated_fields.append("bio")
+
+    # handle profile picture upload
+    if 'pfp' in request.files:
+        file = request.files['pfp']
+        if file and file.filename != '':
+            # Save file to uploads folder
+            os.makedirs('static/uploads', exist_ok=True)
+            filename = f"pfp_{user_id}_{binascii.
+                                        hexlify(os.urandom(8)).decode()}.png"
+            filepath = os.path.join('static/uploads', filename)
+            file.save(filepath)
+            # Update database with new pfp path
+            dbh.update_user(user_ID=user_id, user_pfp=f"/{filepath}")
+            updated_fields.append("profile picture")
+
+    # refresh session with updated info
+    updated_user = dbh.get_user_by_id(user_id)
+    session["user"] = {
+        "id": updated_user[0],
+        "name": updated_user[1],
+        "email": updated_user[2],
+        "pfp": updated_user[4],
+    }
+
+    if updated_fields:
+        details = ", ".join(updated_fields)
+        flash(f"Account details updated!\n({details})", "success")
+    else:
+        flash("No changes made", "info")
+
+    return redirect(url_for("account"))
+
+
+# delete account (deferred task)
 @app.route("/deleteacc", methods=["POST"])
 def deleteacc():
     user = get_current_user()
@@ -359,14 +445,15 @@ def render_page(page):
 # map
 @app.route('/map')
 def map_page():
-    nonce = binascii.hexlify(os.urandom(16)).decode()
-    return render_template('map.html', nonce=nonce)
+    # nonce = binascii.hexlify(os.urandom(16)).decode()
+    # line below (, nonce=nonce)
+    return render_template('map.html')
 
 
-@app.route('/api/notes-locations')
-def notes_locations():
-    notes = dbh.execute('SELECT note_title, address FROM notes').fetchall()
-    return jsonify([{'title': n[0], 'location': n[1]} for n in notes])
+# @app.route('/api/notes-locations')
+# def notes_locations():
+#     notes = dbh.execute('SELECT note_title, address FROM notes').fetchall()
+#     return jsonify([{'title': n[0], 'location': n[1]} for n in notes])
 
 
 if __name__ == "__main__":

@@ -5,9 +5,11 @@ this project aims to create a functional web application using sqlite3, javascri
 
 ## table of contents
 - [disclaimer](documentation/DISCLAIMER.md): resources used (including ai)
+- [operating instructions](#):
 - [design brief: urban planning notebook](#design-brief-urban-planning-notebook): fonts, colours, themes, designs, dataflow
 - [workbook](#workbook): algorithm, test cases, queries, development log, lighthouse reports, task list
 
+## user instructions
 
 ## design brief: urban planning notebook
 this project aims to create an urban planning notebook web application that allows users to record observations with detail and precision. the app will allow users to easily access and visualise their notes and data. its an evolution of traditional notetaking apps that's useful for travellers, hobbyists and researchers alike.
@@ -125,7 +127,7 @@ render blocking requests caused by the imported fonts and icons saw a low perfor
     - [ ] home page
     - [ ] library page
     - [x] map page
-    - [ ] more page (contact, about)
+    - [ ] about page (+ contact)
     - [ ] new note
     - [x] log in page
     - [x] account settings page
@@ -136,22 +138,24 @@ render blocking requests caused by the imported fonts and icons saw a low perfor
     - [x] dynamic account settings text in menu
     - [x] style create account page
     - [x] account page functionality
-- [x] note taking feature functionality
+- [ ] note taking feature functionality
     - [x] inputting and saving notes
     - [x] viewing and accessing notes in library feature
+    - [ ] inserting images
+    - [ ] sharing via link
 - [x] articles feature functionality
     - [x] link to view articles
     - [x] generate articles and import to database
     - [x] show username of article author in browsing page
 - [ ] profile page
-    - [ ] access to user settings
-    - [ ] profile picture
-    - [ ] shows your posts
+    - [x] access to user settings
+    - [ ] profile picture and bio
+    - [x] shows your posts
 - [ ] search bar functionality
-- [ ] sidebar
+- [x] sidebar
     - [x] new note button location
     - [x] collapsibility
-    - [ ] finished styling
+    - [x] account button functionally showing at bottom of menu
 
 ### deferred tasks
 *these tasks would see improvements to the website, however they are not within the current scope and timeline of the project*
@@ -160,5 +164,5 @@ render blocking requests caused by the imported fonts and icons saw a low perfor
 - [ ] offline functionality
 - [ ] continue investigating containers, vm and other ways of running the web page
 - [ ] profile page statistics/history section (likes, reposts, views, completions of other articles)
-- [ ] styling of account zone at bottom of menu
 - [ ] pins showing for locations of notes on map
+- [ ] posting articles from notes
