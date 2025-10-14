@@ -130,20 +130,21 @@ render blocking requests caused by the imported fonts and icons saw a low perfor
     - [ ] library page
     - [x] map page
     - [ ] about page (+ contact)
-    - [ ] new note
+    - [ ] note editor
     - [x] log in page
     - [x] account settings page
     - [x] articles page
+    - [ ] search bar landing
 - [x] account features
     - [x] correct html input
     - [x] integrate log in features into rest of website
     - [x] dynamic account settings text in menu
     - [x] style create account page
     - [x] account page functionality
-- [ ] note taking feature functionality
+- [x] note taking feature functionality
     - [x] inputting and saving notes
     - [x] viewing and accessing notes in library feature
-    - [ ] inserting images
+    - [x] inserting images
 - [x] articles feature functionality
     - [x] link to view articles
     - [x] generate articles and import to database
@@ -152,7 +153,7 @@ render blocking requests caused by the imported fonts and icons saw a low perfor
     - [x] access to user settings
     - [x] profile picture and bio
     - [x] shows your posts
-- [ ] search bar feature
+- [x] search bar feature
     - [x] landing page with redirects
     - [x] functional bar
 - [x] sidebar
