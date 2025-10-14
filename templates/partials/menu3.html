@@ -16,10 +16,10 @@
     <a href="{{ url_for('render_page', page='about') }}" title="About"><span class="link-text">About</span><span class="link-icon">&#10068;</span></a>
 
   <div class="bottomleft">
-    <button class="newnote" title="New Note" href="{{ url_for('new_note') }}">
+      <a class="newnote" title="New Note" href="{{ url_for('new_note') }}">
         <span class="link-text">New Note</span>
         <span class="link-icon">&#10133;</span>
-    </button>
+      </a>
     <a href="{{ url_for('user_profile', user_id=user['id']) if user else url_for('login') }}" title="Profile" class="accountzone">
       <img src="{{ user['pfp'] if user and user['pfp'] else url_for('static', filename='icons/account_in.png') }}" alt="Profile" class="accountzone-icon">
       <span class="accountzone-text">{% if user %}{{ user['name'] }}{% else %}Click to login{% endif %}</span>
