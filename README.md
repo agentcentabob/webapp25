@@ -91,6 +91,7 @@ development log started in august 18th in line with course shift away from desig
 | 28/8* | added image
 | 1/9 | fixed data entries showing with images and fixed width but caused merge error |
 | 3/9* | fixed merge issue and adjusted file names
+
 development log discontinued on 3/9 in favour of commit messages and regularly updated to do list
 *note: commit times, line changes and messages may not be consistent. during final weeks of development, some commits were delayed and some were staged in multiple rounds to provide more detailed messages*
 
