@@ -5,11 +5,11 @@
 {% endblock %}
 {% block content %}
 
-<!-- Profile Header -->
+<!-- profile header -->
 <div class="profile-header">
   <img 
     class="profile-pfp" 
-    src="{{ profile_user[4] if profile_user[4] else 'https://via.placeholder.com/100' }}" 
+    src="{{ profile_user[4] if profile_user[4] else url_for('static', filename='icons/account_in.png') }}"
     alt="Profile picture">
   <div class="profile-info">
     <h1>{{ profile_user[1] }} #{{ profile_user[0] }}</h1>
@@ -18,7 +18,7 @@
   </div>
 </div>
 
-<!-- Tabs -->
+<!-- tabs management -->
 <div class="tabs">
     <button class="tab-btn active" data-tab="articles">Articles</button>
     <button class="tab-btn" data-tab="statistics">Statistics</button>
@@ -27,7 +27,7 @@
     {% endif %}
 </div>
 
-<!-- Articles Tab -->
+<!-- articles tab -->
 <div id="articles" class="tab-content active">
   <div class="acl-container">
     {% if articles %}
@@ -52,14 +52,14 @@
   </div>
 </div>
 
-<!-- Statistics Tab -->
+<!-- statistics -->
 <div id="statistics" class="tab-content">
   <div class="statistics-box">
     Statistics
   </div>
 </div>
 
-<!-- Settings Tab (only for own profile) -->
+<!-- settings (only for own profile) -->
 {% if is_own_profile %}
 <div id="settings" class="tab-content">
   <br><br>
