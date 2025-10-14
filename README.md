@@ -154,7 +154,7 @@ render blocking requests caused by the imported fonts and icons saw a low perfor
     - [x] shows your posts
 - [ ] search bar feature
     - [x] landing page with redirects
-    - [ ] functional bar
+    - [x] functional bar
 - [x] sidebar
     - [x] new note button location
     - [x] collapsibility

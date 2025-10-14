@@ -16,7 +16,7 @@
     <h1 class="article-title">{{ article[2] }}</h1>
     <p class="article-location">📍 {{ article[3] }}</p>
     <div class="article-meta">
-      <span class="article-author">By {{ article[12] }}</span>
+      <span class="article-author">By <a href="{{ url_for('user_profile', user_id=article[0]) }}">{{ article[12] }}</a></span>
       <span class="article-date">Published: {{ article[4] }}</span>
       <span class="article-date">Updated: {{ article[5] }}</span>
     </div>
