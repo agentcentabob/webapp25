@@ -162,54 +162,6 @@ def logout():
     return redirect(url_for("home"))
 
 
-@app.route("/update2", methods=["POST"])
-def update2():
-    user = get_current_user()
-    user_id = user["id"]
-    new_username = request.form.get("username")
-    new_email = request.form.get("email")
-    new_password = request.form.get("password")
-    updated_fields = []
-
-    # check for duplicate username
-    if new_username:
-        if dbh.user_exists(username=new_username, exclude_id=user_id):
-            flash("Username unavailable", "error")
-            return redirect(url_for("account"))
-        dbh.update_user(user_ID=user_id, user_name=new_username)
-        updated_fields.append("username")
-
-    # check for duplicate email
-    if new_email:
-        if dbh.user_exists(email=new_email, exclude_id=user_id):
-            flash("Email already in use", "error")
-            return redirect(url_for("account"))
-        dbh.update_user(user_ID=user_id, user_email=new_email)
-        updated_fields.append("email")
-
-    # update password if provided
-    if new_password:
-        dbh.update_user(user_ID=user_id, user_password=new_password)
-        updated_fields.append("password")
-
-    # refresh session with updated info
-    updated_user = dbh.get_user_by_id(user_id)
-    session["user"] = {
-        "id": updated_user[0],
-        "name": updated_user[1],
-        "email": updated_user[2],
-        "role": updated_user[4],
-    }
-
-    if updated_fields:
-        details = ", ".join(updated_fields)
-        flash(f"Account details updated!\n({details})", "success")
-    else:
-        flash("No changes made", "info")
-
-    return redirect(url_for("account"))
-
-
 @app.route("/update", methods=["POST"])
 def update():
     user = get_current_user()
@@ -251,10 +203,10 @@ def update():
         file = request.files['pfp']
         if file and file.filename != '':
             # Save file to uploads folder
-            os.makedirs('static/uploads', exist_ok=True)
+            os.makedirs('database/uploads', exist_ok=True)
             filename = f"pfp_{user_id}_{binascii.
                                         hexlify(os.urandom(8)).decode()}.png"
-            filepath = os.path.join('static/uploads', filename)
+            filepath = os.path.join('database/uploads', filename)
             file.save(filepath)
             # Update database with new pfp path
             dbh.update_user(user_ID=user_id, user_pfp=f"/{filepath}")
@@ -275,7 +227,7 @@ def update():
     else:
         flash("No changes made", "info")
 
-    return redirect(url_for("account"))
+    return redirect(url_for("user_profile", user_id=user_id))
 
 
 # delete account (deferred task)
@@ -442,7 +394,7 @@ def render_page(page):
         return render_template("404.html"), 404
 
 
-# map
+# map (includes deferred pin features)
 @app.route('/map')
 def map_page():
     # nonce = binascii.hexlify(os.urandom(16)).decode()
@@ -454,6 +406,23 @@ def map_page():
 # def notes_locations():
 #     notes = dbh.execute('SELECT note_title, address FROM notes').fetchall()
 #     return jsonify([{'title': n[0], 'location': n[1]} for n in notes])
+
+
+# search
+@app.route('/search')
+def search():
+    query = request.args.get('q', '').strip()
+    if not query:
+        return render_template('search.html', query='', results=None)
+
+    results = dbh.search_all(query)
+    total_results = sum(len(results[key]) for key in results)
+
+    return render_template('search.html',
+                           query=query,
+                           results=results,
+                           total_results=total_results,
+                           user=get_current_user())
 
 
 if __name__ == "__main__":

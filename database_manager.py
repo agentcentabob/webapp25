@@ -60,7 +60,8 @@ def create_user(username, email, password):
     con.close()
 
 
-def update_user(user_ID, user_name=None, user_email=None, user_password=None):
+def update_user(user_ID, user_name=None, user_email=None,
+                user_password=None, user_pfp=None):
     # only update the provided fields
     con = get_connection()
     cur = con.cursor()
@@ -76,6 +77,10 @@ def update_user(user_ID, user_name=None, user_email=None, user_password=None):
         cur.execute(
             "UPDATE userinformation2 SET user_password = ? WHERE user_id = ?",
             (user_password, user_ID),)
+    if user_pfp:
+        cur.execute(
+            "UPDATE userinformation2 SET user_pfp = ? WHERE user_id = ?",
+            (user_pfp, user_ID))
     con.commit()
     con.close()
 
@@ -103,6 +108,30 @@ def user_exists(username=None, email=None, exclude_id=None):
             return True
     con.close()
     return False
+
+
+# search functions
+def get_all_users():
+    con = get_connection()
+    cur = con.cursor()
+    cur.execute("SELECT * FROM userinformation2")
+    users = cur.fetchall()
+    con.close()
+    return users
+
+
+def get_all_notes():
+    con = get_connection()
+    cur = con.cursor()
+    cur.execute("""
+        SELECT n.user_id, n.note_ID, n.note_title, n.address,
+               n.date_modified, n.date_created, n.note_md
+        FROM notes n
+        ORDER BY n.date_modified DESC
+    """)
+    notes = cur.fetchall()
+    con.close()
+    return notes
 
 
 # note functions
@@ -247,3 +276,76 @@ def update_user_pfp(user_id, pfp_path):
     )
     con.commit()
     con.close()
+
+
+def search_all(query):
+    # centralised search function
+    con = get_connection()
+    cur = con.cursor()
+
+    results = {
+        'users': [],
+        'notes': [],
+        'articles': []
+    }
+
+    # searching users
+    cur.execute("SELECT user_id, user_name "
+                "FROM userinformation2 WHERE LOWER(user_name) LIKE ?",
+                ('%' + query.lower() + '%',))
+    users = cur.fetchall()
+    for user in users:
+        results['users'].append({
+            'id': user[0],
+            'name': user[1],
+            'type': 'user'
+        })
+
+    # searching notes
+    cur.execute("""SELECT user_id, note_ID, note_title, address, note_md
+                FROM notes
+                WHERE LOWER(note_title) LIKE ? OR LOWER(note_md) LIKE ?
+                OR LOWER(address) LIKE ?
+                """, ('%' + query.lower() + '%', '%' + query.lower() + '%',
+                '%' + query.lower() + '%'))
+    notes = cur.fetchall()
+    for note in notes:
+        results['notes'].append({
+            'id': note[1],
+            'title': note[2],
+            'content': note[4][:200] + '...'
+            if note[4] and len(note[4]) > 200 else note[4],
+            'address': note[3],
+            'author_id': note[0],
+            'type': 'note'
+        })
+
+    # searching articles
+    cur.execute("""SELECT a.user_id, a.article_id, a.article_title, a.address,
+                a.article_md, u.user_name
+                FROM articles a
+                JOIN userinformation2 u ON a.user_id = u.user_id
+                WHERE LOWER(a.article_title) LIKE ? OR
+                LOWER(a.article_md) LIKE ?
+                """, ('%' + query.lower() + '%', '%' + query.lower() + '%'))
+
+    articles = cur.fetchall()
+
+    for article in articles:
+        content = article[4] or ""  # ensure it's a string
+        if len(content) > 200:
+            snippet = content[:200] + '...'
+        else:
+            snippet = content
+        results['articles'].append({
+            'id': article[1],
+            'title': article[2],
+            'content': snippet,
+            'address': article[3],
+            'author_id': article[0],
+            'author_name': article[5],
+            'type': 'article'
+        })
+
+    con.close()
+    return results

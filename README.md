@@ -91,7 +91,8 @@ development log started in august 18th in line with course shift away from desig
 | 28/8* | added image
 | 1/9 | fixed data entries showing with images and fixed width but caused merge error |
 | 3/9* | fixed merge issue and adjusted file names
-development log discontinued on 3/9 in favour of commit messages
+development log discontinued on 3/9 in favour of commit messages and regularly updated to do list
+*note: commit times and messages may not be consistent. during final weeks of development, some commits were delayed and some were staged in multiple rounds to provide more detailed messages*
 
 ### lighthouse reports
 #### september 18, 2025 (week 9)
@@ -146,11 +147,13 @@ render blocking requests caused by the imported fonts and icons saw a low perfor
     - [x] link to view articles
     - [x] generate articles and import to database
     - [x] show username of article author in browsing page
-- [ ] profile page
+- [x] profile page
     - [x] access to user settings
-    - [ ] profile picture and bio
+    - [x] profile picture and bio
     - [x] shows your posts
-- [ ] search bar functionality
+- [ ] search bar feature
+    - [ ] landing page with redirects
+    - [ ] functional bar
 - [x] sidebar
     - [x] new note button location
     - [x] collapsibility

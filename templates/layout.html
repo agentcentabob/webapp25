@@ -30,10 +30,13 @@
 
     {% if not hide_search %}
     <div class="topnav">
-      <span class="material-symbols-outlined">search</span>
-      <div class="searchdivider">-</div>
-      <input type="text" placeholder="Search anything..."/>
+      <form action="{{ url_for('search') }}" method="get" class="searchform">
+        <span class="material-symbols-outlined">search</span>
+        <div class="searchdivider">-</div>
+        <input type="text" name="q" placeholder="Search anything..." required/>
+      </form>
     </div>
+
     {% endif %}
 </body>
 {% include "partials/menu3.html" %} 

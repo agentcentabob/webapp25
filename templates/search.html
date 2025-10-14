@@ -1,0 +1,58 @@
+{% extends 'layout.html' %}
+{% block head %}
+  <title>Results for "{{ query }}" - URBANNOTES</title>
+{% endblock %}
+
+{% block content %}
+<div class="search-container">
+  <h2>Search Results for "{{ query }}"</h2>
+  {% if results %}
+    <p>Found {{ total_results }} results</p>
+
+    {% if results.users %}
+      <h3>Users</h3>
+      <ul class="search-results-list">
+        {% for user in results.users %}
+          <li>
+            <a href="{{ url_for('profile', user_id=user.id) }}">{{ user.name }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    {% if results.notes %}
+      <h3>Notes</h3>
+      <ul class="search-results-list">
+        {% for note in results.notes %}
+          <li>
+            <a href="{{ url_for('view_note', note_id=note.id) }}">{{ note.title }}</a>
+            <p class="preview">{{ note.content }}</p>
+            {% if note.address %}
+              <p class="address">Location: {{ note.address }}</p>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    {% if results.articles %}
+      <h3>Articles</h3>
+      <ul class="search-results-list">
+        {% for article in results.articles %}
+          <li>
+            <a href="{{ url_for('view_article', article_id=article.id) }}">{{ article.title }}</a>
+            <p class="preview">{{ article.content }}</p>
+            {% if article.address %}
+              <p class="address">Location: {{ article.address }}</p>
+            {% endif %}
+            <p class="author">By {{ article.author_name }}</p>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+  {% else %}
+    <p>No results found for "{{ query }}".</p>
+  {% endif %}
+</div>
+{% endblock %}
