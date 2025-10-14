@@ -1,3 +1,4 @@
+// /static/js/
 document.addEventListener('DOMContentLoaded', function() {
   // Initialize map centered on your region
   const map = L.map('map').setView([-33.8, 150.4], 10);
