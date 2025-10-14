@@ -1,10 +1,13 @@
 from flask import Flask, render_template, request  # , jsonify
 from flask import flash, redirect, url_for, session, abort
 from datetime import timedelta
+# from werkzeug.utils import secure_filename
 import os
 import binascii
 import database_manager as dbh
 import markdown2
+import uuid
+import json
 
 app = Flask(__name__)
 app.secret_key = "session_key"
@@ -17,6 +20,19 @@ def is_logged_in():
 
 def get_current_user():
     return session.get("user", None)
+
+
+# upload images constants
+NOTEIMG_UPLOAD_FOLDER = 'static/noteimg_uploads'
+ALLOWED_IMAGE_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'webp'}
+
+if not os.path.exists(NOTEIMG_UPLOAD_FOLDER):
+    os.makedirs(NOTEIMG_UPLOAD_FOLDER)
+
+
+def allowed_image_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_IMAGE_EXTENSIONS
 
 
 # home page render
@@ -355,6 +371,42 @@ def rename_note(note_id):
         print(f"Error renaming note: {e}")
         flash('Failed to rename note', 'error')
         return redirect(url_for('notes_library'))
+
+
+# upload images
+@app.route('/upload-image', methods=['POST'])
+def upload_image():
+    if not is_logged_in():
+        return json.dumps({'error': 'not logged in'}), 401
+
+    if 'file' not in request.files:
+        return json.dumps({'error': 'no file provided'}), 400
+
+    file = request.files['file']
+
+    if file.filename == '':
+        return json.dumps({'error': 'no file selected'}), 400
+
+    if not allowed_image_file(file.filename):
+        return json.dumps(
+            {'error': 'file type not allowed. use png, jpg, gif, or webp'}
+        ), 400
+
+    try:
+        # generate unique filename
+        file_ext = file.filename.rsplit('.', 1)[1].lower()
+        filename = f"{uuid.uuid4()}.{file_ext}"
+        filepath = os.path.join(NOTEIMG_UPLOAD_FOLDER, filename)
+
+        file.save(filepath)
+
+        return json.dumps({
+            'success': True,
+            'url': f'/static/noteimg_uploads/{filename}'
+        })
+    except Exception as e:
+        print(f"image upload error: {e}")
+        return json.dumps({'error': 'upload failed'}), 500
 
 
 # library
