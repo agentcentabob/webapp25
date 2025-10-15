@@ -124,6 +124,28 @@ accessibility and seo ratings were low as some recently images lacked alt text. 
 - seo: 100
 
 render blocking requests caused by the imported fonts and icons saw a low performance score. marks were deducted from accessibility due to some buttons with low contrast. revisions were not necessary.
+#### october 16, 2025 (week 1, term 4)
+##### home page
+- performance: ??
+- accessibility: ?? --> ??
+- best practices: ??
+- seo: ??
+
+(explanation)
+##### new note page
+- performance: ??
+- accessibility: ??
+- best practices: ??
+- seo: ??
+
+(explanation)
+##### article reader page
+- performance: ??
+- accessibility: ??
+- best practices: ??
+- seo: ??
+
+(explanation)
 
 ### task list
 - [x] fix styling of navigation bar
@@ -171,7 +193,7 @@ render blocking requests caused by the imported fonts and icons saw a low perfor
     - [x] collapsibility
     - [x] account button functionally showing at bottom of menu
 
-#### last day fixes
+#### final tasks
 - [x] embedded map not centred
 - [x] featured articles styling
 - [x] narrow bottom section of home page to be under sidebar
