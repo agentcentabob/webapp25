@@ -3,9 +3,10 @@
     margin: 0;
     background: var(--bkgwhite);
     overflow: hidden;
+    position: visible;
 }
 .editor-header {
-    padding: 20px 30px;
+    padding: 20px 0px;
     border-bottom: 1px solid #e1e8ed;
     display: flex;
     justify-content: space-between;
@@ -23,6 +24,7 @@
 .header-right {
     display: flex;
     gap: 10px;
+    padding-top: 8px;
 }
 .note-title-input {
     font-size: 24px;
@@ -77,17 +79,23 @@
     height: 400px;
     width: 100%;
     overflow: hidden;
+    position: relative;
 }
 .EasyMDEContainer {
     width: 100%;
     max-width: none;
     text-align: left;
     height: 100%;
-    overflow-y: auto;
+    overflow: hidden;
 }
 
 .CodeMirror {
     height: 100% !important;
+    overflow: auto !important;
+}
+
+.CodeMirror-scroll {
+    overflow: hidden !important;
 }
 
 .note-editor {

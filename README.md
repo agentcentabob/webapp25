@@ -202,10 +202,10 @@ render blocking requests caused by the imported fonts and icons saw a low perfor
 - [x] image preview size in markdown editor
 - [x] styling of latest note cards
 - [x] welcome back text with username on home page
-- [ ] improve explainer styling on home page
+- [x] improve explainer styling on home page
 - [ ] edit placeholder texts
 - [ ] final lighthouse tests
-- [ ] fix styling of about and contact page
+- [x] fix styling of about and contact page
 - [ ] final bug checks
 
 ### deferred tasks
@@ -221,14 +221,17 @@ render blocking requests caused by the imported fonts and icons saw a low perfor
 - [ ] perfect account zone formatting at bottom of menu (icon centring, hover text colour)
 - [ ] add profile page statistics section with history (likes, reposts, views, completions)
 - [ ] carousel display of featured articles on home page
+- [ ] fix width of heading bar on articles and map pages to be dynamic (issue with body margins)
 
 #### notes and articles
 - [ ] make publishing articles from a note possible
 - [ ] add unlisted publishing of notes to others via url
 - [ ] add pins of articles and notes to sidebar
 - [ ] restyle autocomplete location bar on note editor
+- [ ] remove non-functional duplicate scroll bar on note editor
 - [ ] fix display of easymde side by side and fullscreen previews
 - [ ] add saved article reading progress
 - [ ] add multiple pages of results for articles page
     - [ ] count of number of articles displayed
     - [ ] buttons for seeking between pages
+    - [ ] automatic width of heading bar

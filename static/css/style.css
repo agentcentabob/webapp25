@@ -389,18 +389,18 @@ span.loginextras a:link {
 
 /* articles page header */
 .articles-header-container {
-    max-width: 1200px;
-    margin: 0 auto;
+    max-width: 970px !important;
     padding-top: 40px;
+    margin-left: -175px;
+    margin-right: -700px;
 }
 
 .articles-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100% !important;
   margin-bottom: 2rem;
-  width: 100%;
-  max-width: 1280px;
   border-bottom: 2px solid black; /* thick black line */
   padding-bottom: 8px; /* optional spacing between text and line */
 }
@@ -696,4 +696,27 @@ span.loginextras a:link {
   .sidenav a {
     font-size: 18px;
   }
+}
+
+/* map heading container */
+.map-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    margin-left: -15px;
+    margin-right: -35px;
+}
+
+.map-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid black; /* thick black line */
+    padding-bottom: 8px; /* optional spacing between text and line */
+}
+
+.map-header h1 {
+    font-size: 32px;
+    color: #333;
+    margin: 0;
 }

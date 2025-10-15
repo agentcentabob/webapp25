@@ -471,7 +471,7 @@ def map_page():
 @app.route("/about")
 def about():
     user = get_current_user()
-    return render_template("about.html", user=user)
+    return render_template("about.html", user=user, hide_footer=True)
 
 
 # search

@@ -232,7 +232,7 @@
 .featured-card .acl-card-name {
     color: #222;
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size: 22px;
     margin-top: 0.5rem;
     text-align: center;
 }
@@ -241,7 +241,7 @@
     width: 15rem;
     text-wrap: balance;
     overflow: hidden;
-    font-size: 13px;
+    font-size: 14px;
     margin: 0.25rem 0;
 }
 
@@ -306,7 +306,11 @@
     padding: 0.25rem 2rem;
     transition: all 0.25s ease-in-out;
     text-decoration: none;
-    margin-top: 2.5rem; /* Align with text */
+    width: 125px;
+    align-content: center;
+    text-align: center;
+    justify-content: center;
+    display: flex;
     white-space: nowrap;
 }
 
@@ -499,4 +503,32 @@
     .text-button-pair .acl-read-btn {
         margin-top: 1rem;
     }
+}
+
+/* scroll indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  z-index: 3;
+  text-align: center;
+  color: white;
+  animation: bounce 2s infinite;
+}
+
+.scroll-arrow {
+  font-size: 2rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  40% {
+    transform: translateX(-50%) translateY(-10px);
+  }
+  60% {
+    transform: translateX(-50%) translateY(-5px);
+  }
 }
