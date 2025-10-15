@@ -11,25 +11,29 @@
     <form method="POST" id="noteForm">
         <div class="note-editor-container">
             <div class="editor-header">
-                <input type="text" 
-                    class="note-title-input" 
-                    id="noteTitle"
-                    name="title"
-                    placeholder="Untitled Note"
-                    value="{{ note_title if note_title else '' }}">
+                <div class="header-left">
+                    <input type="text" 
+                        class="note-title-input" 
+                        id="noteTitle"
+                        name="title"
+                        placeholder="Untitled Note"
+                        value="{{ note_title if note_title else '' }}">
 
-            <input type="text" 
-                class="note-address-input" 
-                id="noteAddress"
-                name="address"
-                placeholder="📍 Location (e.g., Sydney CBD, Bondi Beach)"
-                value="{{ note_address if note_address else '' }}">
+                    <div class="address-input-wrapper">
+                        <input type="text" 
+                            class="note-address-input" 
+                            id="noteAddress"
+                            name="address"
+                            placeholder="📍 Location (e.g., Sydney CBD, Bondi Beach)"
+                            value="{{ note_address if note_address else '' }}">
+                    </div>
+                </div>
 
-                <div class="editor-actions">
+                <div class="header-right">
                     <button type="submit" class="action-btn save">Save</button>
-                    {% if note_id %}
+<!--                    {% if note_id %}
                     <button type="button" class="action-btn delete" id="deleteBtn">🗑️ Delete</button>
-                    {% endif %}
+                    {% endif %}-->
                 </div>
             </div>
 
@@ -39,10 +43,11 @@
 
             <div class="editor-footer">
                 <div class="markdown-hint">
-                    Markdown editing supported | Auto-saves every 5 seconds
+                    Markdown editing supported | Auto-saves every 2 seconds
                 </div>
-                <div class="last-saved" id="lastSaved">
-                    {% if note_id %}Loaded{% else %}Not saved yet{% endif %}
+                <br>
+                <div class="last-saved not-saved" id="lastSaved">
+                    {% if note_id %}✅ Loaded{% else %}❌ Not saved yet{% endif %}
                 </div>
             </div>
         </div>

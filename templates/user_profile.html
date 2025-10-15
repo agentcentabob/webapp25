@@ -21,7 +21,7 @@
 <!-- tabs management -->
 <div class="tabs">
     <button class="tab-btn active" data-tab="articles">Articles</button>
-    <button class="tab-btn" data-tab="statistics">Statistics</button>
+    <button class="tab-btn disabled" title="This feature is not available yet" disabled>Statistics</button>
     {% if is_own_profile %}
     <button class="tab-btn" data-tab="settings">Settings</button>
     {% endif %}
@@ -47,26 +47,26 @@
       </div>
       {% endfor %}
     {% else %}
-      <p>No articles yet</p>
+      <p>No articles yet!</p>
     {% endif %}
   </div>
 </div>
 
-<!-- statistics -->
+<!-- statistics -- FEATURE DISABLED
 <div id="statistics" class="tab-content">
   <div class="statistics-box">
     Statistics
   </div>
-</div>
+</div>-->
 
 <!-- settings (only for own profile) -->
 {% if is_own_profile %}
 <div id="settings" class="tab-content">
-  <br><br>
+<!--  <br><br>
   <h1>Account Settings</h1>
   <div class="accountdetails">
     <text>Logged in as <b>{{ user.name }}</b> &#40;#{{ user.id }}&#41;</text>
-  </div>
+  </div>-->
 
   <div class="login-container">
     <form action="{{ url_for('update') }}" method="post" enctype="multipart/form-data">

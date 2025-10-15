@@ -49,7 +49,8 @@ main {
   margin-left: var(--sidebar-width);
   transition: margin-left 0.3s ease;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   padding: 1rem;
 }
 
@@ -240,10 +241,14 @@ a:active {
 .remember {
   padding-bottom: 5px;
   padding-top: -20px;
+  text-align: center;
 }
 
+/* consolidated input styling for text, password, file, and textarea */
 .login-container input[type="text"],
-.login-container input[type="password"] {
+.login-container input[type="password"],
+.login-container input[type="file"],
+.login-container textarea {
   width: 100%;
   padding: 12px 20px;
   margin: 6px 0;
@@ -252,6 +257,37 @@ a:active {
   box-sizing: border-box;
   border-radius: 10px;
   margin-bottom: 20px;
+}
+
+/* textarea-specific styling */
+.login-container textarea {
+  font-family: "Mozilla Text", sans-serif;
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* file input button styling */
+.login-container input[type="file"]::file-selector-button {
+  padding: 8px 16px;
+  margin-right: 12px;
+  border: none;
+  border-radius: 6px;
+  background-color: var(--btn-greenbg);
+  color: var(--btn-greentext);
+  cursor: pointer;
+  transition: background-color 0.25s ease-in-out;
+  font-family: "Mozilla Text", sans-serif;
+}
+
+.login-container input[type="file"]::file-selector-button:hover {
+  background-color: var(--btn-greenbghover);
+}
+
+/* label styling */
+.login-container label {
+  display: block;
+  margin-top: 8px;
+  text-align: center;
 }
 
 .login-logo {
@@ -351,6 +387,36 @@ span.loginextras a:link {
   cursor: help;
 }
 
+/* articles page header */
+.articles-header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 40px;
+}
+
+.articles-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  width: 100%;
+  max-width: 1280px;
+  border-bottom: 2px solid black; /* thick black line */
+  padding-bottom: 8px; /* optional spacing between text and line */
+}
+
+.articles-header h1 {
+  font-size: 2rem;
+  color: var(--darkgrey);
+  margin: 0;
+}
+
+.results-count {
+  color: #666;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
 /* article cards */
 .acl-container {
   display: grid;
@@ -361,6 +427,8 @@ span.loginextras a:link {
   align-items: center;
   margin: auto;
   padding: 1rem 0;
+  width: 100%;
+  max-width: 1280px;
 }
 
 .acl-card {
@@ -370,10 +438,17 @@ span.loginextras a:link {
   width: 20rem;
   height: 26rem;
   background: #fff;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-  border-radius: 10px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
   margin: auto;
   overflow: hidden;
+  transition: all 0.2s;
+}
+
+.acl-card:hover {
+  border-color: #4CAF50;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
 }
 
 .acl-card-image {
@@ -393,10 +468,10 @@ span.loginextras a:link {
   width: 15rem;
   text-wrap: balance;
   overflow: hidden;
+  font-size: 13px;
 }
 
-.acl-read-btn,
-.green-btn {
+.acl-read-btn{
   border: none;
   background: none;
   border-radius: 5px;
@@ -412,9 +487,7 @@ span.loginextras a:link {
 }
 
 .acl-read-btn:focus,
-.acl-read-btn:hover,
-.green-btn:focus,
-.green-btn:hover {
+.acl-read-btn:hover{
   box-shadow: 1px 1px 2px rgba(21, 21, 21, 0.2);
   background: hsl(111, 21%, 86%);
 }
@@ -512,11 +585,8 @@ span.loginextras a:link {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
-.toggle-btn:hover {
-  background: rgba(49, 54, 51, 0.8);
-}
-
 .toggle-btn #arrow {
+  line-height: 1;
   font-size: 14px;
   color: white;
   transform: rotate(180deg);
@@ -525,6 +595,10 @@ span.loginextras a:link {
 
 .sidenav.collapsed .toggle-btn #arrow {
   transform: rotate(0deg);
+}
+
+.toggle-btn:hover {
+  background: rgba(49, 54, 51, 0.8);
 }
 
 /* text hiding with collapse */

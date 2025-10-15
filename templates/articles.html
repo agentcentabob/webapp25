@@ -3,6 +3,11 @@
   <title>Articles - URBANNOTES</title>
 {% endblock %}
 {% block content %}
+<div class="articles-header-container">
+  <div class="articles-header">
+  <h1>Articles</h1>
+  <p class="results-count">Showing 50 of 50 results</p>
+</div></div>
 <div class="acl-container">
     {% for row in content %}
     <div class="acl-card">
@@ -11,9 +16,9 @@
             src="{{ row[12] }}"
             alt=" Cover image not available due to AI article generation limitations"/>
         <h1 class="acl-card-name">{{ row[2] }}</h1>
-        <p class="acl-card-about">{{ row[3] }}</p>
-        <p class="acl-card-about">{{ row[4] }}</p>
-        <p class="acl-card-about">By {{ row[12] }}</p>
+        <p class="acl-card-about">📍 {{ row[3] }}</p>
+        <p class="acl-card-about">📅 {{ row[4] }}</p>
+        <p class="acl-card-about">By <b>{{ row[12] }}</b></p>
         <a class="acl-card-link" href="{{ url_for('article', user_id=row[0], article_id=row[1]) }}">
             <button class="acl-read-btn">Read More</button>
         </a>

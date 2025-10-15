@@ -359,9 +359,9 @@ def get_featured_articles():
     cur.execute(
         "SELECT a.*, u.user_name FROM articles a "
         "JOIN userinformation2 u ON a.user_ID = u.user_ID "
-        "WHERE a.article_ID = 1 AND a.user_ID IN (1, 2, 3, 4, 5) "
+        "WHERE (a.user_ID = 1 OR a.user_ID = 2) AND a.article_ID = 1 "
         "ORDER BY a.user_ID ASC "
-        "LIMIT 5"
+        "LIMIT 2"
     )
     articles = cur.fetchall()
     con.close()

@@ -24,12 +24,12 @@
       {% if user %}
         <h2 class="section-title">Welcome back, {{ user['name'] }}</h2>
         <div class="recent-notes-inline">
-          <h3>Pick up where you last left off</h3>
+          <h3 style="font-weight: normal; font-size: 20px">Pick up where you last left off</h3>
           {% if recent_notes %}
             <div class="notes-scroll">
               {% for note in recent_notes[:3] %}
                 <a href="{{ url_for('view_note', note_id=note[1]) }}" class="note-card-inline">
-                  <div class="note-title">{{ note[2] }}</div>
+                  <div class="note-title">{{ note[2] if note[2] else 'Untitled' }}</div>
                   <div class="note-meta">{{ note[4][:10] if note[4] else 'No date' }}</div>
                 </a>
               {% endfor %}
@@ -53,76 +53,26 @@
   <section class="fullpage-section section-articles">
     <div class="section-overlay"></div>
     <div class="section-content">
-      <h2 class="section-title">Featured Articles</h2>
-      
-      <div class="carousel-container">
-        <button class="carousel-btn prev" onclick="moveCarousel(-1)">‹</button>
-        
-        <div class="carousel-wrapper">
-          <div class="carousel-track" id="articleCarousel">
-            <!-- article cards will be populated here -->
+        <h2 class="section-title">Featured Articles</h2>
+        <h3 style="font-weight: normal; font-size: 20px"><i>This week's picks curated by our editors.</i></h3>
+        <div class="featured-articles-container">
             {% if featured_articles %}
-              {% for article in featured_articles %}
-                <div class="acl-card carousel-card">
-                  {% if article[11] %}
-                    <img src="{{ url_for('static', filename='articleimg/' + article[11]) }}" 
-                         alt="{{ article[2] }}" 
-                         class="acl-card-image">
-                  {% else %}
-                    <img src="{{ url_for('static', filename='images/placeholder.jpg') }}" 
-                         alt="{{ article[2] }}" 
-                         class="acl-card-image">
-                  {% endif %}
-                  <div class="acl-card-name">
-                    <h1>{{ article[2] }}</h1>
-                  </div>
-                  <div class="acl-card-about">
-                    <p>{{ article[10][:100] if article[10] else 'No description available.' }}...</p>
-                  </div>
-                  <a href="{{ url_for('article', user_id=article[1], article_id=article[0]) }}" 
-                     class="acl-read-btn">Read More</a>
-                </div>
-              {% endfor %}
-            {% else %}
-              <!-- placeholder cards -->
-              <div class="acl-card carousel-card">
-                <img src="{{ url_for('static', filename='images/placeholder.jpg') }}" 
-                     alt="Article 1" 
-                     class="acl-card-image">
-                <div class="acl-card-name"><h1>Sample Article 1</h1></div>
-                <div class="acl-card-about">
-                  <p>Discover urban planning insights and transit developments.</p>
-                </div>
-                <a href="#" class="acl-read-btn">Read More</a>
-              </div>
-              <div class="acl-card carousel-card">
-                <img src="{{ url_for('static', filename='images/placeholder.jpg') }}" 
-                     alt="Article 2" 
-                     class="acl-card-image">
-                <div class="acl-card-name"><h1>Sample Article 2</h1></div>
-                <div class="acl-card-about">
-                  <p>Explore city design and sustainable transport solutions.</p>
-                </div>
-                <a href="#" class="acl-read-btn">Read More</a>
-              </div>
-              <div class="acl-card carousel-card">
-                <img src="{{ url_for('static', filename='images/placeholder.jpg') }}" 
-                     alt="Article 3" 
-                     class="acl-card-image">
-                <div class="acl-card-name"><h1>Sample Article 3</h1></div>
-                <div class="acl-card-about">
-                  <p>Read about urban transformations and community projects.</p>
-                </div>
-                <a href="#" class="acl-read-btn">Read More</a>
-              </div>
+                {% for article in featured_articles[:2] %}
+                    <div class="featured-card">
+                        <img src="{{ url_for('static', filename='NO_IMAGE.png') }}" 
+                          alt=" Cover image not available due to AI article generation limitations"
+                          class="acl-card-image">
+                        <h1 class="acl-card-name">{{ article[2] }}</h1>
+                        <p class="acl-card-about">📍 {{ article[3] }}</p>
+                        <p class="acl-card-about">📅 {{ article[4] }}</p>
+                        <p class="acl-card-about">By <b>{{ article[12] }}</b></p>
+                        <a class="acl-card-link" href="{{ url_for('article', user_id=article[0], article_id=article[1]) }}">
+                            <button class="acl-read-btn">Read More</button>
+                        </a>
+                    </div>
+                {% endfor %}
             {% endif %}
-          </div>
         </div>
-        
-        <button class="carousel-btn next" onclick="moveCarousel(1)">›</button>
-      </div>
-      
-      <div class="carousel-dots" id="carouselDots"></div>
     </div>
   </section>
 
@@ -130,50 +80,43 @@
   <section class="fullpage-section section-explainer">
     <div class="section-overlay"></div>
     <div class="section-content">
-      <h2 class="section-title">Your Urban Knowledge Base</h2>
-      
-      <div class="explainer-content">
-        <div class="explainer-text">
-          <h3>Markdown-Powered Note Taking</h3>
-          <p>Document your urban observations with our powerful markdown editor. 
-          Create rich, formatted notes with headings, lists, links, and images. 
-          Perfect for capturing transit routes, urban design details, or planning research.</p>
-          
-          <h3>Organized Library System</h3>
-          <p>Keep all your notes organized in one place. Tag, categorize, and search 
-          through your urban knowledge base. Whether you're tracking development projects 
-          or documenting transit systems, find what you need instantly.</p>
-          
-          <h3>Community-Driven Content</h3>
-          <p>Share your insights with fellow urban enthusiasts. Read quality articles 
-          from the community, contribute your own perspectives, and build connections 
-          with people who share your passion for cities.</p>
-        </div>
+        <h2 class="section-title">Where ideas come alive...</h2>
         
-        <div class="explainer-actions">
-          <a href="{{ url_for('new_note') }}" class="action-btn">Create New Note</a>
-          <a href="{{ url_for('render_page', page='notes') }}" class="action-btn secondary">Browse Library</a>
+        <div class="explainer-content">
+            <div class="explainer-text">
+                <div class="text-button-pair">
+                    <div class="text-content">
+                        <h3>Markdown-Powered Note Taking</h3>
+                        <p>Document your urban observations with our powerful markdown editor. 
+                        Create rich, formatted notes with headings, lists, links, and images. 
+                        Perfect for capturing transit routes, urban design details, or planning research.</p>
+                    </div>
+                    <a href="{{ url_for('new_note') }}" class="acl-read-btn">New Note</a>
+                </div>
+                
+                <div class="text-button-pair">
+                    <div class="text-content">
+                        <h3>Organized Library System</h3>
+                        <p>Keep all your notes organized in one place. Search through your database by keyword 
+                        location or theme. Whether you're tracking development projects 
+                        or documenting transit systems, find what you need instantly.</p>
+                    </div>
+                    <a href="{{ url_for('render_page', page='notes') }}" class="acl-read-btn">Library</a>
+                </div>
+                
+                <div class="text-button-pair">
+                    <div class="text-content">
+                        <h3>Community-Driven Content</h3>
+                        <p>Share your insights with fellow urban enthusiasts. Read quality articles 
+                        from the community, contribute your own perspectives, and build connections 
+                        with people who share your passion.</p>
+                    </div>
+                    <a href="{{ url_for('render_page', page='articles') }}" class="acl-read-btn">Articles</a>
+                </div>
+                <hr><br>
+                Made by Jethro Shapiro-Liu (10CPTY 2025)
+            </div>
         </div>
-      </div>
-      
-      <!-- feature display -->
-      <div class="features-grid">
-        <div class="feature-tile" data-feature="markdown">
-          <div class="feature-icon">📝</div>
-          <h3>Markdown Note Taking</h3>
-          <p>Write rich, formatted notes using markdown. Capture your thoughts with style and structure.</p>
-        </div>
-        <div class="feature-tile" data-feature="library">
-          <div class="feature-icon">📚</div>
-          <h3>File Organizing in Library</h3>
-          <p>Organize your notes in a beautiful library. Tag, categorize, and find what you need instantly.</p>
-        </div>
-        <div class="feature-tile" data-feature="community">
-          <div class="feature-icon">✨</div>
-          <h3>Quality Community Articles</h3>
-          <p>Read and share quality articles written by urban enthusiasts. Discover new perspectives on cities.</p>
-        </div>
-      </div>
     </div>
   </section>
 

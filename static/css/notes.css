@@ -1,9 +1,7 @@
 .note-editor-container {
-    max-width: 1600px;
-    margin: 0 auto;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+    margin: 0;
+    background: var(--bkgwhite);
     overflow: hidden;
 }
 .editor-header {
@@ -11,53 +9,60 @@
     border-bottom: 1px solid #e1e8ed;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     gap: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.header-left {
+    flex: 1;
+    min-width: 0;
+}
+
+.header-right {
+    display: flex;
+    gap: 10px;
 }
 .note-title-input {
     font-size: 24px;
     font-weight: 600;
     border: none;
     outline: none;
-    flex: 1;
+    width: 100%;
     padding: 8px 0;
     background: transparent;
 }
 .note-title-input::placeholder {
     color: #bdc3c7;
 }
-.editor-actions {
-    display: flex;
-    gap: 10px;
-}
+
 .action-btn {
-    padding: 10px 20px;
-    border: 1px solid #dee2e6;
-    background: white;
-    border-radius: 6px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 10px;
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.25s ease-in-out;
+    box-shadow: 1px 1px 2px rgba(21, 21, 21, 0.1);
 }
 .action-btn:hover {
-    background: #f8f9fa;
+    box-shadow: 1px 1px 2px var(--btn-shadow);
 }
 .action-btn.save {
-    background: #27ae60;
-    color: white;
-    border-color: #27ae60;
+    color: var(--btn-greentext);
+    background: var(--btn-greenbg);
 }
 .action-btn.save:hover {
-    background: #229954;
+    background: var(--btn-greenbghover);
 }
 .action-btn.delete {
-    background: #e74c3c;
-    color: white;
-    border-color: #e74c3c;
+    color: var(--btn-redtext);
+    background: var(--btn-redbg);
 }
 .action-btn.delete:hover {
-    background: #c0392b;
+    background: var(--btn-redbghover);
 }
 .action-btn.toggle {
     background: #3498db;
@@ -69,24 +74,31 @@
 }
 .editor-body {
     display: flex;
-    height: 600px;
+    height: 400px;
     width: 100%;
+    overflow: hidden;
 }
 .EasyMDEContainer {
     width: 100%;
     max-width: none;
     text-align: left;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.CodeMirror {
+    height: 100% !important;
 }
 
 .note-editor {
     width: 100%;
     height: 100%;
     border: none;
-    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
     font-size: 14px;
     line-height: 1.6;
     resize: none;
     outline: none;
+    overflow-y: auto;
 }
 .note-editor::placeholder {
     color: #95a5a6;
@@ -95,6 +107,11 @@
 .last-saved {
     font-style: italic;
 }
+
+.editor-footer {
+    margin-top: 1rem;
+}
+
 /* full width mode when preview is hidden */
 .editor-body.editor-only .editor-pane {
     flex: 1;
@@ -102,6 +119,11 @@
 }
 
 /* address */
+.address-input-wrapper {
+    position: relative;
+    width: 400px;
+}
+
 .note-address-input {
     width: 100%;
     padding: 8px 12px;
@@ -126,10 +148,10 @@
 /* address autocomplete */
 .address-autocomplete-dropdown {
     position: absolute;
-    top: 100%;
+    top: calc(100% + 1px);
     left: 0;
-    right: 0;
-    background: white;
+    width: 100%;
+    background: var(--bkgwhite);
     border: 1px solid #e0e0e0;
     border-top: none;
     border-radius: 0 0 6px 6px;
@@ -137,7 +159,6 @@
     max-height: 280px;
     overflow-y: auto;
     z-index: 1000;
-    margin-top: -1px;
     font-size: 14px;
 }
 
@@ -170,7 +191,7 @@
     line-height: 1.3;
 }
 
-/* Subtle scrollbar styling */
+/* subtle scrollbar styling */
 .address-autocomplete-dropdown::-webkit-scrollbar {
     width: 6px;
 }
@@ -188,15 +209,33 @@
     background: #aaa;
 }
 
-/* Make sure the address input container can position the dropdown */
-.editor-header {
-    position: relative;
-}
-
 /* autocomplete loading bar */
 .autocomplete-loading {
     padding: 12px;
     color: #888;
     font-size: 13px;
     text-align: center;
+}
+
+/* restrict pasted image size (3 attempts) */
+.note-editor img {
+    max-width: 100%;
+    max-height: 400px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.editor-preview img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.CodeMirror img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
 }

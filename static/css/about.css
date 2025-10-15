@@ -1,7 +1,7 @@
 /* override body styles for about page */
 .about-page {
     background-color: var(--bkgwhite);
-    margin: 0 !important;  /* Changed from margin-left/right */
+    margin: 0 !important;
     padding: 0 !important;
 }
 
@@ -10,12 +10,12 @@
     position: relative;
     padding: 2rem;
     margin-left: var(--sidebar-width);
-    width: calc(100% - var(--sidebar-width));
+/*    width: calc(100% - var(--sidebar-width));*/
     box-sizing: border-box;
     margin-right: auto;
     margin-top: 0;
-    padding: 60px 40px;  /* Reduced side padding */
-    max-width: 1200px;
+    padding: 60px 40px;
+    max-width: 1400px;
     width: 100%;
 }
 

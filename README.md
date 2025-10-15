@@ -5,10 +5,15 @@ this project aims to create a functional web application using sqlite3, javascri
 
 ## table of contents
 - [disclaimer](documentation/DISCLAIMER.md): resources used (including ai)
+- [user instructions](#user-instructions): notes for use of web app
 - [design brief: urban planning notebook](#design-brief-urban-planning-notebook): fonts, colours, themes, designs, dataflow
 - [workbook](#workbook): algorithm, test cases, queries, development log, lighthouse reports, task list
 
 ## user instructions
+*for best use of web app and assessment marking*
+
+to my knowledge, the app should function completely self-intuitively. you should always be able to navigate around the site via the side menu.
+there are some features that are not available yet noted with greyed out boxes or disabled buttons, and a list of others i want to include if i continue the project at the end of the task list of this readme.md. otherwise, it should all work.
 
 ## design brief: urban planning notebook
 this project aims to create an urban planning notebook web application that allows users to record observations with detail and precision. the app will allow users to easily access and visualise their notes and data. its an evolution of traditional notetaking apps that's useful for travellers, hobbyists and researchers alike.
@@ -125,20 +130,21 @@ render blocking requests caused by the imported fonts and icons saw a low perfor
 - [x] learn how to integrate complex queries into python functions for displaying data
 - [x] fix display of cards to show in grid format instead of long column
 - [x] make table of contents for readme
-- [ ] general styling to sitewide theme
-    - [ ] library page
+- [x] general styling to sitewide theme
+    - [x] library page
     - [x] map page
-    - [ ] note editor
+    - [x] note editor
     - [x] log in page
     - [x] account settings page
     - [x] articles page
-- [ ] styling fixes
-    - [ ] search bar landing page sorted by result type
-    - [ ] left aligned text on search bar landing page
-    - [ ] bio and pfp editor in account settings
-    - [ ] account settings in bottom right
+    - [x] user profile
+- [x] styling fixes
+    - [x] search bar landing page sorted by result type
+    - [x] left aligned text on search bar landing page
+    - [x] bio and pfp editor in account settings
+    - [x] account settings in bottom right
 - [x] create home page
-- [ ] create about and contact page
+- [x] create about and contact page
 - [x] account features
     - [x] correct html input
     - [x] integrate log in features into rest of website
@@ -167,28 +173,40 @@ render blocking requests caused by the imported fonts and icons saw a low perfor
 
 #### last day fixes
 - [x] embedded map not centred
-- [ ] featured articles styling and carousel
-- [ ] update placeholder texts
+- [x] featured articles styling
 - [x] narrow bottom section of home page to be under sidebar
 - [x] remove card view in library, list only
 - [x] make article viewer wider
-- [ ] restyle latest notes section
-- [ ] image preview size in markdown editor
-- [ ] styling of latest note cards
+- [x] image preview size in markdown editor
+- [x] styling of latest note cards
 - [x] welcome back text with username on home page
+- [ ] improve explainer styling on home page
+- [ ] edit placeholder texts
+- [ ] final lighthouse tests
+- [ ] fix styling of about and contact page
+- [ ] final bug checks
 
 ### deferred tasks
 *these tasks would see improvements to the website, however they are not within the current scope and timeline of the project*
 
-- [ ] delete account feature
+- [ ] implement delete account feature
 - [ ] full offline functionality
 - [ ] continue investigating containers, vm and other ways of running the web page
-- [ ] pins showing for locations of notes on map
+- [ ] add pins showing for locations of notes on map
+- [ ] consolidate database_manager.py (consistent function naming, referencing in other files, etc)
+- [ ] centring of collapsible sidebar arrow button
+- [ ] set prompt for no articles on profile to 'This user has no articles yet!' with correct styling
+- [ ] perfect account zone formatting at bottom of menu (icon centring, hover text colour)
+- [ ] add profile page statistics section with history (likes, reposts, views, completions)
+- [ ] carousel display of featured articles on home page
 
 #### notes and articles
-- [ ] publishing articles from a note
-- [ ] unlisted publishing of notes to others via url
-- [ ] pins of articles and notes to sidebar
-- [ ] saved article reading progress
-- [ ] profile page statistics section with history (likes, reposts, views, completions)
+- [ ] make publishing articles from a note possible
+- [ ] add unlisted publishing of notes to others via url
+- [ ] add pins of articles and notes to sidebar
 - [ ] restyle autocomplete location bar on note editor
+- [ ] fix display of easymde side by side and fullscreen previews
+- [ ] add saved article reading progress
+- [ ] add multiple pages of results for articles page
+    - [ ] count of number of articles displayed
+    - [ ] buttons for seeking between pages

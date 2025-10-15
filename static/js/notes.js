@@ -121,7 +121,7 @@
         })
         .then(response => {
             if (response.ok) {
-                updateLastSaved('auto-saved at ' + new Date().toLocaleTimeString());
+                updateLastSaved('✅ Auto-saved at ' + new Date().toLocaleTimeString());
                 hasChanges = false;
                 
                 // if this was a new note, update url to point to the note

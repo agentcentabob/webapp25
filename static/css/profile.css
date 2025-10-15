@@ -17,11 +17,13 @@
 .profile-info h1 {
   margin: 0;
   font-size: 24px;
+  text-align: left;
 }
 .profile-info p {
   margin: 5px 0;
   color: #666;
   font-size: 14px;
+  text-align: left;
 }
 .tabs {
   display: flex;
@@ -68,4 +70,11 @@
   display: block;
   font-size: 14px;
   margin-top: 10px;
+}
+.tab-btn.disabled {
+  color: #ccc;
+  cursor: not-allowed;
+}
+.tab-btn.disabled:hover {
+  color: #888; /* prevent hover color change */
 }

@@ -1,68 +1,70 @@
 {% extends 'layout.html' %}
 {% block head %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/search.css') }}"/>
   <title>Results for "{{ query }}" - URBANNOTES</title>
 {% endblock %}
 
 {% block content %}
 <div class="search-container">
-  <h2>Search Results for "{{ query }}"</h2>
-  {% if results %}
-    <p>Found {{ total_results }} results</p>
+  <h2>Search results for "{{ query }}"</h2>
+  <p>Found {{ total_results }} result{{ 's' if total_results != 1 else '' }}</p>
 
-    {% if results.users %}
-      <h3>Users</h3>
-      <ul class="search-results-list">
-        {% for search_user in results.users %}
-          <li>
-            <a href="{{ url_for('user_profile', user_id=search_user.id) }}">
-              {% if search_user.pfp %}
-                <img src="{{ search_user.pfp }}" alt="Profile picture" class="search-pfp">
-              {% else %}
-                <img src="{{ url_for('static', filename='icons/account_in.png') }}" 
-                     alt="Default profile picture" class="search-pfp">
-              {% endif %}
-              {{ search_user.name }}
-            </a>
-          </li>
-        {% endfor %}
-      </ul>
-    {% endif %}
-
-    {% if results.notes %}
-      <h3>Notes</h3>
-      <ul class="search-results-list">
-        {% for note in results.notes %}
-          <li>
-            <a href="{{ url_for('view_note', note_id=note.id) }}">{{ note.title }}</a>
-            <p class="preview">{{ note.content }}</p>
-            {% if note.address %}
-              <p class="address">Location: {{ note.address }}</p>
+  <h3>USERS</h3>
+  {% if results.users %}
+    <ul class="search-results-list">
+      {% for search_user in results.users %}
+        <li>
+          <a href="{{ url_for('user_profile', user_id=search_user.id) }}">
+            {% if search_user.pfp %}
+              <img src="{{ search_user.pfp }}" alt="Profile picture" class="search-pfp">
+            {% else %}
+              <img src="{{ url_for('static', filename='icons/account_in.png') }}" 
+                   alt="Default profile picture" class="search-pfp">
             {% endif %}
-          </li>
-        {% endfor %}
-      </ul>
-    {% endif %}
-
-    {% if results.articles %}
-      <h3>Articles</h3>
-      <ul class="search-results-list">
-        {% for article in results.articles %}
-          <li>
-            <a href="{{ url_for('article', user_id=article.author_id, article_id=article.id) }}">
-              {{ article.title }}
-            </a>
-            <p class="preview">{{ article.content }}</p>
-            {% if article.address %}
-              <p class="address">Location: {{ article.address }}</p>
-            {% endif %}
-            <p class="author">By {{ article.author_name }}</p>
-          </li>
-        {% endfor %}
-      </ul>
-    {% endif %}
-
+            {{ search_user.name }}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
   {% else %}
-    <p>No results found for "{{ query }}".</p>
+    <p class="no-results">No results found</p>
+  {% endif %}
+
+  <h3>NOTES</h3>
+  {% if results.notes %}
+    <ul class="search-results-list">
+      {% for note in results.notes %}
+        <li>
+          <a href="{{ url_for('view_note', note_id=note.id) }}">{{ note.title }}</a>
+          <p class="preview">{{ note.content }}</p>
+          {% if note.address %}
+            <p class="address">Location: {{ note.address }}</p>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="no-results">No results found</p>
+  {% endif %}
+
+  <h3>ARTICLES</h3>
+  {% if results.articles %}
+    <ul class="search-results-list">
+      {% for article in results.articles %}
+        <li>
+          <a href="{{ url_for('article', user_id=article.author_id, article_id=article.id) }}">
+            {{ article.title }}
+          </a>
+          {% if article.address %}
+            <p class="address">📍 {{ article.address }}</p>
+          {% endif %}
+          <p class="preview">{{ article.content }}</p>
+          <p class="author">By {{ article.author_name }}</p>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="no-results">No results found</p>
   {% endif %}
 </div>
 {% endblock %}
