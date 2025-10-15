@@ -5,77 +5,94 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
 {% endblock %}
 {% block content %}
-  <main class="about-container">
-    <!-- page header -->
-    <section class="about-header">
-      <h1>About Urban Notes</h1>
-      <p class="subtitle">Building a community for urban enthusiasts</p>
-    </section>
-
-    <!-- content grid -->
-    <div class="about-grid">
-      <!-- vision -->
-      <section class="about-section vision-section">
-        <div class="section-icon">🌆</div>
-        <h2>Our Vision</h2>
-        <p>Urban Notes aims to create a space where urban planning enthusiasts, transit advocates, and city lovers can document their observations, share insights, and build a community around our shared passion for better cities.</p>
-        <p>We believe that every perspective matters in shaping the cities of tomorrow. Whether you're documenting transport systems, analyzing urban design, or sharing your favorite city moments, Urban Notes is your digital companion.</p>
-      </section>
-
-      <!-- contact -->
-      <section class="about-section contact-section">
-        <div class="section-icon">📧</div>
-        <h2>Contact</h2>
-        <div class="contact-info">
-          <p><strong>Email:</strong> <a href="mailto:contact@urbannotes.com" title="Contact email not available yet">contact@urbannotes.com</a></p>
-          <p><strong>GitHub:</strong> <a href="https://github.com/agentcentabob" target="_blank">github.com/agentcentabob</a></p>
-          <p>I'd love to hear from you! Send me your thoughts, bug reports, or feature requests.</p>
-        </div>
-      </section>
-
-      <!-- credits -->
-      <section class="about-section credits-section">
-        <div class="section-icon">🙏</div>
-        <h2>Credits & Resources</h2>
-        <div class="credits-list">
-          <div class="credit-item">
-            <h4>Built with</h4>
-            <ul>
-              <li>Flask - Web framework</li>
-              <li>Python - Backend development</li>
-              <li>Markdown - Note formatting</li>
-              <li>Custom CSS - Styling</li>
-            </ul>
-          </div>
-          <div class="credit-item">
-            <h4>Inspiration</h4>
-            <ul>
-              <li>Urban planning communities worldwide</li>
-              <li>Transit enthusiasts and photographers</li>
-              <li>Open-source note-taking platforms</li>
-            </ul>
-          </div>
-          <div class="credit-item">
-            <h4>Images</h4>
-            <ul>
-              <li>Hero image: L4 Urbos100 tram, Westmead, Sydney</li>
-              <li>All photography by contributors</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- extra notes -->
-      <!--<section class="about-section notes-section">
-        <div class="section-icon">📝</div>
-        <h2>Extra Notes</h2>
-        <div class="extra-notes">
-          <p><strong>Project Status:</strong> Urban Notes is actively in development. New features are being added regularly based on community feedback.</p>
-          <p><strong>Open Source:</strong> This project is built as part of a learning journey in web development and urban planning documentation.</p>
-          <p><strong>Privacy:</strong> Your notes are your own. We respect your privacy and never share your content without permission.</p>
-          <p><strong>Community Guidelines:</strong> We're building a respectful community. All shared content should be constructive and relevant to urban topics.</p>
-        </div>
-      </section>-->
+<body class="about-page">
+  
+  <!-- hero section with cards overlapping -->
+  <section class="about-hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>About</h1>
     </div>
-  </main>
+    
+    <!-- gradient transition -->
+    <div class="hero-transition"></div>
+    
+    <!-- cards positioned at bottom of hero -->
+    <div class="about-cards-grid">
+      
+      <!-- website design brief card -->
+      <div class="about-card">
+        <div class="card-content">
+          <h2>About URBANNOTES</h2>
+          <p>URBANNOTES is designed to be a comprehensive platform for urban enthusiasts 
+          to document their observations and share insights about cities, transport systems, 
+          and urban planning.</p>
+          <p>The site features a clean, modern interface with intuitive navigation, 
+          markdown-powered note-taking, organized library management, and community-driven 
+          article sharing.</p>
+          <p>Built with accessibility and user experience in mind, every element is 
+          crafted to make urban documentation seamless and enjoyable.</p>
+        </div>
+      </div>
+
+      <!-- contact card -->
+      <div class="about-card">
+        <div class="card-content">
+          <h2>Feedback & Contact</h2>
+          <p><strong>Email:</strong> <a href="mailto:contact@urbannotes.com" 
+             title="Contact email not available yet">contact@urbannotes.com</a></p>
+          <p><strong>GitHub:</strong> <a href="https://github.com/agentcentabob" 
+             target="_blank">github.com/agentcentabob</a></p>
+          <p>I'd love to hear from you! Send me your thoughts, bug reports, or 
+          feature requests. Whether you have feedback on the platform or ideas for 
+          new features, your input helps shape Urban Notes.</p>
+        </div>
+      </div>
+
+      <!-- credits and resources card -->
+      <div class="about-card">
+        <div class="card-content">
+          <h2>Credits</h2>
+          
+          <h3>Built with</h3>
+          <ul>
+            <li>Flask - Web framework</li>
+            <li>Python - Backend development</li>
+            <li>Markdown - Note formatting</li>
+            <li>Custom CSS - Styling</li>
+          </ul>
+          
+          <h3>Inspiration</h3>
+          <ul>
+            <li>Urban planning communities worldwide</li>
+            <li>Transit enthusiasts and photographers</li>
+            <li>Open-source note-taking platforms</li>
+          </ul>
+          
+          <h3>Images</h3>
+          <ul>
+            <li>Hero images from personal photography collection</li>
+            <li>All photography by contributors</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- extra notes section (commented out) -->
+  <!--<section class="about-section notes-section">
+    <h2>Extra Notes</h2>
+    <div class="extra-notes">
+      <p><strong>Project Status:</strong> Urban Notes is actively in development. 
+      New features are being added regularly based on community feedback.</p>
+      <p><strong>Open Source:</strong> This project is built as part of a learning 
+      journey in web development and urban planning documentation.</p>
+      <p><strong>Privacy:</strong> Your notes are your own. We respect your privacy 
+      and never share your content without permission.</p>
+      <p><strong>Community Guidelines:</strong> We're building a respectful community. 
+      All shared content should be constructive and relevant to urban topics.</p>
+    </div>
+  </section>-->
+</body>
 {% endblock %}
