@@ -428,6 +428,7 @@ def notes_library():
 # rendering other pages
 @app.route("/<page>")
 def render_page(page):
+    user = get_current_user()
     # reserved routes
     reserved = ['notes', 'articles', 'login', 'join', 'account',
                 'logout', 'update', 'deleteacc']
@@ -441,10 +442,9 @@ def render_page(page):
     # check if template exists
     template_path = os.path.join(app.template_folder, page)
     if os.path.exists(template_path):
-        user = get_current_user()
         return render_template(page, user=user)
     else:
-        return render_template("404.html"), 404
+        return render_template("404.html", user=user), 404
 
 
 # map (includes deferred pin features)
