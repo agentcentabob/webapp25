@@ -39,9 +39,14 @@
 
     {% endif %}
 </body>
+
 {% include "partials/menu3.html" %} 
 {% block content %}{% endblock %}
+
+{% if not hide_footer %}
 <footer class="footer">
   Made by Jethro Shapiro-Liu (10CPTY 2025)
 </footer>
+{% endif %}
+
 </html>

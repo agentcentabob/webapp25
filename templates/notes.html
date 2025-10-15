@@ -26,7 +26,7 @@
                 value="{{ note_address if note_address else '' }}">
 
                 <div class="editor-actions">
-                    <button type="submit" class="action-btn save">💾 Save</button>
+                    <button type="submit" class="action-btn save">Save</button>
                     {% if note_id %}
                     <button type="button" class="action-btn delete" id="deleteBtn">🗑️ Delete</button>
                     {% endif %}
@@ -39,7 +39,7 @@
 
             <div class="editor-footer">
                 <div class="markdown-hint">
-                    📝 Markdown supported | Auto-saves every 5 seconds
+                    Markdown editing supported | Auto-saves every 5 seconds
                 </div>
                 <div class="last-saved" id="lastSaved">
                     {% if note_id %}Loaded{% else %}Not saved yet{% endif %}

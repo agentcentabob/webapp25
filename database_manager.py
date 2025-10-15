@@ -350,3 +350,19 @@ def search_all(query):
 
     con.close()
     return results
+
+
+# home page featured articles search (hard coded id 1 from users 1-5)
+def get_featured_articles():
+    con = get_connection()
+    cur = con.cursor()
+    cur.execute(
+        "SELECT a.*, u.user_name FROM articles a "
+        "JOIN userinformation2 u ON a.user_ID = u.user_ID "
+        "WHERE a.article_ID = 1 AND a.user_ID IN (1, 2, 3, 4, 5) "
+        "ORDER BY a.user_ID ASC "
+        "LIMIT 5"
+    )
+    articles = cur.fetchall()
+    con.close()
+    return articles

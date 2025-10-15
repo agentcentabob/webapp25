@@ -137,7 +137,7 @@ render blocking requests caused by the imported fonts and icons saw a low perfor
     - [ ] left aligned text on search bar landing page
     - [ ] bio and pfp editor in account settings
     - [ ] account settings in bottom right
-- [ ] create home page
+- [x] create home page
 - [ ] create about and contact page
 - [x] account features
     - [x] correct html input
@@ -164,6 +164,16 @@ render blocking requests caused by the imported fonts and icons saw a low perfor
     - [x] new note button location
     - [x] collapsibility
     - [x] account button functionally showing at bottom of menu
+
+#### last day fixes
+- [ ] embedded map not centred
+- [ ] featured articles styling and carousel
+- [ ] update placeholder texts
+- [ ] narrow bottom section of home page to be under sidebar
+- [ ] remove card view in library, list only
+- [ ] make article viewer wider
+- [ ] restyle latest notes section
+- [ ] image preview size in markdown editor
 
 ### deferred tasks
 *these tasks would see improvements to the website, however they are not within the current scope and timeline of the project*

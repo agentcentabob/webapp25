@@ -1,18 +1,182 @@
-<!-- anonymous home page -->
+<!-- home page -->
 {% extends 'layout.html' %}
 {% block head %}
   <title>Home - URBANNOTES</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
 {% endblock %}
 {% block content %}
-<body>
-  <div class="featuredimg">
-    <img src="{{ url_for('static', filename='images/westmead_lr.jpg') }}" alt="Featured image: L4 Urbos100 tram leaving Westmead, Sydney">
-  </div>
-  <div class="center">
-    Welcome back
-  </div>
+<body class="home-page">
+  
+  <!-- SECTION 1: title slide -->
+  <section class="fullpage-section section-hero">
+    <div class="section-overlay"></div>
+    <div class="section-content">
+      <h1 class="main-title">URBANNOTES</h1>
+      <p class="main-subtitle">Take notes. Map ideas. Explore urban design.</p>
+    </div>
+  </section>
+
+  <!-- section 2: sign up and welcome  -->
+  <section class="fullpage-section section-signup">
+    <div class="section-overlay"></div>>
+    <div class="section-overlay"></div>
+    <div class="section-content">
+      {% if user %}
+        <h2 class="section-title">Welcome back, {{ user.username }}</h2>
+        <div class="recent-notes-inline">
+          <h3>Pick up where you last left off</h3>
+          {% if recent_notes %}
+            <div class="notes-scroll">
+              {% for note in recent_notes[:3] %}
+                <a href="{{ url_for('view_note', note_id=note[1]) }}" class="note-card-inline">
+                  <div class="note-title">{{ note[2] }}</div>
+                  <div class="note-meta">{{ note[4][:10] if note[4] else 'No date' }}</div>
+                </a>
+              {% endfor %}
+            </div>
+          {% else %}
+            <p class="empty-state">No notes yet. Start creating!</p>
+          {% endif %}
+        </div>
+      {% else %}
+        <h2 class="section-title">Let's get started</h2>
+        <p class="section-desc">Begin your journey with your URBANNOTES account</p>
+        <div class="button-group">
+          <a href="{{ url_for('login') }}" class="cta-btn">Login</a>
+          <a href="{{ url_for('join') }}" class="cta-btn primary">Sign up</a>
+        </div>
+      {% endif %}
+    </div>
+  </section>
+
+  <!-- SECTION 3: featured articles -->
+  <section class="fullpage-section section-articles">
+    <div class="section-overlay"></div>
+    <div class="section-content">
+      <h2 class="section-title">Featured Articles</h2>
+      
+      <div class="carousel-container">
+        <button class="carousel-btn prev" onclick="moveCarousel(-1)">‹</button>
+        
+        <div class="carousel-wrapper">
+          <div class="carousel-track" id="articleCarousel">
+            <!-- article cards will be populated here -->
+            {% if featured_articles %}
+              {% for article in featured_articles %}
+                <div class="acl-card carousel-card">
+                  {% if article[11] %}
+                    <img src="{{ url_for('static', filename='articleimg/' + article[11]) }}" 
+                         alt="{{ article[2] }}" 
+                         class="acl-card-image">
+                  {% else %}
+                    <img src="{{ url_for('static', filename='images/placeholder.jpg') }}" 
+                         alt="{{ article[2] }}" 
+                         class="acl-card-image">
+                  {% endif %}
+                  <div class="acl-card-name">
+                    <h1>{{ article[2] }}</h1>
+                  </div>
+                  <div class="acl-card-about">
+                    <p>{{ article[10][:100] if article[10] else 'No description available.' }}...</p>
+                  </div>
+                  <a href="{{ url_for('article', user_id=article[1], article_id=article[0]) }}" 
+                     class="acl-read-btn">Read More</a>
+                </div>
+              {% endfor %}
+            {% else %}
+              <!-- placeholder cards -->
+              <div class="acl-card carousel-card">
+                <img src="{{ url_for('static', filename='images/placeholder.jpg') }}" 
+                     alt="Article 1" 
+                     class="acl-card-image">
+                <div class="acl-card-name"><h1>Sample Article 1</h1></div>
+                <div class="acl-card-about">
+                  <p>Discover urban planning insights and transit developments.</p>
+                </div>
+                <a href="#" class="acl-read-btn">Read More</a>
+              </div>
+              <div class="acl-card carousel-card">
+                <img src="{{ url_for('static', filename='images/placeholder.jpg') }}" 
+                     alt="Article 2" 
+                     class="acl-card-image">
+                <div class="acl-card-name"><h1>Sample Article 2</h1></div>
+                <div class="acl-card-about">
+                  <p>Explore city design and sustainable transport solutions.</p>
+                </div>
+                <a href="#" class="acl-read-btn">Read More</a>
+              </div>
+              <div class="acl-card carousel-card">
+                <img src="{{ url_for('static', filename='images/placeholder.jpg') }}" 
+                     alt="Article 3" 
+                     class="acl-card-image">
+                <div class="acl-card-name"><h1>Sample Article 3</h1></div>
+                <div class="acl-card-about">
+                  <p>Read about urban transformations and community projects.</p>
+                </div>
+                <a href="#" class="acl-read-btn">Read More</a>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+        
+        <button class="carousel-btn next" onclick="moveCarousel(1)">›</button>
+      </div>
+      
+      <div class="carousel-dots" id="carouselDots"></div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: note system explainer -->
+  <section class="fullpage-section section-explainer">
+    <div class="section-overlay"></div>
+    <div class="section-content">
+      <h2 class="section-title">Your Urban Knowledge Base</h2>
+      
+      <div class="explainer-content">
+        <div class="explainer-text">
+          <h3>Markdown-Powered Note Taking</h3>
+          <p>Document your urban observations with our powerful markdown editor. 
+          Create rich, formatted notes with headings, lists, links, and images. 
+          Perfect for capturing transit routes, urban design details, or planning research.</p>
+          
+          <h3>Organized Library System</h3>
+          <p>Keep all your notes organized in one place. Tag, categorize, and search 
+          through your urban knowledge base. Whether you're tracking development projects 
+          or documenting transit systems, find what you need instantly.</p>
+          
+          <h3>Community-Driven Content</h3>
+          <p>Share your insights with fellow urban enthusiasts. Read quality articles 
+          from the community, contribute your own perspectives, and build connections 
+          with people who share your passion for cities.</p>
+        </div>
+        
+        <div class="explainer-actions">
+          <a href="{{ url_for('new_note') }}" class="action-btn">Create New Note</a>
+          <a href="{{ url_for('render_page', page='notes') }}" class="action-btn secondary">Browse Library</a>
+        </div>
+      </div>
+      
+      <!-- feature display -->
+      <div class="features-grid">
+        <div class="feature-tile" data-feature="markdown">
+          <div class="feature-icon">📝</div>
+          <h3>Markdown Note Taking</h3>
+          <p>Write rich, formatted notes using markdown. Capture your thoughts with style and structure.</p>
+        </div>
+        <div class="feature-tile" data-feature="library">
+          <div class="feature-icon">📚</div>
+          <h3>File Organizing in Library</h3>
+          <p>Organize your notes in a beautiful library. Tag, categorize, and find what you need instantly.</p>
+        </div>
+        <div class="feature-tile" data-feature="community">
+          <div class="feature-icon">✨</div>
+          <h3>Quality Community Articles</h3>
+          <p>Read and share quality articles written by urban enthusiasts. Discover new perspectives on cities.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="{{ url_for('static', filename='js/home.js') }}"></script>
 </body>
-<footer>
-  By Jethro Shapiro-Liu, 10CPTY 2025
-</footer>
 {% endblock %}

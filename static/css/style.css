@@ -9,11 +9,11 @@
 
 :root {
   --darkgreen: #3fa053;
-  --lightgreen: #c3f2bd; /* slightly lighter than design brief */
+  --lightgreen: #c3f2bd;
   --lightblue: #b9daff;
   --darkgrey: #313633;
   --bkgwhite: #fdfdfd;
-  /* flash */
+  /* flash messages */
   --fl-lred: #f8d7da;
   --fl-dred: #721c24;
   --fl-bred: #f5c6cb;
@@ -30,7 +30,6 @@
   --btn-redbg: hsl(3, 21%, 93%);
   --btn-redbghover: hsl(3, 21%, 86%);
   --btn-redtext: hsl(3, 100%, 25%);
-  /* button hover shadows */
   --btn-shadow: rgba(21, 21, 21, 0.2);
   /* dynamic sidebar widths */
   --sidebar-width: 160px;
@@ -60,7 +59,7 @@ main {
   text-align: center;
 }
 
-/* default link colours */
+/* default link colors */
 a:visited {
   color: #000;
 }
@@ -102,26 +101,21 @@ a:active {
   font-style: bold;
 }
 
-/* PAGE TITLE */
+/* page title */
 .pagetitle a:link {
-  /* title part with link */
   font-family: "Mozilla Text", sans-serif;
   font-size: xx-large;
   font-weight: bold;
   text-align: center;
   color: #000;
   text-decoration: none;
-
-  /* centering */
   margin-inline: auto;
   max-width: fit-content;
   display: flex;
   justify-content: center;
-  /*left: 0px;
-  right: 0px;*/
 }
 
-/* FLASH MESSAGES */
+/* flash messages */
 .popup {
   position: fixed;
   top: 20px;
@@ -141,7 +135,8 @@ a:active {
   box-sizing: border-box;
   pointer-events: auto;
   border: 2px solid;
-  animation: slideIn 0.45s cubic-bezier(0.68, -0.55, 0.265, 1.55), fadeOut 0.5s ease-out 4s forwards;
+  animation: slideIn 0.45s cubic-bezier(0.68, -0.55, 0.265, 1.55),
+    fadeOut 0.5s ease-out 4s forwards;
 }
 
 @keyframes slideIn {
@@ -162,28 +157,25 @@ a:active {
   }
 }
 
-/* error */
 .flash.error {
   background-color: var(--fl-lred);
   color: var(--fl-dred);
   border-color: var(--fl-bred);
 }
 
-/* success */
 .flash.success {
   background-color: var(--fl-lgreen);
   color: var(--fl-dgreen);
   border-color: var(--fl-bgreen);
 }
 
-/* info */
 .flash.info {
   background-color: var(--fl-lblue);
   color: var(--fl-dblue);
   border-color: var(--fl-bblue);
 }
 
-/* w3: SEARCH BAR */
+/* search bar */
 .topnav {
   position: fixed;
   top: 6px;
@@ -198,14 +190,12 @@ a:active {
   align-items: center;
 }
 
-/* keep flex inside the form, not the container */
 .searchform {
   display: flex;
   align-items: center;
   width: 100%;
 }
 
-/* w3: search bar input */
 .searchform input {
   padding: 6px;
   border: none;
@@ -217,7 +207,6 @@ a:active {
   background: transparent;
 }
 
-/* w3: search icon */
 .topnav span {
   font-size: 20px;
   margin-right: 8px;
@@ -232,29 +221,14 @@ a:active {
   color: var(--bkgwhite);
 }
 
-/* w3: adjust search field when screen is less than 600px wide
-@media screen and (max-width: 600px) {
-  .topnav a, .topnav input[type=text] {
-    float: none;
-    display: block;
-    text-align: left;
-    width: 100%;
-    margin: 0;
-    padding: 14px;
-  }
-  .topnav input[type=text] {
-    border: 1px solid #ccc;
-  }
-} */
-
-/* w3: LOG IN PAGE */
+/* login page */
 .login-container {
   padding: 16px;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
-  max-width: 80%; /* width of entire container */
-  margin: 0 auto; /* centring */
+  max-width: 80%;
+  margin: 0 auto;
 }
 
 .login-container .anytime {
@@ -267,8 +241,8 @@ a:active {
   padding-top: -20px;
 }
 
-/* w3: log in inputs */
-.login-container input[type=text], .login-container input[type=password] {
+.login-container input[type="text"],
+.login-container input[type="password"] {
   width: 100%;
   padding: 12px 20px;
   margin: 6px 0;
@@ -276,16 +250,15 @@ a:active {
   border: 1px solid #bbb;
   box-sizing: border-box;
   border-radius: 10px;
-  margin-bottom: 20px; /* Increase space between inputs and button */
+  margin-bottom: 20px;
 }
 
-/* w3: logo shown on login page */
 .login-logo {
   width: 70%;
   margin: 0 auto;
 }
 
-/* LOG IN/OUT BUTTONS */
+/* login/logout buttons */
 .log-btn {
   padding: 8px 8px;
   margin: 8px 0 1rem;
@@ -298,19 +271,15 @@ a:active {
   font-size: 1rem;
 }
 
-.log-btn.login:focus, .log-btn.login:hover {
-  box-shadow: 1px 1px 2px var(--btn-shadow);
-  background: var(--btn-greenbghover);
-}
-
-.log-btn.logout:focus, .log-btn.logout:hover {
-  box-shadow: 1px 1px 2px var(--btn-shadow);
-  background: var(--btn-redbghover);
-}
-
 .log-btn.login {
   color: var(--btn-greentext);
   background: var(--btn-greenbg);
+}
+
+.log-btn.login:focus,
+.log-btn.login:hover {
+  box-shadow: 1px 1px 2px var(--btn-shadow);
+  background: var(--btn-greenbghover);
 }
 
 .log-btn.logout {
@@ -318,12 +287,18 @@ a:active {
   background: var(--btn-redbg);
 }
 
+.log-btn.logout:focus,
+.log-btn.logout:hover {
+  box-shadow: 1px 1px 2px var(--btn-shadow);
+  background: var(--btn-redbghover);
+}
+
 .log-btn.delete {
   color: hsl(3, 100%, 10%);
   background: hsl(3, 21%, 88%);
 }
 
-/* LOGIN EXTRAS */
+/* login extras */
 .loginextras {
   display: flex;
   justify-content: center;
@@ -340,7 +315,7 @@ span.loginextras {
 span.loginextras a {
   display: block;
   padding: 10px 28px;
-  margin: -10px -28px; /* offset the parent's padding */
+  margin: -10px -28px;
   border-radius: 12px;
   color: black;
   text-decoration: none;
@@ -353,12 +328,14 @@ span.loginextras a:hover {
   cursor: pointer;
 }
 
-span.loginextras a:visited, span.loginextras a:active, span.loginextras a:link {
+span.loginextras a:visited,
+span.loginextras a:active,
+span.loginextras a:link {
   color: black;
   text-decoration: none;
 }
 
-/* ACCOUNT DETAILS */
+/* account details */
 .accountdetails text {
   font-weight: normal;
 }
@@ -373,10 +350,10 @@ span.loginextras a:visited, span.loginextras a:active, span.loginextras a:link {
   cursor: help;
 }
 
-/* ARTICLE CARDS (acl) */
+/* article cards */
 .acl-container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;/*(auto-fit, minmax(15rem, 1fr));*/
+  grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: auto;
   gap: 1rem;
   justify-content: center;
@@ -441,14 +418,7 @@ span.loginextras a:visited, span.loginextras a:active, span.loginextras a:link {
   background: hsl(111, 21%, 86%);
 }
 
-/*.about-container {
-  font-size: 1.25rem;
-  margin-top: 2rem;
-  text-align: justify;
-  text-justify: inter-word;
-}*/
-
-/* 404 PAGE */
+/* 404 page */
 .lost {
   font-size: large;
   max-width: 600px;
@@ -462,19 +432,20 @@ span.loginextras a:visited, span.loginextras a:active, span.loginextras a:link {
   text-align: center;
 }
 
-/* UPDATED SIDEBAR */
+/* sidebar */
 .sidenav {
   height: 100%;
   width: 160px;
-  z-index: 1;
+  z-index: 100;
   position: fixed;
   top: 0;
   left: 0;
-  background: var(--lightgreen);
+  background: rgba(49, 54, 51, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-top-right-radius: 12px;
   border-bottom-right-radius: 12px;
-  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
-  /* collapsibility */
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -494,20 +465,22 @@ span.loginextras a:visited, span.loginextras a:active, span.loginextras a:link {
   padding-left: 3px;
 }
 
+/* sidebar links */
 .sidenav a {
   padding: 6px 8px 6px 16px;
   text-decoration: none;
   font-size: 25px;
-  color: #666;
+  color: white;
   display: block;
   width: 100%;
-  transition: opacity 0.2s ease;
+  transition: color 0.2s ease;
   overflow-x: hidden;
   text-align: left;
 }
 
-.sidenav a:hover, .newnote:hover {
-  color: #aaa;
+.sidenav a:hover,
+.newnote:hover {
+  color: var(--lightgreen);
 }
 
 .sidenav.collapsed a span,
@@ -523,21 +496,28 @@ span.loginextras a:visited, span.loginextras a:active, span.loginextras a:link {
   transform: translateY(-50%);
   width: 28px;
   height: 28px;
-  background-color: var(--lightgreen);
+  background: rgba(49, 54, 51, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border: none;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  vertical-align: center;
   cursor: pointer;
   padding: 0;
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
   z-index: 10;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.toggle-btn:hover {
+  background: rgba(49, 54, 51, 0.8);
 }
 
 .toggle-btn #arrow {
   font-size: 14px;
+  color: white;
   transform: rotate(180deg);
   transition: transform 0.3s ease;
 }
@@ -546,7 +526,7 @@ span.loginextras a:visited, span.loginextras a:active, span.loginextras a:link {
   transform: rotate(0deg);
 }
 
-/* text hiding and showing with collapse */
+/* text hiding with collapse */
 .link-icon {
   margin-right: 8px;
   font-size: 20px;
@@ -570,7 +550,7 @@ span.loginextras a:visited, span.loginextras a:active, span.loginextras a:link {
   margin-left: var(--sidebar-collapsed);
 }
 
-/* NEW NOTE ZONE */
+/* new note button */
 .bottomleft {
   display: flex;
   flex-direction: column;
@@ -584,10 +564,10 @@ span.loginextras a:visited, span.loginextras a:active, span.loginextras a:link {
   padding: 6px 8px 6px 16px;
   text-decoration: none;
   font-size: 25px;
-  color: #666;
+  color: var(--darkgreen);
   display: block;
   width: 100%;
-  transition: opacity 0.2s ease;
+  transition: color 0.2s ease;
   overflow-x: hidden;
   text-align: left;
   border: none;
@@ -602,29 +582,27 @@ span.loginextras a:visited, span.loginextras a:active, span.loginextras a:link {
   margin: 0 auto;
 }
 
-/* ACCOUNT ZONE ONLY */
+/* account zone */
 .accountzone {
   display: flex !important;
   align-items: center;
   gap: 12px;
-  background-color: #fff;
-  padding: 12px 16px;
-  border-radius: 8px;
+  background-color: var(--darkgreen);
+/*  padding: 12px 16px; */
+  border-radius: 14px;
   text-decoration: none;
-  color: #333;
+  color: white;
   transition: background-color 0.2s;
-  margin: 0 8px;
-  width: auto;
 }
 
 .accountzone:hover {
-  background-color: #f0f0f0;
+  background-color: #fff;
 }
 
 .accountzone-icon {
   width: 32px;
   height: 32px;
-  border-radius: 4px;
+  border-radius: 50%;
   object-fit: cover;
   flex-shrink: 0;
 }
@@ -637,6 +615,10 @@ span.loginextras a:visited, span.loginextras a:active, span.loginextras a:link {
 
 /* responsive adjustments */
 @media screen and (max-height: 450px) {
-  .sidenav { padding-top: 15px; }
-  .sidenav a { font-size: 18px; }
+  .sidenav {
+    padding-top: 15px;
+  }
+  .sidenav a {
+    font-size: 18px;
+  }
 }

@@ -39,7 +39,20 @@ def allowed_image_file(filename):
 @app.route("/")
 def home():
     user = get_current_user()
-    return render_template("index.html", user=user)
+    recent_notes = []
+    featured_articles = dbh.get_featured_articles()
+
+    if user:
+        # Get user's 3 most recent notes
+        recent_notes = dbh.get_user_notes(user['id'])[:3]
+
+    return render_template(
+                            "index.html",
+                            user=user,
+                            recent_notes=recent_notes,
+                            featured_articles=featured_articles,
+                            hide_footer=True,
+                        )
 
 
 # articles
@@ -452,6 +465,13 @@ def render_page(page):
 def map_page():
     user = get_current_user()
     return render_template('map.html', user=user)
+
+
+# about page
+@app.route("/about")
+def about():
+    user = get_current_user()
+    return render_template("about.html", user=user)
 
 
 # search
