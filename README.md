@@ -125,16 +125,20 @@ render blocking requests caused by the imported fonts and icons saw a low perfor
 - [x] learn how to integrate complex queries into python functions for displaying data
 - [x] fix display of cards to show in grid format instead of long column
 - [x] make table of contents for readme
-- [ ] finish styling all pages to sitewide theme
-    - [ ] home page
+- [ ] general styling to sitewide theme
     - [ ] library page
     - [x] map page
-    - [ ] about page (+ contact)
     - [ ] note editor
     - [x] log in page
     - [x] account settings page
     - [x] articles page
-    - [ ] search bar landing
+- [ ] styling fixes
+    - [ ] search bar landing page sorted by result type
+    - [ ] left aligned text on search bar landing page
+    - [ ] bio and pfp editor in account settings
+    - [ ] account settings in bottom right
+- [ ] create home page
+- [ ] create about and contact page
 - [x] account features
     - [x] correct html input
     - [x] integrate log in features into rest of website
@@ -165,9 +169,13 @@ render blocking requests caused by the imported fonts and icons saw a low perfor
 *these tasks would see improvements to the website, however they are not within the current scope and timeline of the project*
 
 - [ ] delete account feature
-- [ ] offline functionality
+- [ ] full offline functionality
 - [ ] continue investigating containers, vm and other ways of running the web page
-- [ ] profile page statistics/history section (likes, reposts, views, completions of other articles)
 - [ ] pins showing for locations of notes on map
-- [ ] posting articles from notes
-- [ ] sharing individual notes via url
+
+##### notes and articles
+- [ ] publishing articles from a note
+- [ ] unlisted publishing of notes to others via url
+- [ ] pins of articles and notes to sidebar
+- [ ] saved article reading progress
+- [ ] profile page statistics section with history (likes, reposts, views, completions)
