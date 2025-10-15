@@ -4,7 +4,7 @@
 this project aims to create a functional web application using sqlite3, javascript, python, css and html
 
 ## table of contents
-- [disclaimer](documentation/DISCLAIMER.md): resources used (including ai)
+- [disclaimer](documentation/DISCLAIMER.md): resources used (including use of ai)
 - [user instructions](#user-instructions): notes for use of web app
 - [design brief: urban planning notebook](#design-brief-urban-planning-notebook): fonts, colours, themes, designs, dataflow
 - [workbook](#workbook): algorithm, test cases, queries, development log, lighthouse reports, task list
@@ -203,14 +203,17 @@ render blocking requests caused by the imported fonts and icons saw a low perfor
 - [x] styling of latest note cards
 - [x] welcome back text with username on home page
 - [x] improve explainer styling on home page
-- [ ] edit placeholder texts
+- [x] edit placeholder texts
 - [ ] final lighthouse tests
 - [x] fix styling of about and contact page
 - [ ] final bug checks
+- [x] style new user buttons on homepage
 
 ### deferred tasks
 *these tasks would see improvements to the website, however they are not within the current scope and timeline of the project*
 
+- [ ] perfect account zone formatting at bottom of menu (icon centring, hover text colour)
+- [ ] make button styles on home page consistent
 - [ ] implement delete account feature
 - [ ] full offline functionality
 - [ ] continue investigating containers, vm and other ways of running the web page
@@ -218,10 +221,11 @@ render blocking requests caused by the imported fonts and icons saw a low perfor
 - [ ] consolidate database_manager.py (consistent function naming, referencing in other files, etc)
 - [ ] centring of collapsible sidebar arrow button
 - [ ] set prompt for no articles on profile to 'This user has no articles yet!' with correct styling
-- [ ] perfect account zone formatting at bottom of menu (icon centring, hover text colour)
 - [ ] add profile page statistics section with history (likes, reposts, views, completions)
 - [ ] carousel display of featured articles on home page
 - [ ] fix width of heading bar on articles and map pages to be dynamic (issue with body margins)
+- [ ] show results for keywords found in users' bio in search feature
+- [ ] improve home page styling with blends between images and slightly transparent card backgrounds
 
 #### notes and articles
 - [ ] make publishing articles from a note possible

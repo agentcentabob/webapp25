@@ -22,7 +22,7 @@
         <span class="link-icon">&#10133;</span>
       </a>
     <a href="{{ url_for('user_profile', user_id=user['id']) if user else url_for('login') }}" title="Profile" class="accountzone">
-      <img src="{{ user['pfp'] if user and user['pfp'] else url_for('static', filename='icons/account_in.png') }}" alt="Profile" class="accountzone-icon">
+      <img src="{% if user %}{{ user['pfp'] if user['pfp'] else url_for('static', filename='icons/account_in.png') }}{% else %}{{ url_for('static', filename='icons/account_out.png') }}{% endif %}" alt="Profile" class="accountzone-icon">
       <span class="accountzone-text">{% if user %}{{ user['name'] }}{% else %}Click to login{% endif %}</span>
     </a>
   </div>

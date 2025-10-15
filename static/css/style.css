@@ -657,21 +657,26 @@ span.loginextras a:link {
   margin: 0 auto;
 }
 
-/* account zone */
+/* menu account zone */
 .accountzone {
   display: flex !important;
   align-items: center;
-  gap: 12px;
-  background-color: var(--darkgreen);
-/*  padding: 12px 16px; */
+  gap: 8px;
+  background-color: #3fa053bb;
   border-radius: 14px;
   text-decoration: none;
   color: white;
-  transition: background-color 0.2s;
+  transition: background-color 0.2s, color 0.2s;
+  margin: 2px;
+  width: calc(100% - 6px) !important;
 }
 
 .accountzone:hover {
-  background-color: #fff;
+  background-color: #ffffffdd;
+}
+
+.accountzone:hover .accountzone-text {
+  color: var(--darkgreen);
 }
 
 .accountzone-icon {
@@ -680,6 +685,7 @@ span.loginextras a:link {
   border-radius: 50%;
   object-fit: cover;
   flex-shrink: 0;
+  margin-left: -5px;
 }
 
 .accountzone-text {
