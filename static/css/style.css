@@ -81,11 +81,12 @@ a:active {
 
 /* embedded map */
 .embedmap iframe {
-  width: 1000px;
-  height: 600px;
-  border: #000;
+  width: 650px;
+  height: 400px;
+  border: 10px solid #000;
   border-radius: 4px;
-  border-width: 10px;
+  display: block;
+  margin: 0 auto; /* centers horizontally */
 }
 
 /* footer */

@@ -166,14 +166,16 @@ render blocking requests caused by the imported fonts and icons saw a low perfor
     - [x] account button functionally showing at bottom of menu
 
 #### last day fixes
-- [ ] embedded map not centred
+- [x] embedded map not centred
 - [ ] featured articles styling and carousel
 - [ ] update placeholder texts
-- [ ] narrow bottom section of home page to be under sidebar
-- [ ] remove card view in library, list only
-- [ ] make article viewer wider
+- [x] narrow bottom section of home page to be under sidebar
+- [x] remove card view in library, list only
+- [x] make article viewer wider
 - [ ] restyle latest notes section
 - [ ] image preview size in markdown editor
+- [ ] styling of latest note cards
+- [x] welcome back text with username on home page
 
 ### deferred tasks
 *these tasks would see improvements to the website, however they are not within the current scope and timeline of the project*
@@ -183,9 +185,10 @@ render blocking requests caused by the imported fonts and icons saw a low perfor
 - [ ] continue investigating containers, vm and other ways of running the web page
 - [ ] pins showing for locations of notes on map
 
-##### notes and articles
+#### notes and articles
 - [ ] publishing articles from a note
 - [ ] unlisted publishing of notes to others via url
 - [ ] pins of articles and notes to sidebar
 - [ ] saved article reading progress
 - [ ] profile page statistics section with history (likes, reposts, views, completions)
+- [ ] restyle autocomplete location bar on note editor

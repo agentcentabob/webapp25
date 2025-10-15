@@ -1,3 +1,4 @@
+<!-- /templates/... -->
 {% extends 'layout.html' %} 
 {% block head %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/library.css') }}"/>
@@ -23,11 +24,63 @@
                 <option value="title">Title A-Z</option>
                 <option value="location">Location A-Z</option>
             </select>
+
+            <div class="view-controls">
+                <div class="view-toggle">
+                    <button class="view-btn active" data-view="grid" title="Card View">
+                        ▦
+                    </button>
+                    <button class="view-btn" data-view="list" title="List View">
+                        ☰
+                    </button>
+                </div>
+            </div>
         </div>
 
         {% if notes %}
-        <!-- list view only -->
-        <div class="notes-list active" id="notesList">
+        <!-- card view -->
+        <div class="notes-grid active" id="notesGrid">
+            {% for note in notes %}
+            <div class="note-card" 
+                 data-note-id="{{ note[1] }}"
+                 data-title="{{ note[2]|lower }}" 
+                 data-location="{{ note[3]|lower if note[3] else '' }}"
+                 data-date="{{ note[5] }}">
+                <div class="note-actions">
+                    <button class="action-btn rename" data-note-id="{{ note[1] }}" data-current-title="{{ note[2] }}">
+                        ✏️ Rename
+                    </button>
+                    <button class="action-btn delete" data-note-id="{{ note[1] }}" data-title="{{ note[2] }}">
+                        🗑️ Delete
+                    </button>
+                </div>
+                
+                <a href="{{ url_for('view_note', note_id=note[1]) }}" class="note-card-link">
+                    <div class="note-card-header">
+                        <h3 class="note-card-title">{{ note[2] if note[2] else 'Untitled' }}</h3>
+                        {% if note[3] %}
+                        <span class="note-card-location">📍 {{ note[3] }}</span>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="note-card-preview">
+                        {% if note[6] %}
+                            {{ note[6][:150] }}{% if note[6]|length > 150 %}...{% endif %}
+                        {% else %}
+                            <em>Empty note</em>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="note-card-footer">
+                        <span class="note-date">📅 {{ note[5][:10] if note[5] else 'Unknown date' }}</span>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- list view -->
+        <div class="notes-list" id="notesList">
             {% for note in notes %}
             <div class="note-list-item" 
                  data-note-id="{{ note[1] }}"

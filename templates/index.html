@@ -16,13 +16,13 @@
     </div>
   </section>
 
-  <!-- section 2: sign up and welcome  -->
+  <!-- SECTION 2: sign up and welcome  -->
   <section class="fullpage-section section-signup">
     <div class="section-overlay"></div>>
     <div class="section-overlay"></div>
     <div class="section-content">
       {% if user %}
-        <h2 class="section-title">Welcome back, {{ user.username }}</h2>
+        <h2 class="section-title">Welcome back, {{ user['name'] }}</h2>
         <div class="recent-notes-inline">
           <h3>Pick up where you last left off</h3>
           {% if recent_notes %}

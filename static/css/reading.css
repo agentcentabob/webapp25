@@ -1,6 +1,7 @@
 .article-container {
-  max-width: 1000px;
-  margin: 0 auto;
+  max-width: 1400px;
+  width: auto;
+  margin: 0 calc(-100px + 2rem); /* 2rem for padding */
   padding: 2rem;
 }
 

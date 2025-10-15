@@ -1,3 +1,8 @@
+// NOTE
+// with late sidebar style change, grid/list view change feature was removed.
+// javascript functionality was not removed in case i decide to reimplement it.
+// html file was backed up as /library_1.html/ in /backups/ folder
+// END NOTE
 // dom elements
 const searchInput = document.getElementById('searchInput');
 const sortSelect = document.getElementById('sortSelect');
