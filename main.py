@@ -179,7 +179,7 @@ def join():
         flash("Account created successfully!", "success")
         return redirect(url_for("home"))
 
-    return render_template("user_profile.html")
+    return render_template("create_account.html", hide_search=True)
 
 
 # account settings page
@@ -204,7 +204,7 @@ def update():
     if new_username:
         if dbh.user_exists(username=new_username, exclude_id=user_id):
             flash("Username unavailable", "error")
-            return redirect(url_for("user_profile"))
+            return redirect(url_for("user_profile", user_id=user_id))
         dbh.update_user(user_ID=user_id, user_name=new_username)
         updated_fields.append("username")
 
@@ -212,7 +212,7 @@ def update():
     if new_email:
         if dbh.user_exists(email=new_email, exclude_id=user_id):
             flash("Email already in use", "error")
-            return redirect(url_for("user_profile"))
+            return redirect(url_for("user_profile", user_id=user_id))
         dbh.update_user(user_ID=user_id, user_email=new_email)
         updated_fields.append("email")
 

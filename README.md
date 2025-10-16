@@ -17,7 +17,7 @@ this project aims to create a functional web application using sqlite3, javascri
 3. access via port 5000 (*localhost:5000*)
 
 to my knowledge, once on the site, the app should function completely self-intuitively. you should always be able to navigate around the site via the side menu. some features require a log in, which you should be able to create in the webapp.
-there are some features that are not available yet noted with greyed out boxes or disabled buttons, and a list of others i want to include if i continue the project at the end of the task list of this readme.md. otherwise, it should all work.
+there are some features that are not available yet noted with greyed out boxes or disabled buttons, and a list of others i want to include if i continue the project at the end of the task list of this readme.md. the known bugs are listed at the top of the last. otherwise, it should all work.
 
 ## design brief: urban planning notebook
 this project aims to create an urban planning notebook web application that allows users to record observations with detail and precision. the app will allow users to easily access and visualise their notes and data. its an evolution of traditional notetaking apps that's useful for travellers, hobbyists and researchers alike.
@@ -241,6 +241,8 @@ the same issues were observed with fonts, icons and images on the page. performa
 ### deferred tasks
 *these tasks would see improvements to the website, however they are not within the current scope and timeline of the project*
 
+- [ ] KNOWN BUG: notes saving twice with save button
+- [ ] KNOWN BUG: others' notes appearing search results
 - [ ] make button styles on home page consistent
 - [ ] implement delete account feature
 - [ ] full offline functionality
