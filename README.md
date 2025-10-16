@@ -5,14 +5,18 @@ this project aims to create a functional web application using sqlite3, javascri
 
 ## table of contents
 - [disclaimer](documentation/DISCLAIMER.md): resources used (including use of ai)
-- [user instructions](#user-instructions): notes for use of web app
+- [user instructions](#user-instructions): notes for use of web app and README.md
 - [design brief: urban planning notebook](#design-brief-urban-planning-notebook): fonts, colours, themes, designs, dataflow
 - [workbook](#workbook): algorithm, test cases, queries, development log, lighthouse reports, task list
 
 ## user instructions
 *for best use of web app and assessment marking*
 
-to my knowledge, the app should function completely self-intuitively. you should always be able to navigate around the site via the side menu.
+1. download repository from github
+2. run python file (via run button in top right, "run python file in terminal" on right click, *python main.py* terminal command)
+3. access via port 5000 (*localhost:5000*)
+
+to my knowledge, once on the site, the app should function completely self-intuitively. you should always be able to navigate around the site via the side menu. some features require a log in, which you should be able to create in the webapp.
 there are some features that are not available yet noted with greyed out boxes or disabled buttons, and a list of others i want to include if i continue the project at the end of the task list of this readme.md. otherwise, it should all work.
 
 ## design brief: urban planning notebook
@@ -124,28 +128,50 @@ accessibility and seo ratings were low as some recently images lacked alt text. 
 - seo: 100
 
 render blocking requests caused by the imported fonts and icons saw a low performance score. marks were deducted from accessibility due to some buttons with low contrast. revisions were not necessary.
-#### october 16, 2025 (week 1, term 4)
 ##### home page
-- performance: ??
-- accessibility: ?? --> ??
-- best practices: ??
-- seo: ??
+- performance: 65
+- accessibility: 85
+- best practices: 96
+- seo: 91
 
-(explanation)
+across all pages, the rendering of a google font and google icons caused reduced performance marks. style choices on the home page and in the menu saw slight reductions to the accessibility on all pages.
+#### october 16, 2025 (week 1, term 4)
+final lighthouse tests completed after completion of development. only feature changed after tests: added icons and homepage images to *serviceworker.js* cache list.
 ##### new note page
-- performance: ??
-- accessibility: ??
-- best practices: ??
-- seo: ??
+- performance: 96
+- accessibility: 91
+- best practices: 100
+- seo: 100
 
-(explanation)
+aside from the font rendering, the only other key factor affecting performance and accessibility was the easymde editor, which is legacy javascript.
 ##### article reader page
-- performance: ??
-- accessibility: ??
-- best practices: ??
-- seo: ??
+- performance: 86
+- accessibility: 93
+- best practices: 96
+- seo: 100
 
-(explanation)
+similarly, the font and icon rendering were the key issues found. the extended body text and styling involved also caused reduced marks in other categories.
+##### library page
+- performance: 98
+- accessibility: 86
+- best practices: 100
+- seo: 100
+
+some missing label elements compounded with key issues across all pages saw reductions in accessibility and performance.
+##### profile page
+- performance: 92
+- accessibility: 92
+- best practices: 100
+- seo: 100
+
+generally good marks, affected by the same issue as all other pages.
+##### about page
+- performance: 50
+- accessibility: 92
+- best practices: 100
+- seo: 100
+
+the same issues were observed with fonts, icons and images on the page. performance was significantly reduced due to the inclusion of a large, high definition image in the background being uncompressed when implemented.
 
 ### task list
 - [x] fix styling of navigation bar
@@ -204,15 +230,17 @@ render blocking requests caused by the imported fonts and icons saw a low perfor
 - [x] welcome back text with username on home page
 - [x] improve explainer styling on home page
 - [x] edit placeholder texts
-- [ ] final lighthouse tests
+- [x] final lighthouse tests
 - [x] fix styling of about and contact page
-- [ ] final bug checks
+- [x] final bug checks
 - [x] style new user buttons on homepage
+- [x] style blank library page
+- [x] check for @ sign when logging in/creating account
+- [x] perfect account zone formatting at bottom of menu (icon centring, hover text colour)
 
 ### deferred tasks
 *these tasks would see improvements to the website, however they are not within the current scope and timeline of the project*
 
-- [ ] perfect account zone formatting at bottom of menu (icon centring, hover text colour)
 - [ ] make button styles on home page consistent
 - [ ] implement delete account feature
 - [ ] full offline functionality
@@ -226,6 +254,10 @@ render blocking requests caused by the imported fonts and icons saw a low perfor
 - [ ] fix width of heading bar on articles and map pages to be dynamic (issue with body margins)
 - [ ] show results for keywords found in users' bio in search feature
 - [ ] improve home page styling with blends between images and slightly transparent card backgrounds
+- [ ] sign in prompt on library page appearing twice randomly
+- [ ] compress all images to improve performance
+- [ ] redirect to settings page after updating settings or failing to do so
+- [ ] enable profile picture cropping and rotating
 
 #### notes and articles
 - [ ] make publishing articles from a note possible

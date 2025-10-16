@@ -88,24 +88,41 @@ def update_user(user_ID, user_name=None, user_email=None,
 def user_exists(username=None, email=None, exclude_id=None):
     con = get_connection()
     cur = con.cursor()
+
     if username:
-        cur.execute(
-            "SELECT 1 FROM userinformation2 WHERE "
-            "LOWER(user_name) = LOWER(?) AND user_ID != ?",
-            (username, exclude_id),
-        )
+        if exclude_id is not None:
+            cur.execute(
+                "SELECT 1 FROM userinformation2 WHERE "
+                "LOWER(user_name) = LOWER(?) AND user_ID != ?",
+                (username, exclude_id),
+            )
+        else:
+            cur.execute(
+                "SELECT 1 FROM userinformation2 WHERE "
+                "LOWER(user_name) = LOWER(?)",
+                (username,),
+            )
         if cur.fetchone():
             con.close()
             return True
+
     if email:
-        cur.execute(
-            "SELECT 1 FROM userinformation2 WHERE "
-            "LOWER(user_email) = LOWER(?) AND user_id != ?",
-            (email, exclude_id),
-        )
+        if exclude_id is not None:
+            cur.execute(
+                "SELECT 1 FROM userinformation2 WHERE "
+                "LOWER(user_email) = LOWER(?) AND user_ID != ?",
+                (email, exclude_id),
+            )
+        else:
+            cur.execute(
+                "SELECT 1 FROM userinformation2 WHERE "
+                "LOWER(user_email) = LOWER(?)",
+                (email,),
+            )
         if cur.fetchone():
             con.close()
             return True
+
     con.close()
     return False
 

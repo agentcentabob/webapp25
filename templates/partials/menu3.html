@@ -19,7 +19,7 @@
   <div class="bottomleft">
       <a class="newnote" title="New Note" href="{{ url_for('new_note') }}">
         <span class="link-text">New Note</span>
-        <span class="link-icon">&#10133;</span>
+        <span class="link-icon"><!--&#10133;-->&#128221;</span>
       </a>
     <a href="{{ url_for('user_profile', user_id=user['id']) if user else url_for('login') }}" title="Profile" class="accountzone">
       <img src="{% if user %}{{ user['pfp'] if user['pfp'] else url_for('static', filename='icons/account_in.png') }}{% else %}{{ url_for('static', filename='icons/account_out.png') }}{% endif %}" alt="Profile" class="accountzone-icon">

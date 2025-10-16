@@ -1,9 +1,20 @@
-const CACHE_NAME = "urbannotes-cache1";
+const CACHE_NAME = "urbannotes-cache2";
 const urlsToCache = [
   '/',
   '/static/css/style.css',
   '/static/js/app.js',
-  '/static/manifest.json'
+  '/static/manifest.json',
+// icons
+  '/static/icons/account_in.png',
+  '/static/icons/account_out.png',
+  '/static/icons/logo_black.png',
+  '/static/icons/logo_white.png',
+  '/static/icons/full_logo_black.png',
+// home page images
+  '/static/images/amsterdam_lr.jpg',
+  '/static/images/parallel_ferries.jpg',
+  '/static/images/shinjuku_street.jpg',
+  '/static/images/westmead_lr.jpg',
 ];
 
 // install event
