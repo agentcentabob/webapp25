@@ -13,8 +13,9 @@ this project aims to create a functional web application using sqlite3, javascri
 *for best use of web app and assessment marking*
 
 1. download repository from github
-2. run python file (via run button in top right, "run python file in terminal" on right click, *python main.py* terminal command)
-3. access via port 5000 (*localhost:5000*)
+2. install necessary dependency in terminal --> *pip install markdown2*
+3. run python file (via run button in top right, "run python file in terminal" on right click, *python main.py* terminal command)
+4. access via port 5000 (*localhost:5000*)
 
 to my knowledge, once on the site, the app should function completely self-intuitively. you should always be able to navigate around the site via the side menu. some features require a log in, which you should be able to create in the webapp.
 there are some features that are not available yet noted with greyed out boxes or disabled buttons, and a list of others i want to include if i continue the project at the end of the task list of this readme.md. the known bugs are listed at the top of the last. otherwise, it should all work.
@@ -241,8 +242,6 @@ the same issues were observed with fonts, icons and images on the page. performa
 ### deferred tasks
 *these tasks would see improvements to the website, however they are not within the current scope and timeline of the project*
 
-- [ ] KNOWN BUG: notes saving twice with save button
-- [ ] KNOWN BUG: others' notes appearing search results
 - [ ] make button styles on home page consistent
 - [ ] implement delete account feature
 - [ ] full offline functionality
@@ -273,3 +272,7 @@ the same issues were observed with fonts, icons and images on the page. performa
     - [ ] count of number of articles displayed
     - [ ] buttons for seeking between pages
     - [ ] automatic width of heading bar
+
+#### known bugs
+- [ ] notes saving twice with save button randomly
+- [ ] others' notes appearing search results
